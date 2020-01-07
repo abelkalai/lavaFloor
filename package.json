@@ -1,0 +1,32 @@
+{
+  "name": "lavafloor",
+  "version": "1.0.0",
+  "description": "## Climb up across the platforms as high as you can while avoiding enemies and obstacles.",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "phaser": "^3.21.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=development",
+    "watch": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abelkalai/lavaFloor.git"
+  },
+  "author": "Adam Belkalai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abelkalai/lavaFloor/issues"
+  },
+  "homepage": "https://github.com/abelkalai/lavaFloor#readme"
+}

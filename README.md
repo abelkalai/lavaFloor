@@ -1,5 +1,4 @@
 # The Floor is Lava!
-
 ## About
 Climb up across the platforms as high as you can while avoiding enemies and obstacles.
 

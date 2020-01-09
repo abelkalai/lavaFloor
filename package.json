@@ -7,6 +7,8 @@
     "lib": "lib"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
     "phaser": "^3.21.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
@@ -15,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=development",
-    "start": "http-server -p 3000"
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",

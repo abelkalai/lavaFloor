@@ -47,9 +47,19 @@ function preload() {
     frameWidth: 350,
     frameHeight: 365
   });
+  // Going Backwards
+  this.load.spritesheet("enemyb", "static/assets/sprites/enemy_1_b.png", {
+    frameWidth: 350,
+    frameHeight: 365
+  });
 
-  // Ground Enemey 2
+  // Ground Enemy 2
   this.load.spritesheet("enemy2", "static/assets/sprites/enemy_2.png", {
+    frameWidth: 580,
+    frameHeight: 650
+  });
+  // Going Backwards
+  this.load.spritesheet("enemy2b", "static/assets/sprites/enemy_2_b.png", {
     frameWidth: 580,
     frameHeight: 650
   });
@@ -199,6 +209,14 @@ function create() {
     frameRate: 5
   });
 
+  this.anims.create({
+    key: "e_walkb",
+    frames: this.anims.generateFrameNumbers("enemyb", { start: 0, end: 1 }),
+    frameRepeat: .1,
+    repeat: -1,
+    frameRate: 5
+  });
+
   // Enemy
   groundEnemy = this.physics.add.sprite(600, 418, "enemy");
   groundEnemy.setScale(0.085);
@@ -211,6 +229,14 @@ function create() {
   this.anims.create({
     key: "e_walk2",
     frames: this.anims.generateFrameNumbers("enemy2", { start: 0, end: 1 }),
+    frameRepeat: .1,
+    frameRate: 5,
+    repeat: -1
+  });
+
+  this.anims.create({
+    key: "e_walk2b",
+    frames: this.anims.generateFrameNumbers("enemy2b", { start: 0, end: 1 }),
     frameRepeat: .1,
     frameRate: 5,
     repeat: -1
@@ -301,7 +327,7 @@ function create() {
     fontSize: "32px",
     fill: "#000"
   });
-  
+
 
   // Collision with the coin
   this.physics.add.overlap(player, coin, getCoin, null, this);
@@ -355,12 +381,15 @@ function create() {
     }, 750);
   }
 
+  g1Anim=["e_walkb","e_walk"]
+  g2Anim=["e_walk2","e_walk2b"]
   // Enemy collides with wall
-  this.physics.add.overlap(groundEnemy, walls, enemyWall, null, this);
-  this.physics.add.overlap(groundEnemy2, walls,enemyWall, null, this);
+  this.physics.add.overlap(groundEnemy, walls, enemyWall, null, {this: this, anim: g1Anim});
+  this.physics.add.overlap(groundEnemy2, walls,enemyWall, null, {this: this, anim: g2Anim});
 
-  function enemyWall(enemy){
+  function enemyWall(enemy,anim){
     enemy.setVelocityX(enemy.body.velocity.x*-1)
+    enemy.anims.play(enemy.body.velocity.x>0 ? this.anim[0] : this.anim[1], true); //Enemy walking animation
   }
 
   // Collision with potion
@@ -428,13 +457,10 @@ let togglePause=true
 let pauseAbsent=true
 
 function update() {
+  
   // Ground Enemy Handles
-  //setTimeout(groundEnemy.setVelocityX(100),3000)
 
   cursors = this.input.keyboard.createCursorKeys();
-
-  // Space bar (change this to pause later)
-  //spaceBar = this.input.keyboard;
 
   // Player can turn sound off with "o" key
   oKey = this.input.keyboard.addKey("O");

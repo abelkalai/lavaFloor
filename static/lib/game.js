@@ -17,9 +17,12 @@ const game = new Phaser.Game({
 });
 
 function preload() {
+  // Background
   this.load.image("background", "static/assets/env/background.png");
   this.load.image("ground", "static/assets/env/grassMid.png");
   this.load.image("platform", "static/assets/env/grass.png");
+  this.load.image("lava", "static/assets/env/lava.png");
+  this.load.image("wall", "static/assets/env/invisibleWall.png");
 
   // Health
   this.load.image("heart_3", "static/assets/sprites/heart_3.png");
@@ -120,34 +123,15 @@ function preload() {
 
 }
 
+/********************************************************************************************************************************* */
+
 let sound = "ON";
 
 function create() {
   // Background
   this.add.image(400, 300, "background");
-
-  // Score
-  let score = 0;
-  let scoreText = this.add.text(20, 20, `Score:${score}`, {
-    fontSize: "32px",
-    fill: "#000"
-  });
-
-  // Health
-  let health = 3;
-  let heart_key = ["heart_0", "heart_1", "heart_2", "heart_3"];
-  let healthText = this.add.text(20, 50, "Health: ", {
-    fontSize: "32px",
-    fill: "#000"
-  });
-  let healthImage = this.add.image(198, 66, heart_key[health]);
-
-  // Sound Toggle
-  soundText = this.add.text(620, 20, `Sound:${sound}`, {
-    fontSize: "32px",
-    fill: "#000"
-  });
   
+
   // Platforms
   const platforms = this.physics.add.staticGroup();
 
@@ -160,6 +144,9 @@ function create() {
   platforms.create(0, 300, "platform");
   platforms.create(-100, 225, "platform");
   platforms.create(350, 160 , "platform");
+
+  // Lava 
+  this.add.sprite(500, 700, "lava")
 
   // Add Heart Pickup
   heart = this.physics.add.sprite(100, 250, "heart");
@@ -209,7 +196,7 @@ function create() {
     frames: this.anims.generateFrameNumbers("enemy", { start: 0, end: 1 }),
     frameRepeat: .1,
     repeat: -1,
-    frameRate: 10
+    frameRate: 5
   });
 
   // Enemy
@@ -218,27 +205,39 @@ function create() {
   groundEnemy.setCollideWorldBounds(true);
   this.physics.add.collider(groundEnemy, platforms);
   groundEnemy.anims.play("e_walk", true); //Enemy walking animation
+  groundEnemy.setVelocityX(-40);
 
   //Enemy2 walking animation
   this.anims.create({
     key: "e_walk2",
     frames: this.anims.generateFrameNumbers("enemy2", { start: 0, end: 1 }),
     frameRepeat: .1,
-    frameRate: 10,
+    frameRate: 5,
     repeat: -1
   });
 
   // Enemy 2
-  groundEnemy2= this.physics.add.sprite(300,50,"enemy2")
+  groundEnemy2= this.physics.add.sprite(290,120,"enemy2")
   groundEnemy2.setScale(.065)
   groundEnemy2.setCollideWorldBounds(true);
   this.physics.add.collider(groundEnemy2, platforms);
   groundEnemy2.anims.play("e_walk2", true); //Enemy walking animation
+  groundEnemy2.setVelocityX(80);
+
+  // Invisible Wall
+  const walls = this.physics.add.staticGroup();
+  walls.create(490.5,387.5,"wall") //Lower Level
+  walls.create(810,387.5,"wall") //Lower Level
+  walls.create(509.5,97.5,"wall") //Higher Level
+  walls.create(187.5,97.5,"wall") //Higher Level
+  this.physics.collide(platforms,walls)
+  walls.setVisible(false)
 
   // Player
   player = this.physics.add.sprite(100, 450, "player");
   player.setCollideWorldBounds(true);
   this.physics.add.collider(player, platforms);
+  
 
   this.anims.create({
     key: "right",
@@ -280,6 +279,29 @@ function create() {
     frameRate: 20
   });
 
+  
+  // Score
+  let score = 0;
+  let scoreText = this.add.text(20, 20, `Score:${score}`, {
+    fontSize: "32px",
+    fill: "#000"
+  });
+
+  // Health
+  let health = 3;
+  let heart_key = ["heart_0", "heart_1", "heart_2", "heart_3"];
+  let healthText = this.add.text(20, 50, "Health: ", {
+    fontSize: "32px",
+    fill: "#000"
+  });
+  let healthImage = this.add.image(198, 66, heart_key[health]);
+
+  // Sound Toggle
+  soundText = this.add.text(620, 20, `Sound:${sound}`, {
+    fontSize: "32px",
+    fill: "#000"
+  });
+  
 
   // Collision with the coin
   this.physics.add.overlap(player, coin, getCoin, null, this);
@@ -331,6 +353,14 @@ function create() {
       enemyCollide = true;
       player.tint= 0xffffff
     }, 750);
+  }
+
+  // Enemy collides with wall
+  this.physics.add.overlap(groundEnemy, walls, enemyWall, null, this);
+  this.physics.add.overlap(groundEnemy2, walls,enemyWall, null, this);
+
+  function enemyWall(enemy){
+    enemy.setVelocityX(enemy.body.velocity.x*-1)
   }
 
   // Collision with potion
@@ -385,6 +415,9 @@ function create() {
     pauseImage=this.add.image(400,300,"pauseImage")
     pauseImage.visible=false
 }
+
+
+/********************************************************************************************************************************* */
 
 // Stand is a global var, change later
 let stand = true;

@@ -16,6 +16,8 @@ const game = new Phaser.Game({
   }
 });
 
+
+
 function preload() {
   // Background
   this.load.image("background", "static/assets/env/background.png");

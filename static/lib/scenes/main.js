@@ -1,91 +1,40 @@
-import preloadAssets from "/static/lib/preloadAssets.js";
-import overlay from "/static/lib/gameObjects/overlay.js";
-import playerMovement from "/static/lib/utilities/playerMovement.js";
-import Preload from "/static/lib/scenes/preload.js"
+import Overlay from "/static/lib/gameObjects/overlay.js";
+import Boundaries from "/static/lib/gameObjects/boundaries.js";
+import Lava from "/static/lib/gameObjects/lava.js";
+import Player from "/static/lib/gameObjects/player.js";
+import Pickups from "/static/lib/gameObjects/pickUps.js";
+import Backmusic from "/static/lib/utilities/backMusic.js"
+import pauseFunction from "/static/lib/utilities/pauseUtil.js"
 
 export default class Main extends Phaser.Scene {
   constructor() {
-    super('main');
-    this.player;
-    this.pauseImage;
-    this.playerStanding = true;
-    this.soundToggle = true;
-    this.togglePause = true;
-    this.pauseAbsent = true;
-    this.soundText;
-    this.soundContent = "ON";
-    this.isInvincible;
-    this.hurtAgain;
-
-    this.updatePlayerMovement = playerMovement.bind(this);
+    super("main");
   }
 
   create() {
-
     //Background
     this.add.image(400, 300, "background");
 
-    // Platforms
-    this.platforms = this.physics.add.staticGroup();
+    // Background Music
+    const backMusic = new Backmusic(this)
 
-    // Ground
-    this.platforms.create(35, 550, "ground");
-
-    // Platforms
-    this.platforms.create(650, 450, "platform");
-    this.platforms.create(175, 375, "platform");
-    this.platforms.create(0, 300, "platform");
-    this.platforms.create(-100, 225, "platform");
-    this.platforms.create(350, 160, "platform");
+    //Boundaries
+    const boundaries = new Boundaries(this);
 
     // Lava
-    this.add.sprite(500, 700, "lava");
+    const lava = new Lava(this);
 
-    // Add Heart Pickup
-    this.heart = this.physics.add.sprite(100, 250, "heart");
-    this.heart.setCollideWorldBounds(true);
-    this.physics.add.collider(this.heart, this.platforms);
+    // Overlay
+    const overlay = new Overlay(this);
 
-    //Add Invincibility Potion Pickup
-    this.potion = this.physics.add.sprite(310, 300, "potion");
-    this.potion.setScale(0.4);
-    this.potion.setCollideWorldBounds(true);
-    this.physics.add.collider(this.potion, this.platforms);
+    // Player
+    const player = new Player(this);
 
-    //Add Score Multiplier Potion
-    this.potionMultiplier = this.physics.add.sprite(
-      450,
-      400,
-      "potionMultiplier"
-    );
-    this.potionMultiplier.setScale(0.4);
-    this.potionMultiplier.setCollideWorldBounds(true);
-    this.physics.add.collider(this.potionMultiplier, this.platforms);
+    // Powerups
+    const pickUps = new Pickups(this);
 
-    // Add Coin
-    this.coin = this.physics.add.sprite(200, 300, "coin");
-    this.coin.setScale(0.065);
-    this.coin.setCollideWorldBounds(true);
-    this.physics.add.collider(this.coin, this.platforms);
-
-    // Sound Effects
-    this.coinSound = this.sound.add("collectCoin");
-    this.heartSound = this.sound.add("collectHeart");
-    this.coinMultiplierCollect = this.sound.add("coinMultiplierCollect");
-    this.multiplierSound = this.sound.add("multiplierPotion");
+    // Collide enemy sound
     this.collideEnemySound = this.sound.add("collideEnemy");
-
-    // Background Music
-    this.backgroundMusic = this.sound.add("backgroundMusic", { volume: 0.25 });
-    this.backgroundMusic.loop = true;
-    this.backgroundMusic.play();
-
-    // Invincible Music
-    this.invincibleMusic = this.sound.add("invincibleMusic", { volume: 0.25 });
-    this.invincibleMusic.loop = true;
-
-    // Invincible boolean variable, initially false
-    this.playInvincible = false;
 
     // Walking animation for small enemy
     this.anims.create({
@@ -108,8 +57,8 @@ export default class Main extends Phaser.Scene {
     this.groundEnemy = this.physics.add.sprite(600, 418, "enemy");
     this.groundEnemy.setScale(0.085);
     this.groundEnemy.setCollideWorldBounds(true);
-    this.physics.add.collider(this.groundEnemy, this.platforms);
-    this.groundEnemy.anims.play("e_walk", true); //Enemy walking animation
+    this.physics.add.collider(this.groundEnemy, this.boundaries.platforms);
+    this.groundEnemy.anims.play("e_walk", true);
     this.groundEnemy.setVelocityX(-40);
 
     //Enemy2 walking animation
@@ -133,218 +82,84 @@ export default class Main extends Phaser.Scene {
     this.groundEnemy2 = this.physics.add.sprite(290, 120, "enemy2");
     this.groundEnemy2.setScale(0.065);
     this.groundEnemy2.setCollideWorldBounds(true);
-    this.physics.add.collider(this.groundEnemy2, this.platforms);
+    this.physics.add.collider(this.groundEnemy2, this.boundaries.platforms);
     this.groundEnemy2.anims.play("e_walk2", true); //Enemy walking animation
     this.groundEnemy2.setVelocityX(80);
 
-    // Invisible Wall
-    this.walls = this.physics.add.staticGroup();
-    this.walls.create(490.5, 387.5, "wall"); //Lower Level
-    this.walls.create(810, 387.5, "wall"); //Lower Level
-    this.walls.create(509.5, 97.5, "wall"); //Higher Level
-    this.walls.create(187.5, 97.5, "wall"); //Higher Level
-    this.physics.collide(this.platforms, this.walls);
-    this.walls.setVisible(false);
-
-    // Player
-    this.player = this.physics.add.sprite(100, 450, "player");
-    this.player.setCollideWorldBounds(true);
-    this.physics.add.collider(this.player, this.platforms);
-
-    this.anims.create({
-      key: "right",
-      frames: this.anims.generateFrameNumbers("walk", { start: 0, end: 1 }),
-      frameRepeat: 5,
-      repeat: -1,
-      frameRate: 20
-    });
-
-    this.anims.create({
-      key: "left",
-      frames: this.anims.generateFrameNumbers("walk_b", { start: 0, end: 1 }),
-      frameRepeat: 5,
-      repeat: -1,
-      frameRate: 20
-    });
-
-    this.anims.create({
-      key: "idle",
-      frames: [{ key: "player", frame: 0 }]
-    });
-    this.anims.create({
-      key: "idle_b",
-      frames: [{ key: "player_b", frame: 0 }]
-    });
-    this.anims.create({
-      key: "jump",
-      frames: [{ key: "jump", frame: 0 }],
-      frameRepeat: 1,
-      repeat: -1,
-      frameRate: 20
-    });
-
-    this.anims.create({
-      key: "jump_b",
-      frames: [{ key: "jump_b", frame: 0 }],
-      frameRepeat: 1,
-      repeat: -1,
-      frameRate: 20
-    });
-
-    // Score
-    this.score = 0;
-    this.scoreText = this.add.text(20, 20, `Score:${this.score}`, {
-      fontSize: "32px",
-      fill: "#000"
-    });
-
-    // Health
-    this.health = 3;
-    this.heart_key = ["heart_0", "heart_1", "heart_2", "heart_3"];
-    this.healthText = this.add.text(20, 50, "Health: ", {
-      fontSize: "32px",
-      fill: "#000"
-    });
-    this.healthImage = this.add.image(198, 66, this.heart_key[this.health]);
-
-    // Sound Toggle
-    this.soundText = this.add.text(620, 20, `Sound:${this.soundContent}`, {
-      fontSize: "32px",
-      fill: "#000"
-    });
-
-    // Collision with the coin
-    this.physics.add.overlap(this.player, this.coin, getCoin, null, this);
-
-    this.scoreMultiplier = false; //If true, get double points
-
-    function getCoin(player, coin) {
-      this.scoreMultiplier
-        ? this.coinMultiplierCollect.play()
-        : this.coinSound.play();
-      coin.disableBody(true, true);
-      this.score += this.scoreMultiplier ? 20 : 10;
-      this.scoreText.setText(`Score:${this.score}`);
-    }
-
-    this.enemyCollide = true;
-
     // Collision with the enemy_1 sprite
     this.physics.add.overlap(
-      this.player,
+      this.player.character,
       this.groundEnemy,
       hurtPlayer,
       () => {
-        return this.enemyCollide;
+        return this.player.enemyCollide;
       },
       this
     );
 
     //Collide with enemy 2
     this.physics.add.overlap(
-      this.player,
+      this.player.character,
       this.groundEnemy2,
       hurtPlayer,
       () => {
-        return this.enemyCollide;
+        return this.player.enemyCollide;
       },
       this
     );
 
     function hurtPlayer() {
-      if (this.health !== 0) this.health -= 1;
-      if (this.health !== 0) this.healthImage.destroy();
-      this.healthImage = this.add.image(198, 66, this.heart_key[this.health]);
-      this.enemyCollide = false;
+      if (this.overlay.health !== 0) this.overlay.health -= 1;
+      if (this.overlay.health !== 0) this.overlay.healthImage.destroy();
+      this.overlay.healthImage = this.add.image(198, 66, this.overlay.heart_key[this.overlay.health]);
+      this.player.enemyCollide = false;
       this.collideEnemySound.play();
 
       let hurt = setInterval(() => {
-        (this.player.tint = this.hurtAgain ? 0xff0000 : 0xffffff),
-          (this.hurtAgain = !this.flipper);
+        (this.player.character.tint = this.player.hurtAgain ? 0xff0000 : 0xffffff),
+          (this.player.hurtAgain = !this.player.hurtAgain);
       }, 100);
+
       setTimeout(() => {
         clearInterval(hurt);
       }, 500);
       setTimeout(() => {
-        this.enemyCollide = true;
-        this.player.tint = 0xffffff;
+        this.player.enemyCollide = true;
+        this.player.character.tint = 0xffffff;
       }, 750);
     }
 
     this.g1Anim = ["e_walkb", "e_walk"];
     this.g2Anim = ["e_walk2", "e_walk2b"];
-    // Enemy collides with wall
-    this.physics.add.overlap(this.groundEnemy, this.walls, enemyWall, null, {
-      this: this,
-      anim: this.g1Anim
-    });
-    this.physics.add.overlap(this.groundEnemy2, this.walls, enemyWall, null, {
-      this: this,
-      anim: this.g2Anim
-    });
 
-    function enemyWall(enemy, anim) {
+    // Enemy collides with wall
+    this.physics.add.overlap(
+      this.groundEnemy,
+      this.boundaries.walls,
+      enemyHitWall,
+      null,
+      {
+        this: this,
+        anim: this.g1Anim
+      }
+    );
+    this.physics.add.overlap(
+      this.groundEnemy2,
+      this.boundaries.walls,
+      enemyHitWall,
+      null,
+      {
+        this: this,
+        anim: this.g2Anim
+      }
+    );
+
+    function enemyHitWall(enemy, anim) {
       enemy.setVelocityX(enemy.body.velocity.x * -1);
       enemy.anims.play(
         enemy.body.velocity.x > 0 ? this.anim[0] : this.anim[1],
         true
-      ); //Enemy walking animation
-    }
-
-    // Collision with potion
-    this.physics.add.overlap(this.player, this.potion, getPotion, null, this);
-
-    function getPotion(player, potion) {
-      this.enemyCollide = false;
-      potion.disableBody(true, true);
-
-      this.isInvincible = setInterval(() => {
-        player.tint = Math.random() * 0xffffff;
-      }, 100);
-      this.backgroundMusic.pause();
-      this.invincibleMusic.play();
-      setTimeout(() => {
-        this.enemyCollide = true;
-        clearInterval(this.isInvincible);
-        player.tint = 0xffffff;
-        this.invincibleMusic.pause();
-        this.backgroundMusic.resume();
-      }, 7500);
-    }
-
-    // Collision with heart pickup
-    this.physics.add.overlap(this.player, this.heart, getHeart, null, this);
-
-    function getHeart() {
-      if (this.health <= 2) {
-        this.health++;
-        this.heartSound.play();
-        this.healthImage.destroy();
-        this.heart.disableBody(true, true);
-        this.healthImage = this.add.image(198, 66, this.heart_key[this.health]);
-      }
-    }
-
-    // Collision with score multiplier pickup
-    this.physics.add.overlap(
-      this.player,
-      this.potionMultiplier,
-      getMultiplier,
-      null,
-      this
-    );
-
-    function getMultiplier() {
-      this.multiplierSound.play();
-      this.potionMultiplier.disableBody(true, true);
-      this.multiplierText = this.add.text(500, 60, "Score Multiplier Active!", {
-        fontSize: "20px",
-        fill: "#000"
-      });
-      this.scoreMultiplier = true;
-      setTimeout(() => {
-        this.multiplierText.destroy(), (this.scoreMultiplier = false);
-      }, 10000);
+      );
     }
 
     //Pause
@@ -352,36 +167,9 @@ export default class Main extends Phaser.Scene {
     this.pauseImage.visible = false;
   }
 
-  
-
   update() {
-    this.updatePlayerMovement();
-
-    // player can turn sound off with "o" key
-    let oKey = this.input.keyboard.addKey("O");
-    if (oKey.isDown && this.soundToggle) {
-      this.soundContent = this.soundContent === "ON" ? "OFF" : "ON";
-      this.sound.mute = this.soundContent === "OFF" ? true : false;
-      this.soundText.setText(`Sound:${this.soundContent}`);
-      this.soundToggle = false;
-      setTimeout(() => {
-        this.soundToggle = true;
-      }, 200);
-    }
-
-    // Pause button feature
-
-    let pKey = this.input.keyboard.addKey("P");
-
-    if (pKey.isDown && this.togglePause) {
-      this.pauseAbsent = !this.pauseAbsent;
-      this.pauseImage.visible = this.pauseAbsent == false ? true : false; //Implement pause later using scenes
-
-      this.togglePause = false;
-
-      setTimeout(() => {
-        this.togglePause = true;
-      }, 200);
-    }
+    this.player.update();
+    this.overlay.update();
+    pauseFunction(this,"main")
   }
 }

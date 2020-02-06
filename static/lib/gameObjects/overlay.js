@@ -5,7 +5,6 @@ export default class Overlay {
     this.score = 0;
     this.health = 3;
     this.soundContent = "ON";
-    this.soundToggle = true;
     this.render();
   }
 
@@ -44,14 +43,10 @@ export default class Overlay {
   update() {
     // player can turn sound off with "o" key
     let oKey = this.scene.input.keyboard.addKey("O");
-    if (oKey.isDown && this.soundToggle) {
+    oKey.onDown = () => {
       this.soundContent = this.soundContent === "ON" ? "OFF" : "ON";
       this.scene.sound.mute = this.soundContent === "OFF" ? true : false;
       this.soundText.setText(`Sound:${this.soundContent}`);
-      this.soundToggle = false;
-      setTimeout(() => {
-        this.soundToggle = true;
-      }, 200);
-    }
+    };
   }
 }

@@ -71,18 +71,33 @@ export default class Player {
     });
   }
 
-  
-
   update() {
     let cursors = this.scene.input.keyboard.createCursorKeys();
 
-    //Jumping while idle
-    if (cursors.up.isDown && this.character.body.touching.down) {
-      this.character.setVelocityY(-225);
-      this.character.anims.play("jump", true);
-    }
+    //Handle jumping
+    cursors.up.onDown = () => {
+      if (this.character.body.touching.down) {
+        this.character.setVelocityY(-225);
+        this.character.anims.play("jump", true);
+      }
+      // Holding arrow keys while jumping right
+      else if (cursors.right.isDown && this.character.body.touching.down) {
+        this.character.setVelocityY(-225);
+        this.character.setVelocityX(250);
+        this.character.anims.play("jump", true);
+        this.characterFacingRight = true;
+
+        // Holding arrow keys while jumping left
+      } else if (cursors.left.isDown && this.character.body.touching.down) {
+        this.character.setVelocityY(-225);
+        this.character.setVelocityX(-225);
+        this.character.anims.play("jump_b", true);
+        this.characterFacingRight = false;
+      }
+    };
+    
     // Controlling right in mid-air
-    else if (cursors.right.isDown && !this.character.body.touching.down) {
+    if (cursors.right.isDown && !this.character.body.touching.down) {
       this.character.setVelocityX(250);
       this.character.anims.play("jump", true);
       this.characterFacingRight = true;
@@ -93,30 +108,9 @@ export default class Player {
       this.character.anims.play("jump_b", true);
       this.characterFacingRight = false;
     }
-    // Holding arrow keys while jumping right
-    else if (
-      cursors.up.isDown &&
-      cursors.right.isDown &&
-      this.character.body.touching.down
-    ) {
-      this.character.setVelocityY(-225);
-      this.character.setVelocityX(250);
-      this.character.anims.play("jump", true);
-      this.characterFacingRight = true;
 
-      // Holding arrow keys while jumping left
-    } else if (
-      cursors.up.isDown &&
-      cursors.left.isDown &&
-      this.character.body.touching.down
-    ) {
-      this.character.setVelocityY(-225);
-      this.character.setVelocityX(-225);
-      this.character.anims.play("jump_b", true);
-      this.characterFacingRight = false;
-
-      //Moving right on ground
-    } else if (cursors.right.isDown && this.character.body.touching.down) {
+    //Moving right on ground
+    else if (cursors.right.isDown && this.character.body.touching.down) {
       this.character.setVelocityX(250);
       this.character.anims.play("right", true);
       this.characterFacingRight = true;

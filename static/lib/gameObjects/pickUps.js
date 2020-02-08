@@ -72,7 +72,7 @@ export default class Pickups {
       setTimeout(() => {
         this.scene.player.enemyCollide = true;
         clearInterval(isInvincible);
-        character.tint = 0xffffff;
+        character.clearTint()
         this.scene.backMusic.invincibleMusic.pause();
         this.scene.backMusic.backgroundMusic.resume();
       }, 7500);

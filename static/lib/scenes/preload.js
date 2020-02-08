@@ -32,35 +32,25 @@ export default class Preload extends Phaser.Scene {
       frameHeight: 564
     });
 
-    // Ground Emnemy
-    this.load.spritesheet("enemy", "static/assets/sprites/enemy_1.png", {
+    // Ground Enemy
+    this.load.spritesheet("enemyOne", "static/assets/sprites/enemy_1.png", {
       frameWidth: 350,
       frameHeight: 365
     });
-    // Going Backwards
-    this.load.spritesheet(
-      "enemyb",
-      "static/assets/sprites/enemy_1_b.png",
-      {
-        frameWidth: 350,
-        frameHeight: 365
-      }
-    );
+
 
     // Ground Enemy 2
-    this.load.spritesheet("enemy2", "static/assets/sprites/enemy_2.png", {
+    this.load.spritesheet("enemyTwo", "static/assets/sprites/enemy_2.png", {
       frameWidth: 580,
       frameHeight: 650
     });
-    // Going Backwards
-    this.load.spritesheet(
-      "enemy2b",
-      "static/assets/sprites/enemy_2_b.png",
-      {
-        frameWidth: 580,
-        frameHeight: 650
-      }
-    );
+    
+      // Enemy 3
+      this.load.spritesheet("enemyThree", "static/assets/sprites/enemy_3.png", {
+        frameWidth: 60,
+        frameHeight: 48
+      });
+      
 
     // Invincibility Potion
     this.load.spritesheet(

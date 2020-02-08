@@ -7,5 +7,6 @@ export default class Lava {
 
     render(){
         this.scene.add.sprite(500, 700, "lava");
+        //setAccelerationY(value)
     }
 }

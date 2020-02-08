@@ -19,12 +19,18 @@ export default class Boundaries {
     this.platforms.create(-100, 225, "platform");
     this.platforms.create(350, 160, "platform");
 
+    this.platforms.create(700, 260, "platform");
+
     // Invisible Wall
     this.walls = this.scene.physics.add.staticGroup();
-    this.walls.create(490.5, 387.5, "wall"); //Lower Level
-    this.walls.create(810, 387.5, "wall"); //Lower Level
-    this.walls.create(509.5, 97.5, "wall"); //Higher Level
-    this.walls.create(187.5, 97.5, "wall"); //Higher Level
+    this.walls.create(480, 408, "wall"); //Lower Level
+    this.walls.create(798, 408, "wall"); //Lower Level
+    this.walls.create(523, 120, "wall"); //Higher Level
+    this.walls.create(178, 120, "wall"); //Higher Level
+
+    this.walls.create(528, 218, "wall"); //Mid Level
+    this.walls.create(798, 218, "wall"); //Mid Level
+
     this.scene.physics.collide(this.platforms, this.walls);
     this.walls.setVisible(false);
   }

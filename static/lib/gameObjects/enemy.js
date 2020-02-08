@@ -6,12 +6,13 @@ export default class Enemy {
     this.scale = props.scale;
     this.xPos = props.xPos;
     this.yPos = props.yPos;
-    this.allowGravity=props.allowGravity
-    this.frameRate= props.frameRate
+    this.allowGravity = props.allowGravity;
+    this.frameRate = props.frameRate;
     this.collideEnemySound = this.scene.sound.add("collideEnemy");
     this.animate();
-    this.render();
-    this.handleCollision()
+    this.render()
+    this.update()
+    
   }
 
   render() {
@@ -22,8 +23,11 @@ export default class Enemy {
     );
     this.sprite.setScale(this.scale);
     this.sprite.setCollideWorldBounds(true);
-    this.sprite.body.setAllowGravity(this.allowGravity)
-    this.scene.physics.add.collider(this.sprite, this.scene.boundaries.platforms);
+    this.sprite.body.setAllowGravity(this.allowGravity);
+    this.scene.physics.add.collider(
+      this.sprite,
+      this.scene.boundaries.platforms
+    );
     this.sprite.anims.play(`${this.type}Walk`, true);
     this.sprite.setVelocityX(this.speed);
   }
@@ -31,15 +35,16 @@ export default class Enemy {
   animate() {
     this.scene.anims.create({
       key: `${this.type}Walk`,
-      frames: this.scene.anims.generateFrameNumbers(this.type, { start: 0, end: 1 }),
-      frameRepeat: 0.1,
+      frames: this.scene.anims.generateFrameNumbers(this.type, {
+        start: 0,
+        end: 1
+      }),
       frameRate: this.frameRate,
       repeat: -1
     });
-
   }
 
-  handleCollision() {
+  update() {
     //Collide with player
     this.scene.physics.add.overlap(
       this.scene.player.character,
@@ -75,7 +80,7 @@ export default class Enemy {
       }, 500);
       setTimeout(() => {
         this.scene.player.enemyCollide = true;
-        this.scene.player.character.clearTint()
+        this.scene.player.character.clearTint();
       }, 750);
     }
 
@@ -88,9 +93,10 @@ export default class Enemy {
       this
     );
 
+
     function enemyHitWall(enemy) {
       enemy.setVelocityX(enemy.body.velocity.x * -1);
-      enemy.toggleFlipX()
+      enemy.toggleFlipX();
     }
   }
 }

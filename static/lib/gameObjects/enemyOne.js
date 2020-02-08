@@ -11,5 +11,6 @@ export default class Enemyone extends Enemy{
             allowGravity : true,
             frameRate : 5,
         })
+        this.scene.enemyOne=this
     }
 }

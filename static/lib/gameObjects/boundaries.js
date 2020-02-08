@@ -1,3 +1,4 @@
+const PLATFORM_WIDTH= 346;
 export default class Boundaries {
   constructor(scene) {
     this.scene = scene;
@@ -6,32 +7,34 @@ export default class Boundaries {
   }
 
   render() {
-    // Platforms
+    // Static Groups
     this.platforms = this.scene.physics.add.staticGroup();
+    this.walls = this.scene.physics.add.staticGroup();
+    this.scene.physics.collide(this.platforms, this.walls);
 
     // Ground
     this.platforms.create(35, 550, "ground");
 
-    // Platforms
-    this.platforms.create(650, 450, "platform");
-    this.platforms.create(175, 375, "platform");
-    this.platforms.create(0, 300, "platform");
-    this.platforms.create(-100, 225, "platform");
-    this.platforms.create(350, 160, "platform");
+    // Boundaries
+    this.spawnBoundary(650, 450,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(175, 375,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(0, 300,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(-100, 225,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(350, 160,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(700, 260,"platform",PLATFORM_WIDTH/2);
 
-    this.platforms.create(700, 260, "platform");
+    //Make enemy walls invisible
+    this.walls.setVisible(false)
 
-    // Invisible Wall
-    this.walls = this.scene.physics.add.staticGroup();
-    this.walls.create(480, 408, "wall"); //Lower Level
-    this.walls.create(798, 408, "wall"); //Lower Level
-    this.walls.create(523, 120, "wall"); //Higher Level
-    this.walls.create(178, 120, "wall"); //Higher Level
-
-    this.walls.create(528, 218, "wall"); //Mid Level
-    this.walls.create(798, 218, "wall"); //Mid Level
-
-    this.scene.physics.collide(this.platforms, this.walls);
-    this.walls.setVisible(false);
   }
+
+  spawnBoundary(x, y, type,width) {
+    this.platforms.create(x, y, type);
+    this.walls.create(x-width <= 0 ? 2 : x-width, y - 40, "wall");
+    this.walls.create(x+width >= 800 ? 797 : x+width, y - 40, "wall");
+
+  }
+
+
+
 }

@@ -28,7 +28,6 @@ export default class Player {
         start: 0,
         end: 1
       }),
-      frameRepeat: 5,
       repeat: -1,
       frameRate: 20
     });
@@ -39,7 +38,6 @@ export default class Player {
         start: 0,
         end: 1
       }),
-      frameRepeat: 5,
       repeat: -1,
       frameRate: 20
     });
@@ -57,7 +55,6 @@ export default class Player {
     this.scene.anims.create({
       key: "jump",
       frames: [{ key: "jump", frame: 0 }],
-      frameRepeat: 1,
       repeat: -1,
       frameRate: 20
     });
@@ -65,7 +62,6 @@ export default class Player {
     this.scene.anims.create({
       key: "jump_b",
       frames: [{ key: "jump_b", frame: 0 }],
-      frameRepeat: 1,
       repeat: -1,
       frameRate: 20
     });

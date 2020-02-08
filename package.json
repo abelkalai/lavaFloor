@@ -9,7 +9,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "nodemon": "^2.0.2",
-    "phaser": "^3.21.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },

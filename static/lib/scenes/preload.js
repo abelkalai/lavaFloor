@@ -127,6 +127,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image("logo", "static/assets/logo/placeholder.png");
 
     //When loading assets are complete
+    this.load.on("complete",()=>{console.log("complete")})
   }
 
   create() {

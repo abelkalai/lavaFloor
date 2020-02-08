@@ -32,9 +32,6 @@ export default class Boundaries {
     this.platforms.create(x, y, type);
     this.walls.create(x-width <= 0 ? 2 : x-width, y - 40, "wall");
     this.walls.create(x+width >= 800 ? 797 : x+width, y - 40, "wall");
-
   }
-
-
 
 }

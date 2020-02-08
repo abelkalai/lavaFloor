@@ -8,7 +8,7 @@ export default class Enemy {
     this.yPos = props.yPos;
     this.allowGravity = props.allowGravity;
     this.frameRate = props.frameRate;
-    this.collideEnemySound = this.scene.sound.add("collideEnemy");
+    this.collide = this.scene.sound.add("collideEnemy");
     this.animate();
     this.render()
     this.update()
@@ -66,7 +66,7 @@ export default class Enemy {
         this.scene.overlay.heart_key[this.scene.overlay.health]
       );
       this.scene.player.enemyCollide = false;
-      this.collideEnemySound.play();
+      this.collide.play();
 
       let hurt = setInterval(() => {
         (this.scene.player.character.tint = this.scene.player.hurtAgain

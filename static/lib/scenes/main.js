@@ -17,15 +17,12 @@ export default class Main extends Phaser.Scene {
   create() {
     //Background
     this.add.image(400, 300, "background");
-
+    
     // Background Music
     const backMusic = new Backmusic(this);
 
     //Boundaries
     const boundaries = new Boundaries(this);
-
-    // Lava
-    const lava = new Lava(this);
 
     // Overlay
     const overlay = new Overlay(this);
@@ -36,9 +33,6 @@ export default class Main extends Phaser.Scene {
     // Powerups
     const pickUps = new Pickups(this);
 
-    // Collide enemy sound
-    this.collideEnemySound = this.sound.add("collideEnemy");
-
     // Enemy One
     const enemyOne = new Enemyone(this);
 
@@ -47,11 +41,15 @@ export default class Main extends Phaser.Scene {
 
     // Enemy Three
     const enemyThree = new Enemythree(this);
+
+    // Lava
+    const lava = new Lava(this);
   }
 
   update() {
     this.player.update();
     this.overlay.update();
+    this.lava.update();
     pauseFunction(this, "main");
   }
 }

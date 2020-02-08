@@ -1,7 +1,7 @@
 export default class Preload extends Phaser.Scene {
-    constructor(){
-        super('preload')
-    }
+  constructor() {
+    super("preload");
+  }
 
   preload() {
     this.load.image("background", "static/assets/env/background.png");
@@ -17,14 +17,10 @@ export default class Preload extends Phaser.Scene {
     this.load.image("heart_0", "static/assets/sprites/heart_0.png");
 
     // Heart to Pick Up
-    this.load.spritesheet(
-      "heart",
-      "static/assets/sprites/heart_world.png",
-      {
-        frameWidth: 50,
-        frameHeight: 20
-      }
-    );
+    this.load.spritesheet("heart", "static/assets/sprites/heart_world.png", {
+      frameWidth: 50,
+      frameHeight: 20
+    });
 
     // Coin
     this.load.spritesheet("coin", "static/assets/sprites/Gold_21.png", {
@@ -38,19 +34,17 @@ export default class Preload extends Phaser.Scene {
       frameHeight: 365
     });
 
-
     // Ground Enemy 2
     this.load.spritesheet("enemyTwo", "static/assets/sprites/enemy_2.png", {
       frameWidth: 580,
       frameHeight: 650
     });
-    
-      // Enemy 3
-      this.load.spritesheet("enemyThree", "static/assets/sprites/enemy_3.png", {
-        frameWidth: 60,
-        frameHeight: 48
-      });
-      
+
+    // Enemy 3
+    this.load.spritesheet("enemyThree", "static/assets/sprites/enemy_3.png", {
+      frameWidth: 60,
+      frameHeight: 48
+    });
 
     // Invincibility Potion
     this.load.spritesheet(
@@ -77,15 +71,11 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 67,
       frameHeight: 108
     });
-    
-    this.load.spritesheet(
-      "character_b",
-      "static/assets/sprites/stand_b.png",
-      {
-        frameWidth: 67,
-        frameHeight: 108
-      }
-    );
+
+    this.load.spritesheet("character_b", "static/assets/sprites/stand_b.png", {
+      frameWidth: 67,
+      frameHeight: 108
+    });
     this.load.spritesheet("walk", "static/assets/sprites/walk.png", {
       frameWidth: 80,
       frameHeight: 108
@@ -117,10 +107,7 @@ export default class Preload extends Phaser.Scene {
       "multiplierPotion",
       "static/assets/sounds/multiplierPotion.mp3"
     );
-    this.load.audio(
-      "collideEnemy",
-      "static/assets/sounds/collideEnemy.mp3"
-    );
+    this.load.audio("collideEnemy", "static/assets/sounds/collideEnemy.mp3");
 
     // Background Music
     this.load.audio(
@@ -131,9 +118,19 @@ export default class Preload extends Phaser.Scene {
       "invincibleMusic",
       "static/assets/music/invincibleMusic.wav"
     );
+
+    // Lava Sound Effects
+    this.load.audio("lava", "static/assets/sounds/lavaApproaching.mp3");
+    this.load.audio("burn", "static/assets/sounds/burn.mp3");
+
+    //Personal logo placeholder
+    this.load.image("logo", "static/assets/logo/placeholder.png");
+
+    //When loading assets are complete
   }
 
   create() {
-    this.scene.start("main");
+    this.add.image(400, 300, "logo");
+    setTimeout(()=>{this.scene.start("main")}, 2000);
   }
 }

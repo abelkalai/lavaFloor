@@ -4,6 +4,23 @@ export default class Preload extends Phaser.Scene {
   }
 
   preload() {
+
+    this.make.text({
+      x: 350,
+      y: 240,
+      text: "Loading...",
+      style: {
+        font: "30px"
+      }
+    });
+
+    let pBar = this.add.graphics();
+
+    this.load.on("progress", function(val) {
+      pBar.fillStyle(0xFFFFFF, 1);
+      pBar.fillRect(245, 275, 325 * val, 25);
+    });
+
     this.load.image("background", "static/assets/env/background.png");
     this.load.image("ground", "static/assets/env/grassMid.png");
     this.load.image("platform", "static/assets/env/grass.png");
@@ -127,11 +144,15 @@ export default class Preload extends Phaser.Scene {
     this.load.image("logo", "static/assets/logo/placeholder.png");
 
     //When loading assets are complete
-    this.load.on("complete",()=>{console.log("complete")})
+    this.load.on("complete", () => {
+      console.log("complete");
+    });
   }
 
   create() {
     this.add.image(400, 300, "logo");
-    setTimeout(()=>{this.scene.start("main")}, 2000);
+    setTimeout(() => {
+      this.scene.start("main");
+    }, 1750);
   }
 }

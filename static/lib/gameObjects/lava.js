@@ -22,7 +22,7 @@ export default class Lava {
   }
 
   update() {
-    this.volume = Math.abs(this.scene.player.character.y + this.lava.y) / 2000;
+    this.volume = Math.abs(this.scene.player.character.y + this.lava.y) / 12000;
     this.lavaSound.volume = this.volume;
     this.counter += 1;
   

@@ -18,7 +18,7 @@ const game = new Phaser.Game({
 
 game.scene.add('boot',new Boot())
 game.scene.add('preload',new Preload())
-game.scene.add('main',new Main())
+game.scene.add('main',new Main(game))
 game.scene.add('pause',new Pause())
 
 game.scene.start('boot', new Boot())

@@ -95,7 +95,7 @@ export default class Enemy {
 
 
     function enemyHitWall(enemy) {
-      enemy.setVelocityX(enemy.body.velocity.x * -1);
+      enemy.setVelocityX(-enemy.body.velocity.x);
       enemy.toggleFlipX();
     }
   }

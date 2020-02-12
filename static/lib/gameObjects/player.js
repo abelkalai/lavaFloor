@@ -7,19 +7,23 @@ export default class Player {
     this.characterFacingRight = true;
     this.enemyCollide = true;
     this.scoreMultiplier = false;
+    this.yMax=0
     this.render();
     this.animate();
   }
 
   render() {
     //Adds player character to the scene
-    this.character = this.scene.physics.add.sprite(100, 450, "character");
+    this.character = this.scene.physics.add.sprite(100, 448, "character");
     this.character.setCollideWorldBounds(true);
     this.scene.physics.add.collider(
       this.character,
       this.scene.boundaries.platforms
     );
+    this.yStart=this.character.y
   }
+
+  
 
   animate() {
     this.scene.anims.create({
@@ -68,6 +72,7 @@ export default class Player {
   }
 
   update() {
+    this.yMax = Math.max(this.yMax, Math.abs( this.character.y - this.yStart ) )
     let cursors = this.scene.input.keyboard.createCursorKeys();
 
     //Handle jumping

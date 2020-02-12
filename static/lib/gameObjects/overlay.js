@@ -6,6 +6,7 @@ export default class Overlay {
     this.health = 3;
     this.soundContent = "ON";
     this.render();
+  
   }
 
   render() {
@@ -48,5 +49,11 @@ export default class Overlay {
       this.scene.sound.mute = this.soundContent === "OFF" ? true : false;
       this.soundText.setText(`Sound:${this.soundContent}`);
     };
+    //Updates location based on player vertical
+      this.scoreText.setPosition(20,this.scene.camYMin+20)
+      this.healthImage.setPosition(198, this.scene.camYMin+66);
+      this.healthText.setPosition(20,this.scene.camYMin+50)
+      this.soundText.setPosition(620,this.scene.camYMin+20)
+      
   }
 }

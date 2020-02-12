@@ -4,8 +4,10 @@ export default class Preload extends Phaser.Scene {
   }
 
   preload() {
-
-    this.make.text({
+    let pBox = this.add.graphics();
+    pBox.fillStyle(0x222222, 0.8);
+    pBox.fillRect(240, 270, 320, 50);
+    let loadText=this.make.text({
       x: 350,
       y: 240,
       text: "Loading...",
@@ -20,6 +22,12 @@ export default class Preload extends Phaser.Scene {
       pBar.fillStyle(0xFFFFFF, 1);
       pBar.fillRect(245, 275, 325 * val, 25);
     });
+
+    this.load.on("complete",()=>{
+      pBox.destroy()
+      pBar.destroy()
+      loadText.destroy()
+    })
 
     this.load.image("background", "static/assets/env/background.png");
     this.load.image("ground", "static/assets/env/grassMid.png");
@@ -48,7 +56,7 @@ export default class Preload extends Phaser.Scene {
     // Ground Enemy
     this.load.spritesheet("enemyOne", "static/assets/sprites/enemy_1.png", {
       frameWidth: 350,
-      frameHeight: 365
+      frameHeight: 371
     });
 
     // Ground Enemy 2
@@ -69,7 +77,7 @@ export default class Preload extends Phaser.Scene {
       "static/assets/sprites/invincibilityPotion.png",
       {
         frameWidth: 125,
-        frameHeight: 125
+        frameHeight: 120
       }
     );
 
@@ -79,7 +87,7 @@ export default class Preload extends Phaser.Scene {
       "static/assets/sprites/multiplierPotion.png",
       {
         frameWidth: 125,
-        frameHeight: 125
+        frameHeight: 120
       }
     );
 
@@ -145,7 +153,6 @@ export default class Preload extends Phaser.Scene {
 
     //When loading assets are complete
     this.load.on("complete", () => {
-      console.log("complete");
     });
   }
 
@@ -153,6 +160,6 @@ export default class Preload extends Phaser.Scene {
     this.add.image(400, 300, "logo");
     setTimeout(() => {
       this.scene.start("main");
-    }, 1750);
+    }, 500);
   }
 }

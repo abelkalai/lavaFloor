@@ -3,7 +3,7 @@ export default class Pickups {
     this.scene = scene;
     scene.pickups = this;
     this.render();
-    this.handleCollisions();
+    
   }
   render() {
     //Power Ups
@@ -50,7 +50,7 @@ export default class Pickups {
     this.multiplierSound = this.scene.sound.add("multiplierPotion");
   }
 
-  handleCollisions() {
+  update() {
     // Collision with potion
     this.scene.physics.add.overlap(
       this.scene.player.character,
@@ -94,9 +94,10 @@ export default class Pickups {
         this.scene.pickups.heartSound.play();
         this.scene.overlay.healthImage.destroy();
         heart.disableBody(true, true);
+        let yPos =(this.scene.camSet) ? 200 : 66
         this.scene.overlay.healthImage = this.scene.add.image(
           198,
-          66,
+          this.scene.camYMin+66,
           this.scene.overlay.heart_key[this.scene.overlay.health]
         );
       }
@@ -114,18 +115,19 @@ export default class Pickups {
     function getMultiplier(character, potionMultiplier) {
       this.multiplierSound.play();
       potionMultiplier.disableBody(true, true);
-      this.scene.multiplierText = this.scene.add.text(
+      this.multiplierText = this.scene.add.text(
         500,
-        60,
+        this.scene.camYMin+66,
         "Score Multiplier Active!",
         {
           fontSize: "20px",
           fill: "#000"
         }
       );
+
       this.scene.player.scoreMultiplier = true;
       setTimeout(() => {
-        this.scene.multiplierText.destroy(), (this.scene.player.scoreMultiplier = false);
+        this.multiplierText.destroy(), (this.scene.player.scoreMultiplier = false);
       }, 10000);
     }
 
@@ -145,6 +147,11 @@ export default class Pickups {
       coin.disableBody(true, true);
       this.scene.overlay.score += this.scene.player.scoreMultiplier ? 20 : 10;
       this.scene.overlay.scoreText.setText(`Score:${this.scene.overlay.score}`);
+    }
+
+    //Updates Multiplier Text when camera moves
+    if(this.scene.player.scoreMultiplier) {
+      this.multiplierText.setPosition(500,this.scene.camYMin+66)
     }
   }
 }

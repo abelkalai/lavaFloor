@@ -16,12 +16,16 @@ export default class Boundaries {
     this.platforms.create(35, 550, "ground");
 
     // Boundaries
-    this.spawnBoundary(650, 450,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(650, 450,"platform",PLATFORM_WIDTH/2); 
     this.spawnBoundary(175, 375,"platform",PLATFORM_WIDTH/2);
-    this.spawnBoundary(0, 300,"platform",PLATFORM_WIDTH/2);
+    this.spawnBoundary(0, 300,"platform",PLATFORM_WIDTH/2); 
     this.spawnBoundary(-100, 225,"platform",PLATFORM_WIDTH/2);
     this.spawnBoundary(350, 160,"platform",PLATFORM_WIDTH/2);
     this.spawnBoundary(700, 260,"platform",PLATFORM_WIDTH/2);
+
+   
+
+    this.spawnBoundary(700, 100,"platform",PLATFORM_WIDTH/2);
 
     //Make enemy walls invisible
     this.walls.setVisible(false)

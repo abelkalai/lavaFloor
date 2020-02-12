@@ -8,11 +8,11 @@ export default class Lava {
   }
 
   render() {
-    this.lava = this.scene.physics.add.sprite(100, 1500, "lava");
+    this.lava = this.scene.physics.add.sprite(100, 1278, "lava");
     // this.lava.setX
     this.lava.body.setAllowGravity(false);
     this.lava.setVelocityX(500);
-    this.lava.setVelocityY(-5);
+    this.lava.setVelocityY(-1);
     this.lava.body.setAccelerationY(-.25)
     this.volume = 0.5;
     //setAccelerationY(value)

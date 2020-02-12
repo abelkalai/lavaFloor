@@ -1,4 +1,3 @@
-import Overlay from "/static/lib/gameObjects/overlay.js";
 import Boundaries from "/static/lib/gameObjects/boundaries.js";
 import Lava from "/static/lib/gameObjects/lava.js";
 import Player from "/static/lib/gameObjects/player.js";
@@ -9,6 +8,7 @@ import Enemyone from "/static/lib/gameObjects/enemyOne.js";
 import Enemytwo from "/static/lib/gameObjects/enemyTwo.js";
 import Enemythree from "/static/lib/gameObjects/enemyThree.js";
 import cameraControl from "/static/lib/utilities/cameraControl.js";
+import Hud from "/static/lib/scenes/hud.js";
 
 export default class Main extends Phaser.Scene {
   constructor(game) {
@@ -23,30 +23,33 @@ export default class Main extends Phaser.Scene {
     this.add.image(400, 300, "background");
 
     // Background Music
-    const backMusic = new Backmusic(this);
-
+    this.backMusic = new Backmusic(this);
+    
+    //HUD 
+    this.hud=this.scene.add('hud', new Hud(this))
+    this.scene.launch("hud")
+    
     //Boundaries
-    const boundaries = new Boundaries(this);
+    this.boundaries = new Boundaries(this);
 
     // Player
-    const player = new Player(this);
+    this.player = new Player(this);
 
-    // Overlay
-    const overlay = new Overlay(this);
     // Powerups
-    const pickUps = new Pickups(this);
+    this.pickups = new Pickups(this);
 
     // Enemy One
-    const enemyOne = new Enemyone(this);
+    this.enemyOne = new Enemyone(this);
 
     // Enemy Two
-    const enemyTwo = new Enemytwo(this);
+    this.enemyTwo = new Enemytwo(this);
 
     // Enemy Three
-    const enemyThree = new Enemythree(this);
+    this.enemyThree = new Enemythree(this);
 
     // Lava
-    const lava = new Lava(this);
+    this.lava = new Lava(this);
+    
   }
 
   update() {
@@ -69,7 +72,6 @@ export default class Main extends Phaser.Scene {
       )
     );
     this.camYMin=this.player.character.y - this.game.scale.height + 152
-    this.overlay.update();
     this.pickups.update()
         
   }

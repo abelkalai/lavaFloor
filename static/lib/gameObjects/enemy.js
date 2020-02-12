@@ -57,14 +57,8 @@ export default class Enemy {
     );
 
     function hurtPlayer() {
-      if (this.scene.overlay.health !== 0) this.scene.overlay.health -= 1;
-      if (this.scene.overlay.health !== 0)
-        this.scene.overlay.healthImage.destroy();
-      this.scene.overlay.healthImage = this.scene.add.image(
-        198,
-        66,
-        this.scene.overlay.heart_key[this.scene.overlay.health]
-      );
+      if (this.scene.hud.overlay.health !== 0) this.scene.hud.overlay.health -= 1;
+      if (this.scene.hud.overlay.health !== 0)
       this.scene.player.enemyCollide = false;
       this.collide.play();
 

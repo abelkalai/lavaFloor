@@ -2,7 +2,6 @@ const PLATFORM_WIDTH= 346;
 export default class Boundaries {
   constructor(scene) {
     this.scene = scene;
-    scene.boundaries = this;
     this.render();
   }
 

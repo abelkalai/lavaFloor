@@ -1,12 +1,10 @@
 export default class Player {
   constructor(scene) {
     this.scene = scene;
-    scene.player = this;
     this.hurtAgain;
     this.playerStanding = true;
     this.characterFacingRight = true;
     this.enemyCollide = true;
-    this.scoreMultiplier = false;
     this.yMax=0
     this.render();
     this.animate();

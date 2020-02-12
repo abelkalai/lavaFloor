@@ -1,7 +1,6 @@
 export default class Pickups {
   constructor(scene) {
     this.scene = scene;
-    scene.pickups = this;
     this.render();
     
   }
@@ -89,17 +88,10 @@ export default class Pickups {
 
     // Get Heart Function
     function getHeart(character, heart) {
-      if (this.scene.overlay.health <= 2) {
-        this.scene.overlay.health++;
+      if (this.scene.hud.overlay.health <= 2) {
+        this.scene.hud.overlay.health++;
         this.scene.pickups.heartSound.play();
-        this.scene.overlay.healthImage.destroy();
         heart.disableBody(true, true);
-        let yPos =(this.scene.camSet) ? 200 : 66
-        this.scene.overlay.healthImage = this.scene.add.image(
-          198,
-          this.scene.camYMin+66,
-          this.scene.overlay.heart_key[this.scene.overlay.health]
-        );
       }
     }
 
@@ -115,19 +107,9 @@ export default class Pickups {
     function getMultiplier(character, potionMultiplier) {
       this.multiplierSound.play();
       potionMultiplier.disableBody(true, true);
-      this.multiplierText = this.scene.add.text(
-        500,
-        this.scene.camYMin+66,
-        "Score Multiplier Active!",
-        {
-          fontSize: "20px",
-          fill: "#000"
-        }
-      );
 
-      this.scene.player.scoreMultiplier = true;
-      setTimeout(() => {
-        this.multiplierText.destroy(), (this.scene.player.scoreMultiplier = false);
+      this.scene.hud.overlay.scoreMultiplier = true;
+      setTimeout(() => {this.scene.hud.overlay.scoreMultiplier = false;
       }, 10000);
     }
 
@@ -139,19 +121,17 @@ export default class Pickups {
       null,
       this
     );
+
     //Get Coin Function
     function getCoin(character, coin) {
       this.scene.player.scoreMultiplier
         ? this.coinMultiplierCollect.play()
         : this.coinSound.play();
       coin.disableBody(true, true);
-      this.scene.overlay.score += this.scene.player.scoreMultiplier ? 20 : 10;
-      this.scene.overlay.scoreText.setText(`Score:${this.scene.overlay.score}`);
+      this.scene.hud.overlay.score += this.scene.hud.overlay.scoreMultiplier ? 20 : 10;
+      this.scene.hud.overlay.scoreText.setText(`Score:${this.scene.hud.overlay.score}`);
     }
 
-    //Updates Multiplier Text when camera moves
-    if(this.scene.player.scoreMultiplier) {
-      this.multiplierText.setPosition(500,this.scene.camYMin+66)
-    }
+
   }
 }

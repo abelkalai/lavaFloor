@@ -94,28 +94,28 @@ export default class Preload extends Phaser.Scene {
     // Player
     this.load.spritesheet("character", "static/assets/sprites/stand.png", {
       frameWidth: 67,
-      frameHeight: 108
+      frameHeight: 92
     });
 
     this.load.spritesheet("character_b", "static/assets/sprites/stand_b.png", {
       frameWidth: 67,
-      frameHeight: 108
+      frameHeight: 92
     });
     this.load.spritesheet("walk", "static/assets/sprites/walk.png", {
       frameWidth: 80,
-      frameHeight: 108
+      frameHeight: 92
     });
     this.load.spritesheet("walk_b", "static/assets/sprites/walk_b.png", {
       frameWidth: 80,
-      frameHeight: 108
+      frameHeight: 92
     });
     this.load.spritesheet("jump", "static/assets/sprites/jump.png", {
       frameWidth: 80,
-      frameHeight: 108
+      frameHeight: 98
     });
     this.load.spritesheet("jump_b", "static/assets/sprites/jump_b.png", {
       frameWidth: 80,
-      frameHeight: 108
+      frameHeight: 98
     });
 
     // Pause Button

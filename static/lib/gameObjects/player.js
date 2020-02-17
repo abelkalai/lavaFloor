@@ -5,23 +5,21 @@ export default class Player {
     this.playerStanding = true;
     this.characterFacingRight = true;
     this.enemyCollide = true;
-    this.yMax=0
+    this.yMax = 0;
     this.render();
     this.animate();
   }
 
   render() {
     //Adds player character to the scene
-    this.character = this.scene.physics.add.sprite(100, 448, "character");
+    this.character = this.scene.physics.add.sprite(100, 457, "character");
     this.character.setCollideWorldBounds(true);
     this.scene.physics.add.collider(
       this.character,
       this.scene.boundaries.platforms
     );
-    this.yStart=this.character.y
+    this.yStart = this.character.y;
   }
-
-  
 
   animate() {
     this.scene.anims.create({
@@ -70,56 +68,68 @@ export default class Player {
   }
 
   update() {
-    this.yMax = Math.max(this.yMax, Math.abs( this.character.y - this.yStart ) )
+    this.yMax = Math.max(this.yMax, Math.abs(this.character.y - this.yStart));
     let cursors = this.scene.input.keyboard.createCursorKeys();
 
     //Handle jumping
-    cursors.up.onDown = () => {
-      if (this.character.body.touching.down) {
-        this.character.setVelocityY(-225);
-        this.character.anims.play("jump", true);
-      }
-      // Holding arrow keys while jumping right
-      else if (cursors.right.isDown && this.character.body.touching.down) {
-        this.character.setVelocityY(-225);
-        this.character.setVelocityX(250);
-        this.character.anims.play("jump", true);
-        this.characterFacingRight = true;
+    if (this.character.body.touching.down && cursors.up.isDown) {
+      this.characterFacingRight
+        ? this.character.anims.play("jump", true)
+        : this.character.anims.play("jump_b", true);
+      this.character.setVelocityY(-230);
+    }
 
-        // Holding arrow keys while jumping left
-      } else if (cursors.left.isDown && this.character.body.touching.down) {
-        this.character.setVelocityY(-225);
-        this.character.setVelocityX(-225);
-        this.character.anims.play("jump_b", true);
-        this.characterFacingRight = false;
-      }
-    };
-    
-    // Controlling right in mid-air
-    if (cursors.right.isDown && !this.character.body.touching.down) {
-      this.character.setVelocityX(250);
+    // Holding arrow keys while jumping right
+    else if (
+      cursors.right.isDown &&
+      this.character.body.touching.down &&
+      cursors.up.isDown
+    ) {
       this.character.anims.play("jump", true);
+      this.character.setVelocityY(-230);
+      this.character.setVelocityX(250);
       this.characterFacingRight = true;
     }
+
+    // Holding arrow keys while jumping left
+    else if (
+      cursors.left.isDown &&
+      this.character.body.touching.down &&
+      cursors.up.isDown
+    ) {
+      this.character.anims.play("jump_b", true);
+      this.character.setVelocityY(-230);
+      this.character.setVelocityX(-225);
+      this.characterFacingRight = false;
+    }
+
+    // Controlling right in mid-air
+    else if (cursors.right.isDown && !this.character.body.touching.down) {
+      this.character.anims.play("jump", true);
+      this.character.setVelocityX(250);
+      this.characterFacingRight = true;
+    }
+
     // Controlling left in mid-air
     else if (cursors.left.isDown && !this.character.body.touching.down) {
-      this.character.setVelocityX(-225);
       this.character.anims.play("jump_b", true);
+      this.character.setVelocityX(-225);
       this.characterFacingRight = false;
     }
 
     //Moving right on ground
     else if (cursors.right.isDown && this.character.body.touching.down) {
-      this.character.setVelocityX(250);
       this.character.anims.play("right", true);
+      this.character.setVelocityX(250);
       this.characterFacingRight = true;
 
       //Moving left on ground
     } else if (cursors.left.isDown && this.character.body.touching.down) {
-      this.character.setVelocityX(-225);
       this.character.anims.play("left", true);
+      this.character.setVelocityX(-225);
       this.characterFacingRight = false;
     }
+
     //Resetting animation on idle
     else if (this.character.body.touching.down) {
       this.character.setVelocityX(0);

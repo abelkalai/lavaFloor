@@ -16,7 +16,6 @@ export default class Main extends Phaser.Scene {
     super("main");
     this.game = game;
     this.camYMin = 99999;
-    this.camSet=false
   }
 
   create() {
@@ -50,16 +49,19 @@ export default class Main extends Phaser.Scene {
 
     // Lava
     this.lava = new Lava(this);
+
+    // Change background color
+    this.cameras.main.backgroundColor.setTo(51,255,255); // Temp holder
     
   }
 
   update() {
-    this.player.update();
+    updateBounds(this)
+    this.player.update()
     this.lava.update();
     this.pickups.update()
-    updateBounds(this)
-    pauseFunction(this, "main");
+    this.boundaries.update()
     
-        
+    pauseFunction(this, "main");  
   }
 }

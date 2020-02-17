@@ -1,3 +1,4 @@
+import hurtPlayer from "/static/lib/utilities/hurtPlayer.js";
 export default class Enemy {
   constructor(props) {
     this.scene = props.scene;
@@ -10,9 +11,8 @@ export default class Enemy {
     this.frameRate = props.frameRate;
     this.collide = this.scene.sound.add("collideEnemy");
     this.animate();
-    this.render()
-    this.update()
-    
+    this.render();
+    this.update();
   }
 
   render() {
@@ -50,47 +50,18 @@ export default class Enemy {
       this.scene.player.character,
       this.sprite,
       hurtPlayer,
-      () => {
-        return this.scene.player.enemyCollide;
-      },
-      this
+      null,
+      { this: this, enemy: this, scene: this.scene }
     );
-
-    function hurtPlayer() {
-      if (this.scene.hud.overlay.health !== 0) this.scene.hud.overlay.health -= 1;
-      if (this.scene.hud.overlay.health !== 0)
-      this.scene.player.enemyCollide = false;
-      this.collide.play();
-
-      let hurt = setInterval(() => {
-        (this.scene.player.character.tint = this.scene.player.hurtAgain
-          ? 0xff0000
-          : 0xffffff),
-          (this.scene.player.hurtAgain = !this.scene.player.hurtAgain);
-      }, 100);
-
-      setTimeout(() => {
-        clearInterval(hurt);
-      }, 500);
-      setTimeout(() => {
-        this.scene.player.enemyCollide = true;
-        this.scene.player.character.clearTint();
-      }, 750);
-    }
 
     //Wall Collision
     this.scene.physics.add.overlap(
       this.sprite,
       this.scene.boundaries.walls,
-      enemyHitWall,
-      null,
-      this
+      () => {
+        this.sprite.setVelocityX(-this.sprite.body.velocity.x);
+        this.sprite.toggleFlipX();
+      }
     );
-
-
-    function enemyHitWall(enemy) {
-      enemy.setVelocityX(-enemy.body.velocity.x);
-      enemy.toggleFlipX();
-    }
   }
 }

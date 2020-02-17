@@ -1,3 +1,4 @@
+import hurtPlayer from "/static/lib/utilities/hurtPlayer.js"
 export default class Lava {
   constructor(scene) {
     this.scene = scene;
@@ -33,34 +34,8 @@ export default class Lava {
       this.scene.player.character,
       this.lava,
       hurtPlayer,
-      () => {
-        return this.scene.player.enemyCollide;
-      },
-      this
+      null,
+      { this: this, enemy: this, scene: this.scene }
     );
-
-    function hurtPlayer() {
-      if (this.scene.hud.overlay.health !== 0) {
-        this.scene.hud.overlay.health -= 1;
-      }
-
-      this.scene.player.enemyCollide = false;
-      this.collide.play();
-
-      let hurt = setInterval(() => {
-        (this.scene.player.character.tint = this.scene.player.hurtAgain
-          ? 0xff0000
-          : 0xffffff),
-          (this.scene.player.hurtAgain = !this.scene.player.hurtAgain);
-      }, 100);
-
-      setTimeout(() => {
-        clearInterval(hurt);
-      }, 500);
-      setTimeout(() => {
-        this.scene.player.enemyCollide = true;
-        this.scene.player.character.clearTint();
-      }, 750);
-    }
   }
 }

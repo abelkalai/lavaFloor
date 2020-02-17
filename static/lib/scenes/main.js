@@ -7,8 +7,9 @@ import pauseFunction from "/static/lib/utilities/pauseUtil.js";
 import Enemyone from "/static/lib/gameObjects/enemyOne.js";
 import Enemytwo from "/static/lib/gameObjects/enemyTwo.js";
 import Enemythree from "/static/lib/gameObjects/enemyThree.js";
-import cameraControl from "/static/lib/utilities/cameraControl.js";
+import updateBounds from "/static/lib/utilities/updateBounds.js"
 import Hud from "/static/lib/scenes/hud.js";
+
 
 export default class Main extends Phaser.Scene {
   constructor(game) {
@@ -55,24 +56,10 @@ export default class Main extends Phaser.Scene {
   update() {
     this.player.update();
     this.lava.update();
-    pauseFunction(this, "main");
-    this.physics.world.bounds.setTo(
-      0,
-      -this.player.yMax,
-      this.game.scale.width,
-      this.game.scale.height + this.player.yMax
-    );
-    
-    cameraControl(
-      this.game,
-      this,
-      Math.min(
-        this.camYMin,
-        this.player.character.y - this.game.scale.height + 152
-      )
-    );
-    this.camYMin=this.player.character.y - this.game.scale.height + 152
     this.pickups.update()
+    updateBounds(this)
+    pauseFunction(this, "main");
+    
         
   }
 }

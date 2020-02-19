@@ -6,7 +6,7 @@ export default class Preload extends Phaser.Scene {
   preload() {
     let pBox = this.add.graphics();
     pBox.fillStyle(0x222222, 0.8);
-    pBox.fillRect(240, 270, 320, 50);
+    pBox.fillRect(240, 270, 335, 35);
     let loadText=this.make.text({
       x: 350,
       y: 240,

@@ -14,7 +14,7 @@ export default class Boundaries {
     this.scene.physics.collide(this.platforms, this.walls);
 
     // Ground
-    this.platforms.create(35, 550, "ground");
+    this.platforms.create(125, 550, "ground");
 
     //Hash map that stores boundaries
     this.boundaryList = new Map();

@@ -15,7 +15,6 @@ export default class Main extends Phaser.Scene {
   constructor(game) {
     super("main");
     this.game = game;
-    this.camYMin = 99999;
   }
 
   create() {
@@ -50,18 +49,20 @@ export default class Main extends Phaser.Scene {
     // Lava
     this.lava = new Lava(this);
 
-    // Change background color
-    this.cameras.main.backgroundColor.setTo(51,255,255); // Temp holder
-    
+    // Set Camera Bounds
+    this.cameras.main.startFollow(this.player.character,true,0,1)
+    this.cameras.main.backgroundColor.setTo(51,255,255);  //Temp holder
   }
 
   update() {
     updateBounds(this)
+  
     this.player.update()
     this.lava.update();
     this.pickups.update()
     this.boundaries.update()
     
     pauseFunction(this, "main");  
+   
   }
 }

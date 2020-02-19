@@ -12,7 +12,7 @@ export default class Player {
 
   render() {
     //Adds player character to the scene
-    this.character = this.scene.physics.add.sprite(100, 457, "character");
+    this.character = this.scene.physics.add.sprite(400, 457, "character");
     this.character.setCollideWorldBounds(true);
     this.scene.physics.add.collider(
       this.character,
@@ -72,11 +72,12 @@ export default class Player {
     let cursors = this.scene.input.keyboard.createCursorKeys();
 
     //Handle jumping
-    if (this.character.body.touching.down && cursors.up.isDown) {
+    if (/*this.character.body.touching.down && */cursors.up.isDown) {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
         : this.character.anims.play("jump_b", true);
       this.character.setVelocityY(-230);
+      this.scene.cameras.scrollY-=400
     }
 
     // Holding arrow keys while jumping right
@@ -89,6 +90,7 @@ export default class Player {
       this.character.setVelocityY(-230);
       this.character.setVelocityX(250);
       this.characterFacingRight = true;
+      this.scene.cameras.scrollY-=40
     }
 
     // Holding arrow keys while jumping left
@@ -101,6 +103,7 @@ export default class Player {
       this.character.setVelocityY(-230);
       this.character.setVelocityX(-225);
       this.characterFacingRight = false;
+      this.scene.cameras.scrollY-=40
     }
 
     // Controlling right in mid-air
@@ -108,6 +111,7 @@ export default class Player {
       this.character.anims.play("jump", true);
       this.character.setVelocityX(250);
       this.characterFacingRight = true;
+      this.scene.cameras.scrollY-=40
     }
 
     // Controlling left in mid-air
@@ -115,6 +119,7 @@ export default class Player {
       this.character.anims.play("jump_b", true);
       this.character.setVelocityX(-225);
       this.characterFacingRight = false;
+      this.scene.cameras.scrollY-=40
     }
 
     //Moving right on ground

@@ -7,9 +7,7 @@ import pauseFunction from "/static/lib/utilities/pauseUtil.js";
 import Enemyone from "/static/lib/gameObjects/enemyOne.js";
 import Enemytwo from "/static/lib/gameObjects/enemyTwo.js";
 import Enemythree from "/static/lib/gameObjects/enemyThree.js";
-import updateBounds from "/static/lib/utilities/updateBounds.js"
 import Hud from "/static/lib/scenes/hud.js";
-
 
 export default class Main extends Phaser.Scene {
   constructor(game) {
@@ -23,11 +21,11 @@ export default class Main extends Phaser.Scene {
 
     // Background Music
     this.backMusic = new Backmusic(this);
-    
-    //HUD 
-    this.hud=this.scene.add('hud', new Hud(this))
-    this.scene.launch("hud")
-    
+
+    //HUD
+    this.hud = this.scene.add("hud", new Hud(this));
+    this.scene.launch("hud");
+
     //Boundaries
     this.boundaries = new Boundaries(this);
 
@@ -50,19 +48,22 @@ export default class Main extends Phaser.Scene {
     this.lava = new Lava(this);
 
     // Set Camera Bounds
-    this.cameras.main.startFollow(this.player.character,true,0,1)
-    this.cameras.main.backgroundColor.setTo(51,255,255);  //Temp holder
+    this.cameras.main.startFollow(this.player.character, true, 0, 1);
+    this.cameras.main.backgroundColor.setTo(51, 255, 255); //Temp holder
   }
 
   update() {
-    updateBounds(this)
-  
-    this.player.update()
+    this.physics.world.bounds.setTo(
+      0,
+      -this.player.yMax,
+      this.game.scale.width,
+      this.game.scale.height + this.player.yMax
+    );
+    this.player.update();
     this.lava.update();
-    this.pickups.update()
-    this.boundaries.update()
-    
-    pauseFunction(this, "main");  
-   
+    this.pickups.update();
+    this.boundaries.update();
+
+    pauseFunction(this, "main");
   }
 }

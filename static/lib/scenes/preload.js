@@ -32,6 +32,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image("background", "static/assets/env/background.png");
     this.load.image("ground", "static/assets/env/grassMid.png");
     this.load.image("platform", "static/assets/env/grass.png");
+    this.load.image("platformSmall", "static/assets/env/grassSmall.png");
     this.load.image("lava", "static/assets/env/lava.png");
     this.load.image("wall", "static/assets/env/invisibleWall.png");
 
@@ -111,11 +112,11 @@ export default class Preload extends Phaser.Scene {
     });
     this.load.spritesheet("jump", "static/assets/sprites/jump.png", {
       frameWidth: 80,
-      frameHeight: 98
+      frameHeight: 96
     });
     this.load.spritesheet("jump_b", "static/assets/sprites/jump_b.png", {
       frameWidth: 80,
-      frameHeight: 98
+      frameHeight: 96
     });
 
     // Pause Button

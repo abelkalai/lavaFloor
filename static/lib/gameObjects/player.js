@@ -72,7 +72,7 @@ export default class Player {
     let cursors = this.scene.input.keyboard.createCursorKeys();
 
     //Handle jumping
-    if (/*this.character.body.touching.down && */cursors.up.isDown) {
+    if (this.character.body.touching.down && cursors.up.isDown) {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
         : this.character.anims.play("jump_b", true);

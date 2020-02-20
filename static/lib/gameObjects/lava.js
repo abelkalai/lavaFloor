@@ -9,11 +9,12 @@ export default class Lava {
 
   render() {
     this.lava = this.scene.physics.add.sprite(100, 1278, "lava");
-    // this.lava.setX
+    
     this.lava.body.setAllowGravity(false);
     this.lava.setVelocityX(500);
     this.lava.setVelocityY(-1);
     this.lava.body.setAccelerationY(-0.25);
+    this.lava.setDepth(1000) //High depth to always be rendered in front
     this.volume = 0.5;
     this.lavaSound = this.scene.sound.add("lava", { volume: this.volume });
     this.lavaSound.play();

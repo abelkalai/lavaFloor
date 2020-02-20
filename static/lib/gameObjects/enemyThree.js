@@ -8,7 +8,7 @@ export default class Enemythree extends Enemy{
             type : "enemyThree",
             scale : 0.75,
             xPos : 600,
-            yPos : 200,
+            yPos : 50,
             allowGravity : false,
             frameRate : 5,
         })

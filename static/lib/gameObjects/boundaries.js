@@ -2,9 +2,11 @@ import Platform from "/static/lib/gameObjects/platform.js";
 
 export default class Boundaries {
   constructor(scene) {
-    this.smallest = 9999999999;
+    this.heighest = 500;
     this.scene = scene;
     this.render();
+    this.nextSet = 2;
+    this.heightIncrease = -400; //Next height to increase
   }
 
   render() {
@@ -21,67 +23,54 @@ export default class Boundaries {
     this.boundaryList.set(1, [
       [650, 450],
       [175, 375],
-      [0, 300]
+      [0, 300],
+      [-100, 225]
     ]);
     this.boundaryList.set(2, [
-      [-100, 225],
       [350, 160],
-      [700, 260],
-      [700, 100]
+      [700, 100],
+      [850, 15]
     ]);
 
-    // Boundaries
+    this.boundaryList.set(3, [
+      [360, -40],
+      [10, -110],
+      [-100, -180]
+    ]);
 
-    //Group 1
-    for (let i = 0; i < this.boundaryList.get(1).length; i++) {
-      new Platform({
-        platforms: this.platforms,
-        walls: this.walls,
-        x: this.boundaryList.get(1)[i][0],
-        y: this.boundaryList.get(1)[i][1],
-        width: 346,
-        type: "platform"
-      });
-    }
-
-    //Group 2
-    for (let i = 0; i < this.boundaryList.get(2).length; i++) {
-      new Platform({
-        platforms: this.platforms,
-        walls: this.walls,
-        x: this.boundaryList.get(2)[i][0],
-        y: this.boundaryList.get(2)[i][1],
-        width: 346,
-        type: "platform"
-      });
-    }
+    // Initial Boundaries
+    this.createBoundary(1, 0, 346, "platform");
+    this.createBoundary(2, 0, 346, "platform");
+    this.createBoundary(3, 0, 346, "platform");
 
     //Make enemy walls invisible
     this.walls.setVisible(false);
   }
 
+  //Method creatse boundary and walls
+  createBoundary(set, yAdjust, width, type) {
+    for (let i = 0; i < this.boundaryList.get(set).length; i++) {
+      new Platform({
+        platforms: this.platforms,
+        walls: this.walls,
+        x: this.boundaryList.get(set)[i][0],
+        y: this.boundaryList.get(set)[i][1] + yAdjust,
+        width: width,
+        type: type
+      });
+    }
+  }
+
   update() {
-    //Adjusted group
-    // for (let i = 0; i < this.boundaryList.get(1).length; i++) {
-    //   new Platform({
-    //     platforms: this.platforms,
-    //     walls: this.walls,
-    //     x: this.boundaryList.get(1)[i][0],
-    //     y:
-    //       this.boundaryList.get(1)[i][1] +
-    //       this.scene.game.scale.height +
-    //       this.scene.player.yMax,
-    //     width: 346,
-    //     type: "platform"
-    //   });
-    // }
-    // let smallest=this.smallest
-    // this.platforms.children.each(function(elem) {
-    //      smallest = Math.min(smallest,elem.y);
-    //      console.log(smallest)
-    //   }
-    // );
-    // this.smallest=smallest
-    // this.walls.setVisible(false);
+    for (let ele of this.platforms.getChildren()) {
+      this.heighest = Math.min(this.heighest, ele.y);
+    }
+
+    if (this.heighest + 1000 > this.scene.player.character.y) {
+      this.createBoundary(this.nextSet, this.heightIncrease, 346, "platform");
+      this.nextSet = this.nextSet == 2 ? 3 : 2;
+      this.heightIncrease-= this.nextSet==2 ? 400 : 0
+    }
+    this.walls.setVisible(false);
   }
 }

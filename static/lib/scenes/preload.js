@@ -29,6 +29,7 @@ export default class Preload extends Phaser.Scene {
       loadText.destroy()
     })
 
+    //Load Enviornment Assetss
     this.load.image("background", "static/assets/env/background.png");
     this.load.image("ground", "static/assets/env/grassMid.png");
     this.load.image("platform", "static/assets/env/grass.png");
@@ -53,6 +54,7 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 563,
       frameHeight: 564
     });
+    
 
     // Ground Enemy
     this.load.spritesheet("enemyOne", "static/assets/sprites/enemy_1.png", {
@@ -123,7 +125,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image("pauseImage", "static/assets/env/pause.png");
     this.load.audio("pauseSound", "static/assets/sounds/pause.mp3")
 
-    // In scene Sounds
+    // Main Scene Sounds
     this.load.audio("collectCoin", "static/assets/sounds/coinCollect.mp3");
     this.load.audio("collectHeart", "static/assets/sounds/getHeart.mp3");
     this.load.audio(
@@ -135,6 +137,7 @@ export default class Preload extends Phaser.Scene {
       "static/assets/sounds/multiplierPotion.mp3"
     );
     this.load.audio("collideEnemy", "static/assets/sounds/collideEnemy.mp3");
+    this.load.audio("scoreIncrease", "static/assets/sounds/heightIncrease.mp3");
 
     // Background Music
     this.load.audio(

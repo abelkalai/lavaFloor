@@ -26,16 +26,17 @@ export default class Boundaries {
       [0, 300],
       [-100, 225]
     ]);
+
     this.boundaryList.set(2, [
       [350, 160],
       [700, 100],
-      [850, 15]
+      [925, 15]
     ]);
 
     this.boundaryList.set(3, [
       [360, -40],
       [10, -110],
-      [-100, -180]
+      [-125, -180]
     ]);
 
     // Initial Boundaries
@@ -43,6 +44,10 @@ export default class Boundaries {
     this.createBoundary(2, 0, 346, "platform");
     this.createBoundary(3, 0, 346, "platform");
 
+    //Last boundary is always on top so set it as the heighest
+    this.heighest = this.platforms.getChildren()[
+      this.platforms.getChildren().length - 1
+    ].y;
     //Make enemy walls invisible
     this.walls.setVisible(false);
   }
@@ -62,15 +67,19 @@ export default class Boundaries {
   }
 
   update() {
-    for (let ele of this.platforms.getChildren()) {
-      this.heighest = Math.min(this.heighest, ele.y);
-    }
-
     if (this.heighest + 1000 > this.scene.player.character.y) {
       this.createBoundary(this.nextSet, this.heightIncrease, 346, "platform");
       this.nextSet = this.nextSet == 2 ? 3 : 2;
-      this.heightIncrease-= this.nextSet==2 ? 400 : 0
+      this.heightIncrease -= this.nextSet == 2 ? 400 : 0;
+      this.heighest = this.platforms.getChildren()[
+        this.platforms.getChildren().length - 1
+      ].y;
+      this.walls.setVisible(false);
     }
-    this.walls.setVisible(false);
+    
+    //Remove element if its below the lava. Change this to removing items later on.
+    if (this.platforms.getChildren()[0].y > this.scene.lava.lavaObj.y) {
+      this.platforms.getChildren()[0].destroy()
+    }
   }
 }

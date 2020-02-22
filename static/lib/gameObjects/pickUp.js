@@ -1,4 +1,4 @@
-export default class Pickups {
+export default class Pickup {
   constructor(scene) {
     this.scene = scene;
     this.render();
@@ -128,7 +128,7 @@ export default class Pickups {
         ? this.coinMultiplierCollect.play()
         : this.coinSound.play();
       coin.disableBody(true, true);
-      this.scene.hud.overlay.score += this.scene.hud.overlay.scoreMultiplier ? 20 : 10;
+      this.scene.hud.overlay.score += this.scene.hud.overlay.scoreMultiplier ? 100 : 50;
       this.scene.hud.overlay.scoreText.setText(`Score:${this.scene.hud.overlay.score}`);
     }
 

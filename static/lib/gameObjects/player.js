@@ -6,6 +6,7 @@ export default class Player {
     this.characterFacingRight = true;
     this.enemyCollide = true;
     this.yMax = 0;
+    this.scoreHeight=500
     this.render();
     this.animate();
   }
@@ -19,6 +20,7 @@ export default class Player {
       this.scene.boundaries.platforms
     );
     this.yStart = this.character.y;
+    this.getPoints=this.scene.sound.add("scoreIncrease");
   }
 
   animate() {
@@ -141,6 +143,14 @@ export default class Player {
       this.characterFacingRight
         ? this.character.anims.play("idle", true)
         : this.character.anims.play("idle_b", true);
+    }
+
+    //Update score based on heighest point reached, increasing every 500 
+    if(this.character.y<this.scoreHeight-500){
+      this.scoreHeight-=500
+      this.scene.hud.overlay.score += this.scene.hud.overlay.scoreMultiplier ? 200 : 100;
+      this.scene.hud.overlay.scoreText.setText(`Score:${this.scene.hud.overlay.score}`);
+      this.getPoints.play()
     }
   }
 }

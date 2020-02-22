@@ -1,7 +1,7 @@
 import Boundaries from "/static/lib/gameObjects/boundaries.js";
 import Lava from "/static/lib/gameObjects/lava.js";
 import Player from "/static/lib/gameObjects/player.js";
-import Pickups from "/static/lib/gameObjects/pickUps.js";
+import Pickup from "/static/lib/gameObjects/pickUp.js";
 import Backmusic from "/static/lib/utilities/backMusic.js";
 import pauseFunction from "/static/lib/utilities/pauseUtil.js";
 import Enemyone from "/static/lib/gameObjects/enemyOne.js";
@@ -36,7 +36,7 @@ export default class Main extends Phaser.Scene {
     this.player = new Player(this);
 
     // Powerups
-    this.pickups = new Pickups(this);
+    this.pickups = new Pickup(this);
 
     // Enemy One
     this.enemyOne = new Enemyone(this);

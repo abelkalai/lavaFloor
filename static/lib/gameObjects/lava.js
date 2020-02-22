@@ -14,7 +14,7 @@ export default class Lava {
     this.lavaObj.setVelocityX(500);
     this.lavaObj.setVelocityY(-1);
     this.lavaObj.body.setAccelerationY(-0.25);
-    this.lavaObj.setDepth(1000); //High depth to always be rendered in front
+    this.lavaObj.setDepth(50); 
     this.volume = 0.5;
     this.lavaSound = this.scene.sound.add("lava", { volume: this.volume });
     this.lavaSound.play();

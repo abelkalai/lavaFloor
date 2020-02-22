@@ -1,15 +1,16 @@
 import Enemy from "/static/lib/gameObjects/enemy.js";
-export default class Enemyone extends Enemy{
-    constructor(scene){
-        super({
-            scene: scene,
-            speed : -40,
-            type : "enemyOne",
-            scale : 0.085,
-            xPos : 600,
-            yPos : 418,
-            allowGravity : true,
-            frameRate : 5,
-        })
-    }
+export default class Enemyone extends Enemy {
+  constructor(props) {
+    super({
+      scene: props.scene,
+      speed: -40,
+      type: "enemyOne",
+      scale: 0.085,
+      group: props.group,
+      xPos: props.xPos,
+      yPos: props.yPos,
+      allowGravity: true,
+      frameRate: 5
+    });
+  }
 }

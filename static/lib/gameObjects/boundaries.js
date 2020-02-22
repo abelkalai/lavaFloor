@@ -1,12 +1,13 @@
 import Platform from "/static/lib/gameObjects/platform.js";
+import outOfBounds from "/static/lib/utilities/outOfBounds.js"
 
 export default class Boundaries {
   constructor(scene) {
-    this.heighest = 500;
     this.scene = scene;
     this.render();
     this.nextSet = 2;
-    this.heightIncrease = -400; //Next height to increase
+    this.heighest = 500; //Heighest point player reached. For scoring purposes.
+    this.heightIncrease = -400; //Next height to increase for platforms
   }
 
   render() {
@@ -16,7 +17,8 @@ export default class Boundaries {
     this.scene.physics.collide(this.platforms, this.walls);
 
     // Ground
-    this.platforms.create(125, 550, "ground");
+    let ground=this.platforms.create(125, 550, "ground");
+    ground.setDepth(100); 
 
     //Hash map that stores boundaries
     this.boundaryList = new Map();
@@ -76,10 +78,7 @@ export default class Boundaries {
       ].y;
       this.walls.setVisible(false);
     }
-    
-    //Remove element if its below the lava. Change this to removing items later on.
-    if (this.platforms.getChildren()[0].y > this.scene.lava.lavaObj.y) {
-      this.platforms.getChildren()[0].destroy()
-    }
+
+    outOfBounds(this.scene,this.platforms)
   }
 }

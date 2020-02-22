@@ -7,6 +7,7 @@ export default class Enemy {
     this.scale = props.scale;
     this.xPos = props.xPos;
     this.yPos = props.yPos;
+    this.group = props.group;
     this.allowGravity = props.allowGravity;
     this.frameRate = props.frameRate;
     this.collide = this.scene.sound.add("collideEnemy");
@@ -16,11 +17,12 @@ export default class Enemy {
   }
 
   render() {
-    this.sprite = this.scene.physics.add.sprite(
+    this.sprite = this.group.create(
       this.xPos,
       this.yPos,
       this.type
     );
+    this.sprite.setDepth(100); 
     this.sprite.setScale(this.scale);
     this.sprite.setCollideWorldBounds(true);
     this.sprite.body.setAllowGravity(this.allowGravity);

@@ -1,13 +1,11 @@
 import Boundaries from "/static/lib/gameObjects/boundaries.js";
 import Lava from "/static/lib/gameObjects/lava.js";
 import Player from "/static/lib/gameObjects/player.js";
-import Pickup from "/static/lib/gameObjects/pickUp.js";
+import Pickups from "/static/lib/gameObjects/pickUps.js"
 import Backmusic from "/static/lib/utilities/backMusic.js";
-import pauseFunction from "/static/lib/utilities/pauseUtil.js";
-import Enemyone from "/static/lib/gameObjects/enemyOne.js";
-import Enemytwo from "/static/lib/gameObjects/enemyTwo.js";
-import Enemythree from "/static/lib/gameObjects/enemyThree.js";
 import Hud from "/static/lib/scenes/hud.js";
+import Enemies from "/static/lib/gameObjects/enemies.js";
+import pauseFunction from "/static/lib/utilities/pauseUtil.js";
 
 export default class Main extends Phaser.Scene {
   constructor(game) {
@@ -23,7 +21,7 @@ export default class Main extends Phaser.Scene {
     this.backMusic = new Backmusic(this);
 
     // Pause Sound
-    this.pauseSound= this.sound.add("pauseSound")
+    this.pauseSound = this.sound.add("pauseSound");
 
     //HUD
     this.hud = this.scene.add("hud", new Hud(this));
@@ -32,23 +30,17 @@ export default class Main extends Phaser.Scene {
     //Boundaries
     this.boundaries = new Boundaries(this);
 
+    // Lava
+    this.lava = new Lava(this);
+
     // Player
     this.player = new Player(this);
 
     // Powerups
-    this.pickups = new Pickup(this);
+    this.pickups = new Pickups(this);
 
-    // Enemy One
-    this.enemyOne = new Enemyone(this);
-
-    // Enemy Two
-    this.enemyTwo = new Enemytwo(this);
-
-    // Enemy Three
-    this.enemyThree = new Enemythree(this);
-
-    // Lava
-    this.lava = new Lava(this);
+    //Enemies
+    this.enemies = new Enemies(this);
 
     // Set Camera Bounds
     this.cameras.main.startFollow(this.player.character, true, 0, 1);
@@ -66,7 +58,7 @@ export default class Main extends Phaser.Scene {
     this.lava.update();
     this.pickups.update();
     this.boundaries.update();
-
+    this.enemies.update()
     pauseFunction(this, "main");
   }
 }

@@ -50,7 +50,7 @@ export default class Preload extends Phaser.Scene {
     });
 
     // Coin
-    this.load.spritesheet("coin", "static/assets/sprites/Gold_21.png", {
+    this.load.spritesheet("coin", "static/assets/sprites/coin.png", {
       frameWidth: 563,
       frameHeight: 564
     });
@@ -76,7 +76,7 @@ export default class Preload extends Phaser.Scene {
 
     // Invincibility Potion
     this.load.spritesheet(
-      "potion",
+      "iPotion",
       "static/assets/sprites/invincibilityPotion.png",
       {
         frameWidth: 125,
@@ -86,7 +86,7 @@ export default class Preload extends Phaser.Scene {
 
     // Score Multiplier Potion
     this.load.spritesheet(
-      "potionMultiplier",
+      "mPotion",
       "static/assets/sprites/multiplierPotion.png",
       {
         frameWidth: 125,

@@ -119,8 +119,9 @@ export default class Preload extends Phaser.Scene {
       frameHeight: 96
     });
 
-    // Pause Button
+    // Pause Button and sound
     this.load.image("pauseImage", "static/assets/env/pause.png");
+    this.load.audio("pauseSound", "static/assets/sounds/pause.mp3")
 
     // In scene Sounds
     this.load.audio("collectCoin", "static/assets/sounds/coinCollect.mp3");

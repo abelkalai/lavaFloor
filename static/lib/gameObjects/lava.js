@@ -1,4 +1,4 @@
-import hurtPlayer from "/static/lib/utilities/hurtPlayer.js"
+import hurtPlayer from "/static/lib/utilities/hurtPlayer.js";
 export default class Lava {
   constructor(scene) {
     this.scene = scene;
@@ -9,12 +9,12 @@ export default class Lava {
 
   render() {
     this.lava = this.scene.physics.add.sprite(100, 1278, "lava");
-    
+
     this.lava.body.setAllowGravity(false);
     this.lava.setVelocityX(500);
     this.lava.setVelocityY(-1);
     this.lava.body.setAccelerationY(-0.25);
-    this.lava.setDepth(1000) //High depth to always be rendered in front
+    this.lava.setDepth(1000); //High depth to always be rendered in front
     this.volume = 0.5;
     this.lavaSound = this.scene.sound.add("lava", { volume: this.volume });
     this.lavaSound.play();
@@ -22,8 +22,9 @@ export default class Lava {
   }
 
   update() {
-    this.volume = Math.abs(this.scene.player.character.y + this.lava.y) / 12000;
-    this.lavaSound.volume = this.volume;
+    let distance = Math.abs(this.scene.player.character.y - this.lava.y);
+    this.lavaSound.volume =
+      (12 - distance / 125) / 12 < 0 ? 0 : (12 - distance / 125) / 12;
     this.counter += 1;
 
     if (this.counter == 100) {

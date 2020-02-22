@@ -7,6 +7,7 @@ export default class Pause extends Phaser.Scene {
 
   create() {
     this.pauseImage = this.add.image(400, 300, "pauseImage");
+    this.pauseSound= this.sound.add("pauseSound")
   }
 
   update() {

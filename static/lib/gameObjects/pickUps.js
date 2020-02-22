@@ -25,7 +25,7 @@ export default class Pickups {
 
     //Add Score Multiplier Potion
     this.potionMultiplier = this.scene.physics.add.sprite(
-      450,
+      200,
       400,
       "potionMultiplier"
     );

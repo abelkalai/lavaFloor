@@ -22,6 +22,9 @@ export default class Main extends Phaser.Scene {
     // Background Music
     this.backMusic = new Backmusic(this);
 
+    // Pause Sound
+    this.pauseSound= this.sound.add("pauseSound")
+
     //HUD
     this.hud = this.scene.add("hud", new Hud(this));
     this.scene.launch("hud");

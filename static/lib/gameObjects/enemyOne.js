@@ -1,4 +1,4 @@
-import Enemy from "/static/lib/gameObjects/enemy.js";
+import Enemy from "/static/lib/gameObjects/supers/enemy.js";
 export default class Enemyone extends Enemy {
   constructor(props) {
     super({

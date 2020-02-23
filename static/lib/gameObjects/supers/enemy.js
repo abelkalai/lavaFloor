@@ -22,9 +22,8 @@ export default class Enemy {
       this.yPos,
       this.type
     );
-    this.sprite.setDepth(100); 
+    this.sprite.setDepth(125); 
     this.sprite.setScale(this.scale);
-    this.sprite.setCollideWorldBounds(true);
     this.sprite.body.setAllowGravity(this.allowGravity);
     this.scene.physics.add.collider(
       this.sprite,

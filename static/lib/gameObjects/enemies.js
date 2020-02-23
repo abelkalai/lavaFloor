@@ -11,29 +11,32 @@ export default class Enemies {
   render() {
     //Create group of enemies
     this.enemiesObj = this.scene.physics.add.group();
-    //Enemy One
-    new Enemyone({
-      scene: this.scene,
-      group: this.enemiesObj,
-      xPos: 600,
-      yPos: 418
-    });
+  }
 
-    // Enemy Two
-    new Enemytwo({
-      scene: this.scene,
-      group: this.enemiesObj,
-      xPos: 290,
-      yPos: 120
-    });
-
-    // Enemy Three
-    new Enemythree({
-      scene: this.scene,
-      group: this.enemiesObj,
-      xPos: 600,
-      yPos: 50
-    });
+  renderRandom(x, y) {
+    let randInt = Phaser.Math.Between(1, 3);
+    if (randInt == 1) {
+      new Enemyone({
+        scene: this.scene,
+        group: this.enemiesObj,
+        xPos: x,
+        yPos: y - 32.5
+      });
+    } else if (randInt == 2) {
+      new Enemytwo({
+        scene: this.scene,
+        group: this.enemiesObj,
+        xPos: x,
+        yPos: y - 37.5
+      });
+    } else if (randInt == 3) {
+      new Enemythree({
+        scene: this.scene,
+        group: this.enemiesObj,
+        xPos: x,
+        yPos: y - 50
+      });
+    }
   }
 
   update() {

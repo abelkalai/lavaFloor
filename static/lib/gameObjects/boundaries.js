@@ -1,5 +1,5 @@
 import Platform from "/static/lib/gameObjects/platform.js";
-import outOfBounds from "/static/lib/utilities/outOfBounds.js"
+import outOfBounds from "/static/lib/utilities/outOfBounds.js";
 
 export default class Boundaries {
   constructor(scene) {
@@ -17,8 +17,8 @@ export default class Boundaries {
     this.scene.physics.collide(this.platforms, this.walls);
 
     // Ground
-    let ground=this.platforms.create(125, 550, "ground");
-    ground.setDepth(100); 
+    let ground = this.platforms.create(125, 550, "ground");
+    ground.setDepth(100);
 
     //Hash map that stores boundaries
     this.boundaryList = new Map();
@@ -38,7 +38,7 @@ export default class Boundaries {
     this.boundaryList.set(3, [
       [360, -40],
       [10, -110],
-      [-125, -180]
+      [-125, -195]
     ]);
 
     // Initial Boundaries
@@ -50,35 +50,45 @@ export default class Boundaries {
     this.heighest = this.platforms.getChildren()[
       this.platforms.getChildren().length - 1
     ].y;
-    //Make enemy walls invisible
-    this.walls.setVisible(false);
   }
 
-  //Method creatse boundary and walls
+  //Method Creates platform, random item or enemy and invisible wall
   createBoundary(set, yAdjust, width, type) {
     for (let i = 0; i < this.boundaryList.get(set).length; i++) {
+      let xPos = this.boundaryList.get(set)[i][0];
+      let yPos = this.boundaryList.get(set)[i][1] + yAdjust;
       new Platform({
         platforms: this.platforms,
         walls: this.walls,
-        x: this.boundaryList.get(set)[i][0],
-        y: this.boundaryList.get(set)[i][1] + yAdjust,
+        x: xPos,
+        y: yPos,
         width: width,
         type: type
       });
+      let randInt = Phaser.Math.Between(1, 4);
+      if (
+        randInt === 3 &&
+        this.scene.enemies != undefined &&
+        xPos > 200 &&
+        xPos < 900
+      ) {
+        this.scene.enemies.renderRandom(xPos, yPos);
+      } else if (randInt === 2 && this.scene.pickups != undefined) {
+        this.scene.pickups.renderRandom(xPos, yPos);
+      }
     }
   }
 
   update() {
-    if (this.heighest + 1000 > this.scene.player.character.y) {
+    if (this.heighest + 500 > this.scene.player.character.y) {
       this.createBoundary(this.nextSet, this.heightIncrease, 346, "platform");
       this.nextSet = this.nextSet == 2 ? 3 : 2;
       this.heightIncrease -= this.nextSet == 2 ? 400 : 0;
       this.heighest = this.platforms.getChildren()[
         this.platforms.getChildren().length - 1
       ].y;
-      this.walls.setVisible(false);
     }
 
-    outOfBounds(this.scene,this.platforms)
+    outOfBounds(this.scene, this.platforms);
   }
 }

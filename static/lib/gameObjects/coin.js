@@ -1,9 +1,9 @@
-import GenericPickUp from "/static/lib/gameObjects/genericPickUp.js";
+import GenericPickUp from "/static/lib/gameObjects/supers/genericPickUp.js";
 
 export default class Coin extends GenericPickUp {
-  constructor(scene, props) {
+  constructor(props) {
     super({
-      scene: scene,
+      scene: props.scene,
       type: "coin",
       scale: 0.065,
       group: props.group,

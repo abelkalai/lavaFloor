@@ -1,9 +1,9 @@
-import GenericPickUp from "/static/lib/gameObjects/genericPickUp.js";
+import GenericPickUp from "/static/lib/gameObjects/supers/genericPickUp.js";
 
 export default class MPotion extends GenericPickUp {
-  constructor(scene, props) {
+  constructor(props) {
     super({
-      scene: scene,
+      scene: props.scene,
       type: "mPotion",
       scale: 0.4,
       group: props.group,

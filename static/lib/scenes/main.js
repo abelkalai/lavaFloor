@@ -1,7 +1,7 @@
 import Boundaries from "/static/lib/gameObjects/boundaries.js";
 import Lava from "/static/lib/gameObjects/lava.js";
 import Player from "/static/lib/gameObjects/player.js";
-import Pickups from "/static/lib/gameObjects/pickUps.js"
+import Pickups from "/static/lib/gameObjects/pickUps.js";
 import Backmusic from "/static/lib/utilities/backMusic.js";
 import Hud from "/static/lib/scenes/hud.js";
 import Enemies from "/static/lib/gameObjects/enemies.js";
@@ -27,11 +27,11 @@ export default class Main extends Phaser.Scene {
     this.hud = this.scene.add("hud", new Hud(this));
     this.scene.launch("hud");
 
-    //Boundaries
-    this.boundaries = new Boundaries(this);
-
     // Lava
     this.lava = new Lava(this);
+
+    //Boundaries
+    this.boundaries = new Boundaries(this);
 
     // Player
     this.player = new Player(this);
@@ -58,7 +58,7 @@ export default class Main extends Phaser.Scene {
     this.lava.update();
     this.pickups.update();
     this.boundaries.update();
-    this.enemies.update()
+    this.enemies.update();
     pauseFunction(this, "main");
   }
 }

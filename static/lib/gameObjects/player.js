@@ -78,7 +78,7 @@ export default class Player {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
         : this.character.anims.play("jump_b", true);
-      this.character.setVelocityY(-230);
+      this.character.setVelocityY(-235);
       this.scene.cameras.scrollY-=400
     }
 
@@ -89,7 +89,7 @@ export default class Player {
       cursors.up.isDown
     ) {
       this.character.anims.play("jump", true);
-      this.character.setVelocityY(-230);
+      this.character.setVelocityY(-235);
       this.character.setVelocityX(250);
       this.characterFacingRight = true;
       this.scene.cameras.scrollY-=40
@@ -102,7 +102,7 @@ export default class Player {
       cursors.up.isDown
     ) {
       this.character.anims.play("jump_b", true);
-      this.character.setVelocityY(-230);
+      this.character.setVelocityY(-235);
       this.character.setVelocityX(-225);
       this.characterFacingRight = false;
       this.scene.cameras.scrollY-=40

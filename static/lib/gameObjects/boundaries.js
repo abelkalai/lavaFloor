@@ -8,6 +8,7 @@ export default class Boundaries {
     this.nextSet = 2;
     this.heighest = 500; //Heighest point player reached. For scoring purposes.
     this.heightIncrease = -400; //Next height to increase for platforms
+    this.backTop = 0;
   }
 
   render() {
@@ -41,6 +42,9 @@ export default class Boundaries {
       [-125, -195]
     ]);
 
+    // Background sprites group
+    this.backDrop = this.scene.physics.add.group();
+
     // Initial Boundaries
     this.createBoundary(1, 0, 346, "platform");
     this.createBoundary(2, 0, 346, "platform");
@@ -65,16 +69,44 @@ export default class Boundaries {
         width: width,
         type: type
       });
-      let randInt = Phaser.Math.Between(1, 4);
+      let randInt = Phaser.Math.Between(1, 3);
       if (
-        randInt === 3 &&
+        randInt === 1 &&
         this.scene.enemies != undefined &&
-        xPos > 200 &&
+        xPos >= 10 &&
         xPos < 900
       ) {
-        this.scene.enemies.renderRandom(xPos, yPos);
+        this.scene.enemies.renderRandom(xPos + 50, yPos);
       } else if (randInt === 2 && this.scene.pickups != undefined) {
         this.scene.pickups.renderRandom(xPos, yPos);
+      }
+
+      let start = Phaser.Math.Between(50, 650);
+      if (
+        this.scene.player != undefined &&
+        Phaser.Math.Between(0, 5) === 1 &&
+        this.backTop - 200 > yPos &&
+        this.scene.player.character.y < -1500
+      ) {
+        if (this.scene.player.character.y > -8500) {
+          let backgroundObj = this.backDrop.create(start, yPos - 125, "cloud");
+          backgroundObj.setVelocityX(start < 300 ? 10 : -10);
+          backgroundObj.setDepth(25);
+          backgroundObj.body.setAllowGravity(false);
+          this.backTop = yPos;
+        }
+      } else if (
+        this.scene.player != undefined &&
+        this.backTop - 200 > yPos &&
+        this.scene.player.character.y < -1500
+      ) {
+        if (this.scene.player.character.y < -9500) {
+          let backgroundObj = this.backDrop.create(start, yPos, "star");
+          backgroundObj.setScale(0.25);
+          backgroundObj.setDepth(25);
+          backgroundObj.body.setAllowGravity(false);
+          this.backTop = yPos;
+        }
       }
     }
   }
@@ -90,5 +122,6 @@ export default class Boundaries {
     }
 
     outOfBounds(this.scene, this.platforms);
+    outOfBounds(this.scene, this.backDrop);
   }
 }

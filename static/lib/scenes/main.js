@@ -15,8 +15,8 @@ export default class Main extends Phaser.Scene {
 
   create() {
     //Background
-    this.add.image(400, 300, "background");
-
+    this.backGround=this.add.image(400, 300, "background");
+    
     // Background Music
     this.backMusic = new Backmusic(this);
 
@@ -44,7 +44,7 @@ export default class Main extends Phaser.Scene {
 
     // Set Camera Bounds
     this.cameras.main.startFollow(this.player.character, true, 0, 1);
-    this.cameras.main.backgroundColor.setTo(51, 255, 255); //Temp holder
+    this.cameras.main.setBackgroundColor(0xcbeffc); 
   }
 
   update() {

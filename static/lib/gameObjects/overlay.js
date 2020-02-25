@@ -12,7 +12,7 @@ export default class Overlay {
     // Score
     this.scoreText = this.scene.add.text(20, 20, `Score:${this.score}`, {
       fontSize: "32px",
-      fill: "#000"
+      fill: "#ee3231"
     });
 
     // Multipler Text
@@ -22,7 +22,7 @@ export default class Overlay {
       "Score Multiplier Active!",
       {
         fontSize: "20px",
-        fill: "#000"
+        fill: "#ee3231"
       }
     );
     this.multiplierText.visible = false;
@@ -30,7 +30,7 @@ export default class Overlay {
     // Health
     this.healthText = this.scene.add.text(20, 50, "Health: ", {
       fontSize: "32px",
-      fill: "#000"
+      fill: "#ee3231"
     });
 
     this.healthImage = this.scene.add.image(198, 66, `heart_${this.health}`);
@@ -44,7 +44,7 @@ export default class Overlay {
       `Sound:${this.soundContent}`,
       {
         fontSize: "32px",
-        fill: "#000"
+        fill: "#ee3231"
       }
     );
   }

@@ -12,38 +12,6 @@ export default class Pickups {
 
   render() {
     this.pickUpsObj = this.scene.physics.add.group();
-
-    //Inital M Potion
-    new MPotion({
-      scene: this.scene,
-      group: this.pickUpsObj,
-      xPos: 200,
-      yPos: 480
-    });
-
-    //Inital I Potion
-    new IPotion({
-      scene: this.scene,
-      group: this.pickUpsObj,
-      xPos: 310,
-      yPos: 340
-    });
-
-    // Initial Coin
-    new Coin({
-      scene: this.scene,
-      group: this.pickUpsObj,
-      xPos: 200,
-      yPos: 340
-    });
-
-    //Initial Heart
-    new Heart({
-      scene: this.scene,
-      group: this.pickUpsObj,
-      xPos: 100,
-      yPos: 267.5
-    });
   }
 
   renderRandom(x, y) {
@@ -51,39 +19,37 @@ export default class Pickups {
       x = 775;
     } else if (x < 0) {
       x = 25;
-    }
-    else if (x <= 15) {
+    } else if (x <= 15) {
       x = 75;
     }
-    let randInt = Phaser.Math.Between(1,4)
+    let randInt = Phaser.Math.Between(1, 4);
     if (randInt === 1) {
       new MPotion({
         scene: this.scene,
         group: this.pickUpsObj,
         xPos: x,
-        yPos: y-38 
+        yPos: y - 38
       });
     } else if (randInt === 2) {
       new IPotion({
         scene: this.scene,
         group: this.pickUpsObj,
         xPos: x,
-        yPos: y-38 
+        yPos: y - 38
       });
     } else if (randInt === 3) {
-    
       new Coin({
         scene: this.scene,
         group: this.pickUpsObj,
         xPos: x,
-        yPos: y-35
+        yPos: y - 35
       });
     } else if (randInt === 4) {
       new Heart({
         scene: this.scene,
         group: this.pickUpsObj,
         xPos: x,
-        yPos: y-30 
+        yPos: y - 30
       });
     }
   }

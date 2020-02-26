@@ -59,6 +59,15 @@ export default class Main extends Phaser.Scene {
     this.pickups.update();
     this.boundaries.update();
     this.enemies.update();
+
+    if(this.hud.overlay.health===0){
+      this.backMusic.backgroundMusic.destroy()
+      this.lava.lavaSound.destroy()
+      this.player.deathSound.play()
+      this.scene.remove("hud")
+      this.scene.start("over",{score: this.hud.overlay.score})
+      
+    }
     pauseFunction(this, "main");
   }
 }

@@ -1,15 +1,15 @@
-export default function pauseFunction(scene, sceneKey) {
-  let pKey = scene.input.keyboard.addKey("P");
+export default function pauseFunction(currentScene, sceneKey) {
+  let pKey = currentScene.input.keyboard.addKey("P");
 
   pKey.onDown = () => {
     if (sceneKey == "main") {
-      scene.pauseSound.play()
-      scene.scene.pause("main");
-      scene.scene.launch("pause");
+      currentScene.pauseSound.play()
+      currentScene.scene.pause("main");
+      currentScene.scene.launch("pause");
     } else{
-      scene.pauseSound.play()
-      scene.scene.sleep("pause");
-      scene.scene.resume("main");
+      currentScene.pauseSound.play()
+      currentScene.scene.sleep("pause");
+      currentScene.scene.resume("main");
     }
   };
 }

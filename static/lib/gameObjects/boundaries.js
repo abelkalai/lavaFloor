@@ -91,7 +91,7 @@ export default class Boundaries {
         if (this.scene.player.character.y > -8500) {
           let backgroundObj = this.backDrop.create(start, yPos - 125, "cloud");
           backgroundObj.setVelocityX(start < 300 ? 10 : -10);
-          backgroundObj.setDepth(25);
+          backgroundObj.setDepth(1);
           backgroundObj.body.setAllowGravity(false);
           this.backTop = yPos;
         }
@@ -103,7 +103,7 @@ export default class Boundaries {
         if (this.scene.player.character.y < -9500) {
           let backgroundObj = this.backDrop.create(start, yPos, "star");
           backgroundObj.setScale(0.25);
-          backgroundObj.setDepth(25);
+          backgroundObj.setDepth(1);
           backgroundObj.body.setAllowGravity(false);
           this.backTop = yPos;
         }
@@ -120,7 +120,7 @@ export default class Boundaries {
         this.platforms.getChildren().length - 1
       ].y;
     }
-
+  
     outOfBounds(this.scene, this.platforms);
     outOfBounds(this.scene, this.backDrop);
   }

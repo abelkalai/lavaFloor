@@ -141,6 +141,9 @@ export default class Preload extends Phaser.Scene {
     this.load.audio("collideEnemy", "static/assets/sounds/collideEnemy.mp3");
     this.load.audio("scoreIncrease", "static/assets/sounds/heightIncrease.mp3");
 
+    //Death Sound
+    this.load.audio("deathSound", "static/assets/sounds/deathSound.mp3");
+
     // Background Music
     this.load.audio(
       "backgroundMusic",

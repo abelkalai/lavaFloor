@@ -169,7 +169,7 @@ export default class Preload extends Phaser.Scene {
   create() {
     this.add.image(400, 300, "logo");
     setTimeout(() => {
-      this.scene.start("main");
+      this.scene.start("menu");
     }, 500);
   }
 }

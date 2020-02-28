@@ -7,7 +7,7 @@ export default class Preload extends Phaser.Scene {
     let pBox = this.add.graphics();
     pBox.fillStyle(0x222222, 0.8);
     pBox.fillRect(240, 270, 335, 35);
-    let loadText=this.make.text({
+    let loadText = this.make.text({
       x: 350,
       y: 240,
       text: "Loading...",
@@ -19,15 +19,15 @@ export default class Preload extends Phaser.Scene {
     let pBar = this.add.graphics();
 
     this.load.on("progress", function(val) {
-      pBar.fillStyle(0xFFFFFF, 1);
+      pBar.fillStyle(0xffffff, 1);
       pBar.fillRect(245, 275, 325 * val, 25);
     });
 
-    this.load.on("complete",()=>{
-      pBox.destroy()
-      pBar.destroy()
-      loadText.destroy()
-    })
+    this.load.on("complete", () => {
+      pBox.destroy();
+      pBar.destroy();
+      loadText.destroy();
+    });
 
     //Load Enviornment Assetss
     this.load.image("background", "static/assets/env/background.png");
@@ -38,7 +38,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image("wall", "static/assets/env/invisibleWall.png");
     this.load.image("cloud", "static/assets/env/cloud.png");
     this.load.image("star", "static/assets/env/star.png");
-    
+
     // Health
     this.load.image("heart_3", "static/assets/sprites/heart_3.png");
     this.load.image("heart_2", "static/assets/sprites/heart_2.png");
@@ -56,7 +56,6 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 563,
       frameHeight: 564
     });
-    
 
     // Ground Enemy
     this.load.spritesheet("enemyOne", "static/assets/sprites/enemy_1.png", {
@@ -125,7 +124,7 @@ export default class Preload extends Phaser.Scene {
 
     // Pause Button and sound
     this.load.image("pauseImage", "static/assets/env/pause.png");
-    this.load.audio("pauseSound", "static/assets/sounds/pause.mp3")
+    this.load.audio("pauseSound", "static/assets/sounds/pause.mp3");
 
     // Main Scene Sounds
     this.load.audio("collectCoin", "static/assets/sounds/coinCollect.mp3");
@@ -158,18 +157,9 @@ export default class Preload extends Phaser.Scene {
     this.load.audio("lava", "static/assets/sounds/lavaApproaching.mp3");
     this.load.audio("burn", "static/assets/sounds/burn.mp3");
 
-    //Personal logo placeholder
-    this.load.image("logo", "static/assets/logo/placeholder.png");
-
-    //When loading assets are complete
-    this.load.on("complete", () => {
-    });
   }
 
   create() {
-    this.add.image(400, 300, "logo");
-    setTimeout(() => {
-      this.scene.start("menu");
-    }, 500);
+    this.scene.start("menu");
   }
 }

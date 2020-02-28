@@ -19,6 +19,7 @@ export default class Main extends Phaser.Scene {
     
     // Background Music
     this.backMusic = new Backmusic(this);
+    this.backMusic.backgroundMusic.play()
 
     // Pause Sound
     this.pauseSound = this.sound.add("pauseSound");
@@ -29,7 +30,8 @@ export default class Main extends Phaser.Scene {
 
     // Lava
     this.lava = new Lava(this);
-
+    this.lava.lavaSound.play()
+    
     //Boundaries
     this.boundaries = new Boundaries(this);
 
@@ -54,6 +56,7 @@ export default class Main extends Phaser.Scene {
       this.game.scale.width,
       this.game.scale.height + this.player.yMax
     );
+  
     this.player.update();
     this.lava.update();
     this.pickups.update();
@@ -63,9 +66,9 @@ export default class Main extends Phaser.Scene {
     if(this.hud.overlay.health===0){
       this.backMusic.backgroundMusic.destroy()
       this.lava.lavaSound.destroy()
-      this.player.deathSound.play()
+      setTimeout(()=>{this.player.deathSound.play()
       this.scene.remove("hud")
-      this.scene.start("over",{score: this.hud.overlay.score})
+      this.scene.start("over",{score: this.hud.overlay.score}),100})
       
     }
     pauseFunction(this, "main");

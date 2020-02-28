@@ -19,7 +19,7 @@ export default class Boundaries {
 
     // Ground
     let ground = this.platforms.create(125, 550, "ground");
-    ground.setDepth(100);
+    ground.setDepth(25);
 
     //Hash map that stores boundaries
     this.boundaryList = new Map();

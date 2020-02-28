@@ -8,7 +8,6 @@ export default class Backmusic {
     // Background Music
     this.backgroundMusic = this.scene.sound.add("backgroundMusic", { volume: 0.5 });
     this.backgroundMusic.loop = true;
-    this.backgroundMusic.play();
 
     // Invincible Music
     this.invincibleMusic = this.scene.sound.add("invincibleMusic", { volume: 0.5 });

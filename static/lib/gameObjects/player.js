@@ -75,7 +75,7 @@ export default class Player {
   update() {
     this.yMax = Math.max(this.yMax, Math.abs(this.character.y - this.yStart));
     let cursors = this.scene.input.keyboard.createCursorKeys();
-
+    
     //Handle jumping
     if (this.character.body.onFloor() && cursors.up.isDown) {
       this.characterFacingRight

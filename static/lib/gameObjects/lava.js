@@ -12,12 +12,11 @@ export default class Lava {
 
     this.lavaObj.body.setAllowGravity(false);
     this.lavaObj.setVelocityX(500);
-    this.lavaObj.setVelocityY(-1);
+    this.lavaObj.setVelocityY(-5);
     this.lavaObj.body.setAccelerationY(-0.25);
     this.lavaObj.setDepth(50); 
     this.volume = 0.5;
     this.lavaSound = this.scene.sound.add("lava", { volume: this.volume });
-    this.lavaSound.play();
     this.lavaSound.loop = true;
   }
 

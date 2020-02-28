@@ -4,30 +4,22 @@ export default class Menu extends Phaser.Scene {
   }
 
   create() {
-    this.startKey = this.input.keyboard.addKey("S");
-    this.howKey = this.input.keyboard.addKey("H");
-
-    this.add.text(300, 100, "Main Menu", {
-      fontSize: "30px",
-      color: "#ffffff"
+    this.enterKey = this.input.keyboard.addKey("ENTER");
+    this.add.image(400, 300, "background");
+    this.add.text(200, 50, "The Floor is Lava!", {
+      fontSize: "40px",
+      color: "#000000"
     });
-    this.add.text(200, 200, "Press H for How to Play", {
-        fontSize: "30px",
-        color: "#ffffff"
-      });
-    this.add.text(250, 300, "Press S to Start", {
+
+    this.add.text(225, 450, "Press Enter to Start", {
       fontSize: "30px",
-      color: "#ffffff"
+      color: "#000000"
     });
   }
 
   update() {
-    this.startKey.onDown = () => {
+    this.enterKey.onDown = () => {
       this.scene.start("main");
-    };
-
-    this.howKey.onDown = () => {
-      this.scene.start("preload");
     };
   }
 }

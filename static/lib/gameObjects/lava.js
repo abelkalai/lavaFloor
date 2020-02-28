@@ -8,7 +8,7 @@ export default class Lava {
   }
 
   render() {
-    this.lavaObj = this.scene.physics.add.sprite(100, 1025, "lava");
+    this.lavaObj = this.scene.physics.add.sprite(100, 1250, "lava");
 
     this.lavaObj.body.setAllowGravity(false);
     this.lavaObj.setVelocityX(500);

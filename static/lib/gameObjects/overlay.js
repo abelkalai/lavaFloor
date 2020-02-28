@@ -12,7 +12,8 @@ export default class Overlay {
     // Score
     this.scoreText = this.scene.add.text(20, 20, `Score:${this.score}`, {
       fontSize: "32px",
-      fill: "#ee3231"
+      fill: "#ee3231",
+
     });
 
     // Multipler Text
@@ -22,7 +23,8 @@ export default class Overlay {
       "Score Multiplier Active!",
       {
         fontSize: "20px",
-        fill: "#ee3231"
+        fill: "#ee3231",
+
       }
     );
     this.multiplierText.visible = false;

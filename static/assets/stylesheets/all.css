@@ -1,3 +1,15 @@
+@font-face {
+  font-family: inGame;
+  src: url("./inGameFont.otf");
+  font-weight: normal;
+}
+
+.fontHolder {
+  font-family: inGame;
+  position: absolute;
+  visibility: hidden;
+}
+
 canvas {
   margin: auto;
   display: block;
@@ -29,6 +41,6 @@ footer {
 .logo {
   float: left;
   padding: 0;
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
 }

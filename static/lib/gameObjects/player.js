@@ -15,7 +15,7 @@ export default class Player {
 
   render() {
     //Adds player character to the scene
-    this.character = this.scene.physics.add.sprite(400, 457, "character");
+    this.character = this.scene.physics.add.sprite(400, 438, "character");
     this.character.setCollideWorldBounds(true);
     this.character.setDepth(5);
     this.scene.physics.add.collider(

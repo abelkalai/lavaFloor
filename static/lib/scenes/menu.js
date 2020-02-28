@@ -6,13 +6,15 @@ export default class Menu extends Phaser.Scene {
   create() {
     this.enterKey = this.input.keyboard.addKey("ENTER");
     this.add.image(400, 300, "background");
-    this.add.text(200, 50, "The Floor is Lava!", {
-      fontSize: "40px",
+    this.add.text(207.5, 50, "The Floor is Lava!", {
+      fontFamily: "inGame",
+      fontSize: "60px",
       color: "#000000"
     });
 
-    this.add.text(225, 450, "Press Enter to Start", {
-      fontSize: "30px",
+    this.add.text(185, 400, "Press Enter to Start", {
+      fontFamily: "inGame",
+      fontSize: "60px",
       color: "#000000"
     });
   }

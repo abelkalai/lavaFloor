@@ -13,17 +13,20 @@ export default class Over extends Phaser.Scene {
     this.scene.add("main", new Main(this.scene.game));
 
     this.enterKey = this.input.keyboard.addKey("ENTER");
-   
-    this.add.text(300, 100, "Game Over", {
-      fontSize: "30px",
+    this.add.image(400, 300, "lava");
+    this.add.text(275, 50, "Game Over", {
+      fontFamily: "inGame",
+      fontSize: "60px",
       color: "#ffffff"
     });
-    this.add.text(225, 200, `Final Score: ${this.finalScore}`, {
-      fontSize: "30px",
+    this.add.text(240, 200, `Final Score: ${this.finalScore}`, {
+      fontFamily: "inGame",
+      fontSize: "60px",
       color: "#ffffff"
     });
-    this.add.text(225, 250, "Press ENTER to Try Again", {
-      fontSize: "30px",
+    this.add.text(140, 400, "Press ENTER to Try Again", {
+      fontFamily: "inGame",
+      fontSize: "60px",
       color: "#ffffff"
     });
   }
@@ -32,6 +35,5 @@ export default class Over extends Phaser.Scene {
     this.enterKey.onDown = () => {
       this.scene.start("main");
     };
-
   }
 }

@@ -1,15 +1,18 @@
 const express= require('express');
 const app= express()
 const path = require('path')
+const cors = require('cors')
 
+app.use(cors())
 app.use('/',express.static(__dirname+'/'))
 
 app.get('/',function(response){
     response.sendFile(path.join(__dirname+'/index.html'))
 })
 
-let PORT=3000
+const PORT = process.env.PORT || 3000
 
-app.listen(PORT)
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  })
 
-console.log(`Server running on Port ${PORT}`)

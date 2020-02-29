@@ -1,6 +1,9 @@
 {
   "name": "lavafloor",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"
+  },
   "description": "## Climb up across the platforms as high as you can while avoiding enemies and obstacles.",
   "private": true,
   "main": "index.js",

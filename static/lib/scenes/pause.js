@@ -1,4 +1,4 @@
-import pauseFunction from "static/lib/utilities/pauseUtil.js";
+import pauseFunction from "/static/lib/utilities/pauseUtil.js";
 
 export default class Pause extends Phaser.Scene {
   constructor() {

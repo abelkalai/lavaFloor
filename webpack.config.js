@@ -1,6 +1,6 @@
 const path = require('path')
 
-const config = {
+module.exports = {
   entry: './static/lib/game.js',
   output: {
     path: path.resolve(__dirname, 'dist'),

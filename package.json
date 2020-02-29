@@ -2,7 +2,8 @@
   "name": "lavafloor",
   "version": "1.0.0",
   "description": "## Climb up across the platforms as high as you can while avoiding enemies and obstacles.",
-  "main": "index.html",
+  "private": true,
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },

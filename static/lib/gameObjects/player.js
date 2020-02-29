@@ -17,7 +17,7 @@ export default class Player {
     this.character = this.scene.physics.add.sprite(400, 438, "character");
     this.character.setCollideWorldBounds(true);
     this.character.setDepth(5);
-    // this.scene.physics.add.collider(this.character, this.scene.platforms);
+    this.scene.physics.add.collider(this.character, this.scene.platforms);
     this.yStart = this.character.y;
     this.getPoints = this.scene.sound.add("scoreIncrease");
     this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -74,11 +74,11 @@ export default class Player {
     this.yMax = Math.max(this.yMax, Math.abs(this.character.y - this.yStart));
 
     //Handle jumping
-    if (/*this.character.body.onFloor() && */this.cursors.up.isDown) {
+    if (this.character.body.onFloor() && this.cursors.up.isDown) {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
         : this.character.anims.play("jump_b", true);
-      this.character.setVelocityY(-2350);
+      this.character.setVelocityY(-235);
     }
 
     // Holding arrow keys while jumping right

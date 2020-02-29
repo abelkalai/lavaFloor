@@ -1,8 +1,8 @@
-import Preload from "/static/lib/scenes/preload.js";
-import Menu from "/static/lib/scenes/menu.js";
-import Main from "/static/lib/scenes/main.js";
-import Pause from "/static/lib/scenes/pause.js";
-import Over from "/static/lib/scenes/over.js";
+import Preload from "./scenes/preload.js";
+import Menu from "./scenes/menu.js";
+import Main from "./scenes/main.js";
+import Pause from "./scenes/pause.js";
+import Over from "./scenes/over.js";
 
 const game = new Phaser.Game({
   type: Phaser.AUTO,

@@ -8,28 +8,14 @@ export default class Lava {
   }
 
   render() {
-    this.lavaObj = this.scene.physics.add.sprite(100, 1250, "lava");
-
+    this.lavaObj = this.scene.physics.add.sprite(100, 1225, "lava");
     this.lavaObj.body.setAllowGravity(false);
-    this.lavaObj.setVelocityX(500);
-    this.lavaObj.setVelocityY(-5);
-    this.lavaObj.body.setAccelerationY(-0.25);
-    this.lavaObj.setDepth(50); 
+    this.lavaObj.body.setAccelerationY(-0.35);
+    this.lavaObj.setDepth(50);
     this.volume = 0.5;
     this.lavaSound = this.scene.sound.add("lava", { volume: this.volume });
     this.lavaSound.loop = true;
-  }
 
-  update() {
-    let distance = Math.abs(this.scene.player.character.y - this.lavaObj.y);
-    this.lavaSound.volume =
-      (12 - distance / 125) / 12 < 0 ? 0 : (12 - distance / 125) / 12;
-    this.counter += 1;
-
-    if (this.counter == 100) {
-      this.lavaObj.setVelocityX(this.lavaObj.body.velocity.x * -1);
-      this.counter = 0;
-    }
     //Collision with player
     this.scene.physics.add.overlap(
       this.scene.player.character,
@@ -38,5 +24,11 @@ export default class Lava {
       null,
       { this: this, enemy: this, scene: this.scene }
     );
+  }
+
+  update() {
+    let distance = Math.abs(this.scene.player.character.y - this.lavaObj.y);
+    this.lavaSound.volume =
+      (12 - distance / 125) / 12 < 0 ? 0 : (12 - distance / 125) / 12;
   }
 }

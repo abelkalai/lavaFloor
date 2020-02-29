@@ -1,4 +1,4 @@
-export default class GenericPickUp {
+export default class Pickup {
   constructor(props) {
     this.scene = props.scene
     this.group = props.group;

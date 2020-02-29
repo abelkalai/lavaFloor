@@ -7,10 +7,9 @@ export default class Player {
     this.enemyCollide = true;
     this.yMax = 0;
     this.scoreHeight = 500;
-    this.deathSound=this.scene.sound.add("deathSound")
+    this.deathSound = this.scene.sound.add("deathSound");
     this.render();
     this.animate();
-    
   }
 
   render() {
@@ -18,12 +17,10 @@ export default class Player {
     this.character = this.scene.physics.add.sprite(400, 438, "character");
     this.character.setCollideWorldBounds(true);
     this.character.setDepth(5);
-    this.scene.physics.add.collider(
-      this.character,
-      this.scene.platforms
-    );
+    // this.scene.physics.add.collider(this.character, this.scene.platforms);
     this.yStart = this.character.y;
     this.getPoints = this.scene.sound.add("scoreIncrease");
+    this.cursors = this.scene.input.keyboard.createCursorKeys();
   }
 
   animate() {
@@ -73,22 +70,22 @@ export default class Player {
   }
 
   update() {
+    //Record player maximum height
     this.yMax = Math.max(this.yMax, Math.abs(this.character.y - this.yStart));
-    let cursors = this.scene.input.keyboard.createCursorKeys();
-    
+
     //Handle jumping
-    if (this.character.body.onFloor() && cursors.up.isDown) {
+    if (/*this.character.body.onFloor() && */this.cursors.up.isDown) {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
         : this.character.anims.play("jump_b", true);
-      this.character.setVelocityY(-235);
+      this.character.setVelocityY(-2350);
     }
 
     // Holding arrow keys while jumping right
     else if (
-      cursors.right.isDown &&
+      this.cursors.right.isDown &&
       this.character.body.onFloor() &&
-      cursors.up.isDown
+      this.cursors.up.isDown
     ) {
       this.character.anims.play("jump", true);
       this.character.setVelocityY(-235);
@@ -98,9 +95,9 @@ export default class Player {
 
     // Holding arrow keys while jumping left
     else if (
-      cursors.left.isDown &&
+      this.cursors.left.isDown &&
       this.character.body.onFloor() &&
-      cursors.up.isDown
+      this.cursors.up.isDown
     ) {
       this.character.anims.play("jump_b", true);
       this.character.setVelocityY(-235);
@@ -109,27 +106,27 @@ export default class Player {
     }
 
     // Controlling right in mid-air
-    else if (cursors.right.isDown && !this.character.body.onFloor()) {
+    else if (this.cursors.right.isDown && !this.character.body.onFloor()) {
       this.character.anims.play("jump", true);
       this.character.setVelocityX(200);
       this.characterFacingRight = true;
     }
 
     // Controlling left in mid-air
-    else if (cursors.left.isDown && !this.character.body.onFloor()) {
+    else if (this.cursors.left.isDown && !this.character.body.onFloor()) {
       this.character.anims.play("jump_b", true);
       this.character.setVelocityX(-200);
       this.characterFacingRight = false;
     }
 
     //Moving right on ground
-    else if (cursors.right.isDown && this.character.body.onFloor()) {
+    else if (this.cursors.right.isDown && this.character.body.onFloor()) {
       this.character.anims.play("right", true);
       this.character.setVelocityX(275);
       this.characterFacingRight = true;
 
       //Moving left on ground
-    } else if (cursors.left.isDown && this.character.body.onFloor()) {
+    } else if (this.cursors.left.isDown && this.character.body.onFloor()) {
       this.character.anims.play("left", true);
       this.character.setVelocityX(-275);
       this.characterFacingRight = false;
@@ -146,37 +143,9 @@ export default class Player {
     //Update score based on heighest point reached, increasing every 500
     if (this.character.y < this.scoreHeight - 500) {
       this.scoreHeight -= 500;
-      this.scene.hud.score += this.scene.hud.scoreMultiplier
-        ? 200
-        : 100;
-      this.scene.hud.scoreText.setText(
-        `Score:${this.scene.hud.score}`
-      );
+      this.scene.hud.score += this.scene.hud.scoreMultiplier ? 200 : 100;
+      this.scene.hud.scoreText.setText(`Score:${this.scene.hud.score}`);
       this.getPoints.play();
-    }
-
-    //Adjusts background based on player height
-    if (this.character.y < 0) {
-      if (this.character.y < -2500 && this.character.y > -4500)
-        this.scene.cameras.main.setBackgroundColor(0x9fe1f9);
-      else if (this.character.y < -4500 && this.character.y > -5500)
-        this.scene.cameras.main.setBackgroundColor(0x6ed2f7);
-      else if (this.character.y < -5500 && this.character.y > -6500)
-        this.scene.cameras.main.setBackgroundColor(0x3ec3f4);
-      else if (this.character.y < -6500 && this.character.y > -7500)
-        this.scene.cameras.main.setBackgroundColor(0x0eb4f1);
-      else if (this.character.y < -7500 && this.character.y > -8500)
-        this.scene.cameras.main.setBackgroundColor(0x0b90c1);
-      //Clouds
-      else if (this.character.y < -8500 && this.character.y > -9500)
-        this.scene.cameras.main.setBackgroundColor(0x086c91);
-      else if (this.character.y < -9500 && this.character.y > -10500)
-        this.scene.cameras.main.setBackgroundColor(0x064860);
-      //Stars
-      else if (this.character.y < -10500 && this.character.y > -11500)
-        this.scene.cameras.main.setBackgroundColor(0x032430);
-      else if (this.character.y < -11500)
-        this.scene.cameras.main.setBackgroundColor(0x000000);
     }
   }
 }

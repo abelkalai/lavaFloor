@@ -1,7 +1,6 @@
 export default class Hud extends Phaser.Scene {
-  constructor(scene) {
+  constructor() {
     super("hud");
-    this.scene = scene;
     this.score = 0;
     this.health = 3;
     this.soundContent = "ON";
@@ -16,15 +15,10 @@ export default class Hud extends Phaser.Scene {
     });
 
     // Multipler Text
-    this.multiplierText = this.add.text(
-      500,
-      48,
-      "Score Multiplier Active!",
-      {
-        fontSize: "20px",
-        fill: "#ee3231"
-      }
-    );
+    this.multiplierText = this.add.text(500, 48, "Score Multiplier Active!", {
+      fontSize: "20px",
+      fill: "#ee3231"
+    });
     this.multiplierText.visible = false;
 
     // Health
@@ -38,21 +32,16 @@ export default class Hud extends Phaser.Scene {
     this.oldHealth = this.health;
 
     // Sound Toggle
-    this.soundText = this.add.text(
-      620,
-      20,
-      `Sound:${this.soundContent}`,
-      {
-        fontSize: "32px",
-        fill: "#ee3231"
-      }
-    );
+    this.soundText = this.add.text(620, 20, `Sound:${this.soundContent}`, {
+      fontSize: "32px",
+      fill: "#ee3231"
+    });
+    this.oKey = this.input.keyboard.addKey("O");
   }
 
   update() {
     // Player can turn sound off with "o" key
-    let oKey = this.input.keyboard.addKey("O");
-    oKey.onDown = () => {
+    this.oKey.onDown = () => {
       this.soundContent = this.soundContent === "ON" ? "OFF" : "ON";
       this.sound.mute = this.soundContent === "OFF" ? true : false;
       this.soundText.setText(`Sound:${this.soundContent}`);

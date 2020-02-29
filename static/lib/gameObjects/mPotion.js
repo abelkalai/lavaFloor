@@ -1,6 +1,6 @@
-import GenericPickUp from "/static/lib/gameObjects/genericPickUp.js";
+import Pickup from "/static/lib/gameObjects/pickUp.js";
 
-export default class MPotion extends GenericPickUp {
+export default class MPotion extends Pickup {
   constructor(props) {
     super({
       scene: props.scene,

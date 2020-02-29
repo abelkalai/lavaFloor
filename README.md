@@ -27,7 +27,7 @@ and don't climb too slowly or the lava will catch up to you.
 ## Techologies
 
 * Phaser.js was used for the game logic along with classes, scoring, enemies and items
-* Express server serves the game handling file requests for the Phaesr framework
+* Express server serves the game and handles sending files securly
 
 ## Features
 

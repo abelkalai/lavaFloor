@@ -2,13 +2,13 @@ import Platform from "/static/lib/gameObjects/platform.js";
 import Lava from "/static/lib/gameObjects/lava.js";
 import Player from "/static/lib/gameObjects/player.js";
 import Hud from "/static/lib/scenes/hud.js";
-import pauseFunction from "/static/lib/utilities/pauseUtil.js";
-import outOfBounds from "/static/lib/utilities/outOfBounds.js";
 import MPotion from "/static/lib/gameObjects/mPotion.js";
 import IPotion from "/static/lib/gameObjects/iPotion.js";
 import Heart from "/static/lib/gameObjects/heart.js";
 import Coin from "/static/lib/gameObjects/Coin.js";
 import Enemy from "/static/lib/gameObjects/enemy.js";
+import pauseFunction from "/static/lib/utilities/pauseUtil.js";
+import outOfBounds from "/static/lib/utilities/outOfBounds.js";
 export default class Main extends Phaser.Scene {
   constructor(game) {
     super("main");
@@ -24,24 +24,20 @@ export default class Main extends Phaser.Scene {
     this.backGround = this.add.image(400, 300, "background");
 
     // Background Music
-    this.backgroundMusic = this.sound.add("backgroundMusic", { volume: 0.5 });
+    this.backgroundMusic = this.sound.add("backgroundMusic", { volume: 0.35 });
     this.backgroundMusic.loop = true;
     this.backgroundMusic.play();
 
     // Invincible Music
-    this.invincibleMusic = this.sound.add("invincibleMusic", { volume: 0.5 });
+    this.invincibleMusic = this.sound.add("invincibleMusic", { volume: 0.35 });
     this.invincibleMusic.loop = true;
 
     // Pause Sound
     this.pauseSound = this.sound.add("pauseSound");
 
     //HUD
-    this.hud = this.scene.add("hud", new Hud(this));
+    this.hud = this.scene.add("hud", new Hud());
     this.scene.launch("hud");
-
-    // Lava
-    this.lava = new Lava(this);
-    this.lava.lavaSound.play();
 
     // Powerups
     this.pickups = this.physics.add.group();
@@ -51,6 +47,10 @@ export default class Main extends Phaser.Scene {
 
     // Player
     this.player = new Player(this);
+
+    // Lava
+    this.lava = new Lava(this);
+    this.lava.lavaSound.play();
 
     //Enemies
     this.enemies = this.physics.add.group();
@@ -118,7 +118,7 @@ export default class Main extends Phaser.Scene {
         width: width,
         type: type
       });
-      let randInt = Phaser.Math.Between(1, 3);
+      let randInt = Phaser.Math.Between(1, 5);
       if (randInt === 1 && xPos >= 10 && xPos < 900) {
         this.renderRandomEnemy(xPos + 50, yPos);
       } else if (randInt === 2) {
@@ -142,17 +142,12 @@ export default class Main extends Phaser.Scene {
           backgroundObj.body.setAllowGravity(false);
           this.latestEnvHeight = yPos;
         }
-      } else if (
-        this.latestEnvHeight - 200 > yPos &&
-        this.player.character.y < -1500
-      ) {
-        if (this.player.character.y < -9500) {
-          let backgroundObj = this.backSprites.create(xStart, yPos, "star");
-          backgroundObj.setScale(0.25);
-          backgroundObj.setDepth(1);
-          backgroundObj.body.setAllowGravity(false);
-          this.latestEnvHeight = yPos;
-        }
+      } else if (this.player.character.y < -9500) {
+        let backgroundObj = this.backSprites.create(xStart, yPos, "star");
+        backgroundObj.setScale(0.25);
+        backgroundObj.setDepth(1);
+        
+        this.latestEnvHeight = yPos;
       }
     }
   }
@@ -274,6 +269,49 @@ export default class Main extends Phaser.Scene {
       this.heighestBoundary = this.platforms.getChildren()[
         this.platforms.getChildren().length - 1
       ].y;
+    }
+
+    //Adjusts background based on player height
+    if (this.player.character.y < 0) {
+      if (this.player.character.y < -2500 && this.player.character.y > -4500)
+        this.cameras.main.setBackgroundColor(0x9fe1f9);
+      else if (
+        this.player.character.y < -4500 &&
+        this.player.character.y > -5500
+      )
+        this.cameras.main.setBackgroundColor(0x6ed2f7);
+      else if (
+        this.player.character.y < -5500 &&
+        this.player.character.y > -6500
+      )
+        this.cameras.main.setBackgroundColor(0x3ec3f4);
+      else if (
+        this.player.character.y < -6500 &&
+        this.player.character.y > -7500
+      )
+        this.cameras.main.setBackgroundColor(0x0eb4f1);
+      else if (
+        this.player.character.y < -7500 &&
+        this.player.character.y > -8500
+      )
+        this.cameras.main.setBackgroundColor(0x0b90c1);
+      else if (
+        this.player.character.y < -8500 &&
+        this.player.character.y > -9500
+      )
+        this.cameras.main.setBackgroundColor(0x086c91);
+      else if (
+        this.player.character.y < -9500 &&
+        this.player.character.y > -10500
+      )
+        this.cameras.main.setBackgroundColor(0x064860);
+      else if (
+        this.player.character.y < -10500 &&
+        this.player.character.y > -11500
+      )
+        this.cameras.main.setBackgroundColor(0x032430);
+      else if (this.player.character.y < -11500)
+        this.cameras.main.setBackgroundColor(0x000000);
     }
 
     if (this.hud.health === 0) {

@@ -1,4 +1,3 @@
-import Main from "/static/lib/scenes/main.js";
 export default class Over extends Phaser.Scene {
   constructor() {
     super("over");
@@ -9,9 +8,7 @@ export default class Over extends Phaser.Scene {
   }
 
   create() {
-    this.scene.remove("main");
-    this.scene.add("main", new Main(this.scene.game));
-
+    this.scene.stop("main");
     this.enterKey = this.input.keyboard.addKey("ENTER");
     this.add.image(400, 300, "lava");
     this.add.text(275, 50, "Game Over", {

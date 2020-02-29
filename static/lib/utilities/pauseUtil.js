@@ -8,7 +8,7 @@ export default function pauseFunction(currentScene, sceneKey) {
       currentScene.scene.launch("pause");
     } else{
       currentScene.pauseSound.play()
-      currentScene.scene.sleep("pause");
+      currentScene.scene.stop("pause");
       currentScene.scene.resume("main");
     }
   };

@@ -15,7 +15,7 @@ export default class GenericPickUp {
     this.sprite.setScale(this.scale);
     this.scene.physics.add.collider(
       this.sprite,
-      this.scene.boundaries.platforms
+      this.scene.platforms
     );
   }
 }

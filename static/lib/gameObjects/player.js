@@ -20,7 +20,7 @@ export default class Player {
     this.character.setDepth(5);
     this.scene.physics.add.collider(
       this.character,
-      this.scene.boundaries.platforms
+      this.scene.platforms
     );
     this.yStart = this.character.y;
     this.getPoints = this.scene.sound.add("scoreIncrease");
@@ -146,11 +146,11 @@ export default class Player {
     //Update score based on heighest point reached, increasing every 500
     if (this.character.y < this.scoreHeight - 500) {
       this.scoreHeight -= 500;
-      this.scene.hud.overlay.score += this.scene.hud.overlay.scoreMultiplier
+      this.scene.hud.score += this.scene.hud.scoreMultiplier
         ? 200
         : 100;
-      this.scene.hud.overlay.scoreText.setText(
-        `Score:${this.scene.hud.overlay.score}`
+      this.scene.hud.scoreText.setText(
+        `Score:${this.scene.hud.score}`
       );
       this.getPoints.play();
     }

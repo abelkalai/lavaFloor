@@ -1,4 +1,4 @@
-import GenericPickUp from "/static/lib/gameObjects/supers/genericPickUp.js";
+import GenericPickUp from "/static/lib/gameObjects/genericPickUp.js";
 
 export default class Heart extends GenericPickUp {
   constructor(props) {
@@ -7,15 +7,15 @@ export default class Heart extends GenericPickUp {
       type: "heart",
       scale: 1,
       group: props.group,
-      xPos: props.xPos, //100
-      yPos: props.yPos, //250
+      xPos: props.xPos, 
+      yPos: props.yPos, 
       allowGravity: false
     });
     this.heartSound = this.scene.sound.add("collectHeart");
-    this.update();
+    this.collide()
   }
 
-  update() {
+  collide() {
     // Collision with heart pickup
     this.scene.physics.add.overlap(
       this.scene.player.character,
@@ -27,8 +27,8 @@ export default class Heart extends GenericPickUp {
 
     // Get Heart Function
     function getHeart(character, heart) {
-      if (this.scene.hud.overlay.health <= 2) {
-        this.scene.hud.overlay.health++;
+      if (this.scene.hud.health <= 2) {
+        this.scene.hud.health++;
         this.heartSound.play();
         heart.disableBody(true, true);
       }

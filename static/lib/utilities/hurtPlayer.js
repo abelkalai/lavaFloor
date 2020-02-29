@@ -1,8 +1,8 @@
 //Function used by Phaser physics add collider method, this is passed through as a parameter within the callback function
 export default function hurtPlayer() {
-  if (this.scene.player.enemyCollide && this.scene.hud.overlay.health !== 0) {
+  if (this.scene.player.enemyCollide && this.scene.hud.health !== 0) {
 
-    this.scene.hud.overlay.health -= 1;
+    this.scene.hud.health -= 1;
     this.scene.player.enemyCollide = false;
     this.enemy.collide.play();
 

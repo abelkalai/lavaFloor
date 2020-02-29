@@ -19,7 +19,7 @@ export default class Over extends Phaser.Scene {
       fontSize: "60px",
       color: "#ffffff"
     });
-    this.add.text(240, 200, `Final Score: ${this.finalScore}`, {
+    this.add.text(230, 200, `Final Score: ${this.finalScore}`, {
       fontFamily: "inGame",
       fontSize: "60px",
       color: "#ffffff"

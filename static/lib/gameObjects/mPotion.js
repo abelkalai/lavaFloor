@@ -1,4 +1,4 @@
-import GenericPickUp from "/static/lib/gameObjects/supers/genericPickUp.js";
+import GenericPickUp from "/static/lib/gameObjects/genericPickUp.js";
 
 export default class MPotion extends GenericPickUp {
   constructor(props) {
@@ -7,15 +7,15 @@ export default class MPotion extends GenericPickUp {
       type: "mPotion",
       scale: 0.4,
       group: props.group,
-      xPos: props.xPos, //200
-      yPos: props.yPos, //400
+      xPos: props.xPos, 
+      yPos: props.yPos, 
       allowGravity: true
     });
     this.multiplierSound = this.scene.sound.add("multiplierPotion");
-    this.update();
+    this.collide()
   }
 
-  update() {
+  collide() {
     // Collision with score multiplier pickup
     this.scene.physics.add.overlap(
       this.scene.player.character,
@@ -29,9 +29,9 @@ export default class MPotion extends GenericPickUp {
       this.multiplierSound.play();
       mPotion.disableBody(true, true);
 
-      this.scene.hud.overlay.scoreMultiplier = true;
+      this.scene.hud.scoreMultiplier = true;
       setTimeout(() => {
-        this.scene.hud.overlay.scoreMultiplier = false;
+        this.scene.hud.scoreMultiplier = false;
       }, 10000);
     }
   }

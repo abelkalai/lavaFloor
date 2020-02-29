@@ -1,4 +1,5 @@
 import hurtPlayer from "/static/lib/utilities/hurtPlayer.js";
+
 export default class Enemy {
   constructor(props) {
     this.scene = props.scene;
@@ -27,7 +28,7 @@ export default class Enemy {
     this.sprite.body.setAllowGravity(this.allowGravity);
     this.scene.physics.add.collider(
       this.sprite,
-      this.scene.boundaries.platforms
+      this.scene.platforms
     );
     this.sprite.anims.play(`${this.type}Walk`, true);
     this.sprite.setVelocityX(this.speed);
@@ -58,7 +59,7 @@ export default class Enemy {
     //Wall Collision
     this.scene.physics.add.overlap(
       this.sprite,
-      this.scene.boundaries.walls,
+      this.scene.walls,
       () => {
         this.sprite.setVelocityX(-this.sprite.body.velocity.x);
         this.sprite.toggleFlipX();

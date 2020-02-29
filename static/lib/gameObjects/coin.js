@@ -1,4 +1,4 @@
-import GenericPickUp from "/static/lib/gameObjects/supers/genericPickUp.js";
+import GenericPickUp from "/static/lib/gameObjects/genericPickUp.js";
 
 export default class Coin extends GenericPickUp {
   constructor(props) {
@@ -7,16 +7,16 @@ export default class Coin extends GenericPickUp {
       type: "coin",
       scale: 0.065,
       group: props.group,
-      xPos: props.xPos, //200
-      yPos: props.yPos, //300
+      xPos: props.xPos, 
+      yPos: props.yPos, 
       allowGravity: false
     });
     this.coinSound = this.scene.sound.add("collectCoin");
     this.coinMultiplierCollect = this.scene.sound.add("coinMultiplierCollect");
-    this.update();
+    this.collide()
   }
 
-  update() {
+  collide() {
     //Collision with coin
     this.scene.physics.add.overlap(
       this.scene.player.character,
@@ -32,11 +32,11 @@ export default class Coin extends GenericPickUp {
         ? this.coinMultiplierCollect.play()
         : this.coinSound.play();
       coin.disableBody(true, true);
-      this.scene.hud.overlay.score += this.scene.hud.overlay.scoreMultiplier
+      this.scene.hud.score += this.scene.hud.scoreMultiplier
         ? 100
         : 50;
-      this.scene.hud.overlay.scoreText.setText(
-        `Score:${this.scene.hud.overlay.score}`
+      this.scene.hud.scoreText.setText(
+        `Score:${this.scene.hud.score}`
       );
     }
   }

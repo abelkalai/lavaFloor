@@ -1,11 +1,11 @@
 export default class Platform{
-    constructor(props){
-        this.platforms=props.platforms
-        this.walls=props.walls
-        this.x=props.x
-        this.y=props.y
-        this.width=props.width/2
-        this.type=props.type
+    constructor(props) {
+        this.platforms = props.platforms
+        this.walls = props.walls
+        this.x = props.x
+        this.y = props.y
+        this.width = props.width/2
+        this.type = props.type
         this.spawnBoundary()
     }
 

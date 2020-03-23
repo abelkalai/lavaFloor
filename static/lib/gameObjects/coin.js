@@ -1,8 +1,8 @@
 import Pickup from "./pickUp.js";
 
 export default class Coin extends Pickup {
-  constructor(props) {
-    super({
+  constructor (props) {
+    super ({
       scene: props.scene,
       type: "coin",
       scale: 0.065,

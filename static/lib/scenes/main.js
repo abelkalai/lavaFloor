@@ -195,11 +195,11 @@ export default class Main extends Phaser.Scene {
 
   renderRandomEnemy(xPos, yPos) {
     let randInt = Phaser.Math.Between(1, 3);
-    if (randInt == 1) {
+    if (randInt === 1) {
       this.renderEnemyOne(xPos, yPos - 32.5);
-    } else if (randInt == 2) {
+    } else if (randInt === 2) {
       this.renderEnemyTwo(xPos, yPos - 37.5);
-    } else if (randInt == 3) {
+    } else if (randInt === 3) {
       this.renderEnemyThree(xPos, yPos - 50);
     }
   }
@@ -264,8 +264,8 @@ export default class Main extends Phaser.Scene {
 
     if (this.heighestBoundary + 500 > this.player.character.y) {
       this.createBoundary(this.nextSet, this.heightIncrease, 346, "platform");
-      this.nextSet = this.nextSet == 2 ? 3 : 2;
-      this.heightIncrease -= this.nextSet == 2 ? 400 : 0;
+      this.nextSet = this.nextSet === 2 ? 3 : 2;
+      this.heightIncrease -= this.nextSet === 2 ? 400 : 0;
       this.heighestBoundary = this.platforms.getChildren()[
         this.platforms.getChildren().length - 1
       ].y;

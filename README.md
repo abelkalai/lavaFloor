@@ -31,7 +31,7 @@ and don't climb too slowly or the lava will catch up to you.
 
 ## Features
 
-* Camera follows player as you ascends or descends the game.
+* Camera follows player as you ascend or descend.
 * Randomly generates enemies and powerups as the player climbs higher  
 * Collision detection and event handling
 * Game Bound updates based on player height.

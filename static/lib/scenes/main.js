@@ -2,8 +2,8 @@ import Hud from "./hud.js";
 import Platform from "../gameObjects/platform.js";
 import Lava from "../gameObjects/lava.js";
 import Player from "../gameObjects/player.js";
-import MPotion from "../gameObjects/mPotion.js";
-import IPotion from "../gameObjects/iPotion.js";
+import multiplierPotion from "../gameObjects/multiplierPotion.js";
+import invinciblePotion from "../gameObjects/invinciblePotion.js";
 import Heart from "../gameObjects/heart.js";
 import Coin from "../gameObjects/coin.js";
 import Enemy from "../gameObjects/enemy.js";
@@ -214,14 +214,14 @@ export default class Main extends Phaser.Scene {
     }
     let randInt = Phaser.Math.Between(1, 4);
     if (randInt === 1) {
-      new MPotion({
+      new multiplierPotion({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 38
       });
     } else if (randInt === 2) {
-      new IPotion({
+      new invinciblePotion({
         scene: this,
         group: this.pickups,
         xPos: xPos,

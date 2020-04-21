@@ -39,13 +39,13 @@ export default class Preload extends Phaser.Scene {
     this.load.image("star", "/static/assets/env/star.png");
 
     // Health
-    this.load.image("heart_3", "/static/assets/sprites/heart_3.png");
-    this.load.image("heart_2", "/static/assets/sprites/heart_2.png");
-    this.load.image("heart_1", "/static/assets/sprites/heart_1.png");
-    this.load.image("heart_0", "/static/assets/sprites/heart_0.png");
+    this.load.image("heart_3", "/static/assets/sprites/heartThree.png");
+    this.load.image("heart_2", "/static/assets/sprites/heartTwo.png");
+    this.load.image("heart_1", "/static/assets/sprites/heartOne.png");
+    this.load.image("heart_0", "/static/assets/sprites/heartZero.png");
 
     // Heart to Pick Up
-    this.load.spritesheet("heart", "/static/assets/sprites/heart_world.png", {
+    this.load.spritesheet("heart", "/static/assets/sprites/heartInGame.png", {
       frameWidth: 50,
       frameHeight: 20
     });
@@ -57,19 +57,19 @@ export default class Preload extends Phaser.Scene {
     });
 
     // Ground Enemy
-    this.load.spritesheet("enemyOne", "/static/assets/sprites/enemy_1.png", {
+    this.load.spritesheet("enemyOne", "/static/assets/sprites/enemyOne.png", {
       frameWidth: 350,
       frameHeight: 371
     });
 
     // Ground Enemy 2
-    this.load.spritesheet("enemyTwo", "/static/assets/sprites/enemy_2.png", {
+    this.load.spritesheet("enemyTwo", "/static/assets/sprites/enemyTwo.png", {
       frameWidth: 580,
       frameHeight: 650
     });
 
     // Enemy 3
-    this.load.spritesheet("enemyThree", "/static/assets/sprites/enemy_3.png", {
+    this.load.spritesheet("enemyThree", "/static/assets/sprites/enemyThree.png", {
       frameWidth: 60,
       frameHeight: 48
     });
@@ -100,7 +100,7 @@ export default class Preload extends Phaser.Scene {
       frameHeight: 92
     });
 
-    this.load.spritesheet("character_b", "/static/assets/sprites/stand_b.png", {
+    this.load.spritesheet("character_b", "/static/assets/sprites/standBackFacing.png", {
       frameWidth: 67,
       frameHeight: 92
     });
@@ -108,7 +108,7 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 92
     });
-    this.load.spritesheet("walk_b", "/static/assets/sprites/walk_b.png", {
+    this.load.spritesheet("walk_b", "/static/assets/sprites/walkBackFacing.png", {
       frameWidth: 80,
       frameHeight: 92
     });
@@ -116,7 +116,7 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 96
     });
-    this.load.spritesheet("jump_b", "/static/assets/sprites/jump_b.png", {
+    this.load.spritesheet("jump_b", "/static/assets/sprites/jumpBackFacing.png", {
       frameWidth: 80,
       frameHeight: 96
     });

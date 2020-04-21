@@ -1,5 +1,4 @@
 import Pickup from "./pickUp.js";
-
 export default class Heart extends Pickup {
   constructor(props) {
     super({

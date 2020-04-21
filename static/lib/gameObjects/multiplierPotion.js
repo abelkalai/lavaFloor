@@ -1,6 +1,6 @@
 import Pickup from "./pickUp.js";
 
-export default class MPotion extends Pickup {
+export default class multiplierPotion extends Pickup {
   constructor(props) {
     super({
       scene: props.scene,

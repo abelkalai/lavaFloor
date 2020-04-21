@@ -1,6 +1,6 @@
 import Pickup from "./pickUp.js";
 
-export default class IPotion extends Pickup {
+export default class invinciblePotion extends Pickup {
   constructor(props) {
     super({
       scene: props.scene,

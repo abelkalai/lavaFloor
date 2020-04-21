@@ -34,7 +34,6 @@ export default class Hud extends Phaser.Scene {
     // Sound Toggle
     this.soundText = this.add.text(620, 20, `Sound:${this.soundContent}`, {
       fontSize: "32px",
-      fontFamily: "inGame",
       fill: "#ee3231"
     });
     this.oKey = this.input.keyboard.addKey("O");

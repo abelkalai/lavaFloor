@@ -4,12 +4,6 @@
   font-weight: normal;
 }
 
-.fontHolder {
-  font-family: inGame;
-  position: absolute;
-  visibility: hidden;
-}
-
 canvas {
   margin: auto;
   display: block;
@@ -25,7 +19,7 @@ canvas {
 
 body {
   background-color: rgb(171, 211, 226);
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: inGame;
 }
 
 .logo-container {
@@ -33,7 +27,6 @@ body {
   margin-right: 5px;
   margin-top: 5px;
 }
-
 
 .logo {
   float: left;

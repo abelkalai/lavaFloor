@@ -28,10 +28,10 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-footer {
-  position: absolute;
-  bottom: 20px;
-  right: 25px;
+.footer {
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 

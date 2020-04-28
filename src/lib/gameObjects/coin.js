@@ -1,4 +1,4 @@
-import Pickup from "./pickUp.js";
+import Pickup from "./pickUp";
 
 export default class Coin extends Pickup {
   constructor (props) {

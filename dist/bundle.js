@@ -95,11 +95,11 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _scenes_preload_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scenes/preload.js */ "./src/lib/scenes/preload.js");
-/* harmony import */ var _scenes_menu_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scenes/menu.js */ "./src/lib/scenes/menu.js");
-/* harmony import */ var _scenes_main_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scenes/main.js */ "./src/lib/scenes/main.js");
-/* harmony import */ var _scenes_pause_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scenes/pause.js */ "./src/lib/scenes/pause.js");
-/* harmony import */ var _scenes_over_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scenes/over.js */ "./src/lib/scenes/over.js");
+/* harmony import */ var _scenes_preload__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scenes/preload */ "./src/lib/scenes/preload.js");
+/* harmony import */ var _scenes_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scenes/menu */ "./src/lib/scenes/menu.js");
+/* harmony import */ var _scenes_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scenes/main */ "./src/lib/scenes/main.js");
+/* harmony import */ var _scenes_pause__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scenes/pause */ "./src/lib/scenes/pause.js");
+/* harmony import */ var _scenes_over__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scenes/over */ "./src/lib/scenes/over.js");
 
 
 
@@ -119,13 +119,13 @@ const game = new Phaser.Game({
   }
 });
 
-game.scene.add("preload", new _scenes_preload_js__WEBPACK_IMPORTED_MODULE_0__["default"]());
-game.scene.add("main", new _scenes_main_js__WEBPACK_IMPORTED_MODULE_2__["default"](game));
-game.scene.add("menu", new _scenes_menu_js__WEBPACK_IMPORTED_MODULE_1__["default"]());
-game.scene.add("pause", new _scenes_pause_js__WEBPACK_IMPORTED_MODULE_3__["default"]());
-game.scene.add("over", new _scenes_over_js__WEBPACK_IMPORTED_MODULE_4__["default"]());
+game.scene.add("preload", new _scenes_preload__WEBPACK_IMPORTED_MODULE_0__["default"]());
+game.scene.add("main", new _scenes_main__WEBPACK_IMPORTED_MODULE_2__["default"](game));
+game.scene.add("menu", new _scenes_menu__WEBPACK_IMPORTED_MODULE_1__["default"]());
+game.scene.add("pause", new _scenes_pause__WEBPACK_IMPORTED_MODULE_3__["default"]());
+game.scene.add("over", new _scenes_over__WEBPACK_IMPORTED_MODULE_4__["default"]());
 
-game.scene.start("preload", new _scenes_preload_js__WEBPACK_IMPORTED_MODULE_0__["default"]());
+game.scene.start("preload", new _scenes_preload__WEBPACK_IMPORTED_MODULE_0__["default"]());
 
 
 /***/ }),
@@ -140,10 +140,10 @@ game.scene.start("preload", new _scenes_preload_js__WEBPACK_IMPORTED_MODULE_0__[
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Coin; });
-/* harmony import */ var _pickUp_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp.js */ "./src/lib/gameObjects/pickUp.js");
+/* harmony import */ var _pickUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp */ "./src/lib/gameObjects/pickUp.js");
 
 
-class Coin extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Coin extends _pickUp__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor (props) {
     super ({
       scene: props.scene,
@@ -198,7 +198,7 @@ class Coin extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Enemy; });
-/* harmony import */ var Utilities_hurtPlayer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/hurtPlayer.js */ "./src/lib/utilities/hurtPlayer.js");
+/* harmony import */ var Utilities_hurtPlayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/hurtPlayer */ "./src/lib/utilities/hurtPlayer.js");
 
 class Enemy {
   constructor(props) {
@@ -251,7 +251,7 @@ class Enemy {
     this.scene.physics.add.overlap(
       this.scene.player.character,
       this.sprite,
-      Utilities_hurtPlayer_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+      Utilities_hurtPlayer__WEBPACK_IMPORTED_MODULE_0__["default"],
       null,
       { this: this, enemy: this, scene: this.scene }
     );
@@ -281,9 +281,9 @@ class Enemy {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Heart; });
-/* harmony import */ var _pickUp_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp.js */ "./src/lib/gameObjects/pickUp.js");
+/* harmony import */ var _pickUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp */ "./src/lib/gameObjects/pickUp.js");
 
-class Heart extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Heart extends _pickUp__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(props) {
     super({
       scene: props.scene,
@@ -332,10 +332,10 @@ class Heart extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return invinciblePotion; });
-/* harmony import */ var _pickUp_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp.js */ "./src/lib/gameObjects/pickUp.js");
+/* harmony import */ var _pickUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp */ "./src/lib/gameObjects/pickUp.js");
 
 
-class invinciblePotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class invinciblePotion extends _pickUp__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(props) {
     super({
       scene: props.scene,
@@ -443,10 +443,10 @@ class Lava {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return multiplierPotion; });
-/* harmony import */ var _pickUp_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp.js */ "./src/lib/gameObjects/pickUp.js");
+/* harmony import */ var _pickUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pickUp */ "./src/lib/gameObjects/pickUp.js");
 
 
-class multiplierPotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class multiplierPotion extends _pickUp__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(props) {
     super({
       scene: props.scene,
@@ -803,17 +803,17 @@ class Hud extends Phaser.Scene {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Main; });
-/* harmony import */ var _hud_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hud.js */ "./src/lib/scenes/hud.js");
-/* harmony import */ var GameObjects_platform_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! GameObjects/platform.js */ "./src/lib/gameObjects/platform.js");
-/* harmony import */ var GameObjects_lava_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! GameObjects/lava.js */ "./src/lib/gameObjects/lava.js");
-/* harmony import */ var GameObjects_player_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! GameObjects/player.js */ "./src/lib/gameObjects/player.js");
-/* harmony import */ var GameObjects_multiplierPotion_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! GameObjects/multiplierPotion.js */ "./src/lib/gameObjects/multiplierPotion.js");
-/* harmony import */ var GameObjects_invinciblePotion_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! GameObjects/invinciblePotion.js */ "./src/lib/gameObjects/invinciblePotion.js");
-/* harmony import */ var GameObjects_heart_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! GameObjects/heart.js */ "./src/lib/gameObjects/heart.js");
-/* harmony import */ var GameObjects_coin_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! GameObjects/coin.js */ "./src/lib/gameObjects/coin.js");
-/* harmony import */ var GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! GameObjects/enemy.js */ "./src/lib/gameObjects/enemy.js");
-/* harmony import */ var Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! Utilities/pauseUtil.js */ "./src/lib/utilities/pauseUtil.js");
-/* harmony import */ var Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! Utilities/outOfBounds.js */ "./src/lib/utilities/outOfBounds.js");
+/* harmony import */ var _hud__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hud */ "./src/lib/scenes/hud.js");
+/* harmony import */ var GameObjects_platform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! GameObjects/platform */ "./src/lib/gameObjects/platform.js");
+/* harmony import */ var GameObjects_lava__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! GameObjects/lava */ "./src/lib/gameObjects/lava.js");
+/* harmony import */ var GameObjects_player__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! GameObjects/player */ "./src/lib/gameObjects/player.js");
+/* harmony import */ var GameObjects_multiplierPotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! GameObjects/multiplierPotion */ "./src/lib/gameObjects/multiplierPotion.js");
+/* harmony import */ var GameObjects_invinciblePotion__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! GameObjects/invinciblePotion */ "./src/lib/gameObjects/invinciblePotion.js");
+/* harmony import */ var GameObjects_heart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! GameObjects/heart */ "./src/lib/gameObjects/heart.js");
+/* harmony import */ var GameObjects_coin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! GameObjects/coin */ "./src/lib/gameObjects/coin.js");
+/* harmony import */ var GameObjects_enemy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! GameObjects/enemy */ "./src/lib/gameObjects/enemy.js");
+/* harmony import */ var Utilities_pauseUtil__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! Utilities/pauseUtil */ "./src/lib/utilities/pauseUtil.js");
+/* harmony import */ var Utilities_outOfBounds__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! Utilities/outOfBounds */ "./src/lib/utilities/outOfBounds.js");
 
 
 
@@ -852,7 +852,7 @@ class Main extends Phaser.Scene {
     this.pauseSound = this.sound.add("pauseSound");
 
     //HUD
-    this.hud = this.scene.add("hud", new _hud_js__WEBPACK_IMPORTED_MODULE_0__["default"]());
+    this.hud = this.scene.add("hud", new _hud__WEBPACK_IMPORTED_MODULE_0__["default"]());
     this.scene.launch("hud");
 
     // Powerups
@@ -862,10 +862,10 @@ class Main extends Phaser.Scene {
     this.renderBoundary();
 
     // Player
-    this.player = new GameObjects_player_js__WEBPACK_IMPORTED_MODULE_3__["default"](this);
+    this.player = new GameObjects_player__WEBPACK_IMPORTED_MODULE_3__["default"](this);
 
     // Lava
-    this.lava = new GameObjects_lava_js__WEBPACK_IMPORTED_MODULE_2__["default"](this);
+    this.lava = new GameObjects_lava__WEBPACK_IMPORTED_MODULE_2__["default"](this);
     this.lava.lavaSound.play();
 
     //Enemies
@@ -926,7 +926,7 @@ class Main extends Phaser.Scene {
     for (let i = 0; i < this.boundaryList.get(set).length; i++) {
       let xPos = this.boundaryList.get(set)[i][0];
       let yPos = this.boundaryList.get(set)[i][1] + yAdjust;
-      new GameObjects_platform_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
+      new GameObjects_platform__WEBPACK_IMPORTED_MODULE_1__["default"]({
         platforms: this.platforms,
         walls: this.walls,
         x: xPos,
@@ -968,7 +968,7 @@ class Main extends Phaser.Scene {
     }
   }
   renderEnemyOne(xPos, yPos) {
-    new GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    new GameObjects_enemy__WEBPACK_IMPORTED_MODULE_8__["default"]({
       scene: this,
       speed: -40,
       type: "enemyOne",
@@ -982,7 +982,7 @@ class Main extends Phaser.Scene {
   }
 
   renderEnemyTwo(xPos, yPos) {
-    new GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    new GameObjects_enemy__WEBPACK_IMPORTED_MODULE_8__["default"]({
       scene: this,
       speed: 80,
       type: "enemyTwo",
@@ -996,7 +996,7 @@ class Main extends Phaser.Scene {
   }
 
   renderEnemyThree(xPos, yPos) {
-    new GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    new GameObjects_enemy__WEBPACK_IMPORTED_MODULE_8__["default"]({
       scene: this,
       speed: -50,
       type: "enemyThree",
@@ -1030,28 +1030,28 @@ class Main extends Phaser.Scene {
     }
     let randInt = Phaser.Math.Between(1, 4);
     if (randInt === 1) {
-      new GameObjects_multiplierPotion_js__WEBPACK_IMPORTED_MODULE_4__["default"]({
+      new GameObjects_multiplierPotion__WEBPACK_IMPORTED_MODULE_4__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 38
       });
     } else if (randInt === 2) {
-      new GameObjects_invinciblePotion_js__WEBPACK_IMPORTED_MODULE_5__["default"]({
+      new GameObjects_invinciblePotion__WEBPACK_IMPORTED_MODULE_5__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 38
       });
     } else if (randInt === 3) {
-      new GameObjects_coin_js__WEBPACK_IMPORTED_MODULE_7__["default"]({
+      new GameObjects_coin__WEBPACK_IMPORTED_MODULE_7__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 35
       });
     } else if (randInt === 4) {
-      new GameObjects_heart_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
+      new GameObjects_heart__WEBPACK_IMPORTED_MODULE_6__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
@@ -1064,12 +1064,12 @@ class Main extends Phaser.Scene {
     this.player.update();
     this.lava.update();
 
-    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.enemies);
-    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.pickups);
-    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.platforms);
-    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.backSprites);
+    Object(Utilities_outOfBounds__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.enemies);
+    Object(Utilities_outOfBounds__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.pickups);
+    Object(Utilities_outOfBounds__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.platforms);
+    Object(Utilities_outOfBounds__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.backSprites);
 
-    Object(Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_9__["default"])(this, "main");
+    Object(Utilities_pauseUtil__WEBPACK_IMPORTED_MODULE_9__["default"])(this, "main");
 
     this.physics.world.bounds.setTo(
       0,
@@ -1196,7 +1196,7 @@ class Menu extends Phaser.Scene {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Over; });
-/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ "./src/lib/scenes/main.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main */ "./src/lib/scenes/main.js");
 
 class Over extends Phaser.Scene {
   constructor() {
@@ -1209,7 +1209,7 @@ class Over extends Phaser.Scene {
 
   create() {
     this.scene.remove("main");
-    this.scene.add("main", new _main_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.scene.game));
+    this.scene.add("main", new _main__WEBPACK_IMPORTED_MODULE_0__["default"](this.scene.game));
     this.enterKey = this.input.keyboard.addKey("ENTER");
     this.add.image(400, 300, "lava");
     this.add.text(275, 50, "Game Over", {
@@ -1249,7 +1249,7 @@ class Over extends Phaser.Scene {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pause; });
-/* harmony import */ var Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/pauseUtil.js */ "./src/lib/utilities/pauseUtil.js");
+/* harmony import */ var Utilities_pauseUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/pauseUtil */ "./src/lib/utilities/pauseUtil.js");
 
 
 class Pause extends Phaser.Scene {
@@ -1264,7 +1264,7 @@ class Pause extends Phaser.Scene {
   }
 
   update() {
-    Object(Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "pause");
+    Object(Utilities_pauseUtil__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "pause");
   }
 }
 
@@ -1313,13 +1313,13 @@ class Preload extends Phaser.Scene {
     });
     
     //Load Enviornment Assets
-    this.load.image("background", "env/background.png");
-    this.load.image("platform", "env/grass.png");
-    this.load.image("platformSmall", "env/grassSmall.png");
-    this.load.image("lava", "env/lava.png");
-    this.load.image("wall", "env/invisibleWall.png");
-    this.load.image("cloud", "env/cloud.png");
-    this.load.image("star", "env/star.png");
+    this.load.image("background", "Env/background.png");
+    this.load.image("platform", "Env/grass.png");
+    this.load.image("platformSmall", "Env/grassSmall.png");
+    this.load.image("lava", "Env/lava.png");
+    this.load.image("wall", "Env/invisibleWall.png");
+    this.load.image("cloud", "Env/cloud.png");
+    this.load.image("star", "Env/star.png");
 
     // Health
     this.load.image("heart_3", "sprites/heartThree.png");
@@ -1405,7 +1405,7 @@ class Preload extends Phaser.Scene {
     });
 
     // Pause Button and sound
-    this.load.image("pauseImage", "env/pause.png");
+    this.load.image("pauseImage", "Env/pause.png");
     this.load.audio("pauseSound", "sounds/pause.mp3");
 
     // Main Scene Sounds

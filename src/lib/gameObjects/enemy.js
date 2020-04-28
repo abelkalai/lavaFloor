@@ -1,4 +1,4 @@
-import hurtPlayer from "Utilities/hurtPlayer.js";
+import hurtPlayer from "Utilities/hurtPlayer";
 export default class Enemy {
   constructor(props) {
     this.scene = props.scene;

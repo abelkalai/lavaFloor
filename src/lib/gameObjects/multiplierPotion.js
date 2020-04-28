@@ -1,4 +1,4 @@
-import Pickup from "./pickUp.js";
+import Pickup from "./pickUp";
 
 export default class multiplierPotion extends Pickup {
   constructor(props) {

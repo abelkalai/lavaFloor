@@ -30,13 +30,13 @@ export default class Preload extends Phaser.Scene {
     });
     
     //Load Enviornment Assets
-    this.load.image("background", "env/background.png");
-    this.load.image("platform", "env/grass.png");
-    this.load.image("platformSmall", "env/grassSmall.png");
-    this.load.image("lava", "env/lava.png");
-    this.load.image("wall", "env/invisibleWall.png");
-    this.load.image("cloud", "env/cloud.png");
-    this.load.image("star", "env/star.png");
+    this.load.image("background", "Env/background.png");
+    this.load.image("platform", "Env/grass.png");
+    this.load.image("platformSmall", "Env/grassSmall.png");
+    this.load.image("lava", "Env/lava.png");
+    this.load.image("wall", "Env/invisibleWall.png");
+    this.load.image("cloud", "Env/cloud.png");
+    this.load.image("star", "Env/star.png");
 
     // Health
     this.load.image("heart_3", "sprites/heartThree.png");
@@ -122,7 +122,7 @@ export default class Preload extends Phaser.Scene {
     });
 
     // Pause Button and sound
-    this.load.image("pauseImage", "env/pause.png");
+    this.load.image("pauseImage", "Env/pause.png");
     this.load.audio("pauseSound", "sounds/pause.mp3");
 
     // Main Scene Sounds

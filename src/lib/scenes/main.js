@@ -1,14 +1,14 @@
-import Hud from "./hud.js";
-import Platform from "GameObjects/platform.js";
-import Lava from "GameObjects/lava.js";
-import Player from "GameObjects/player.js";
-import multiplierPotion from "GameObjects/multiplierPotion.js";
-import invinciblePotion from "GameObjects/invinciblePotion.js";
-import Heart from "GameObjects/heart.js";
-import Coin from "GameObjects/coin.js";
-import Enemy from "GameObjects/enemy.js";
-import pauseFunction from "Utilities/pauseUtil.js";
-import outOfBounds from "Utilities/outOfBounds.js";
+import Hud from "./hud";
+import Platform from "GameObjects/platform";
+import Lava from "GameObjects/lava";
+import Player from "GameObjects/player";
+import multiplierPotion from "GameObjects/multiplierPotion";
+import invinciblePotion from "GameObjects/invinciblePotion";
+import Heart from "GameObjects/heart";
+import Coin from "GameObjects/coin";
+import Enemy from "GameObjects/enemy";
+import pauseFunction from "Utilities/pauseUtil";
+import outOfBounds from "Utilities/outOfBounds";
 export default class Main extends Phaser.Scene {
   constructor(game) {
     super("main");

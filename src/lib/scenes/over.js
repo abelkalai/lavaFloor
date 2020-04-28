@@ -1,4 +1,4 @@
-import Main from "./main.js"
+import Main from "./main"
 export default class Over extends Phaser.Scene {
   constructor() {
     super("over");

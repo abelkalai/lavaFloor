@@ -36,7 +36,7 @@ export default class Player {
 
     this.scene.anims.create({
       key: "left",
-      frames: this.scene.anims.generateFrameNumbers("walk_b", {
+      frames: this.scene.anims.generateFrameNumbers("walkBackFacing", {
         start: 0,
         end: 1
       }),
@@ -50,8 +50,8 @@ export default class Player {
     });
 
     this.scene.anims.create({
-      key: "idle_b",
-      frames: [{ key: "character_b", frame: 0 }]
+      key: "idleBackFacing",
+      frames: [{ key: "characterBackFacing", frame: 0 }]
     });
 
     this.scene.anims.create({
@@ -62,8 +62,8 @@ export default class Player {
     });
 
     this.scene.anims.create({
-      key: "jump_b",
-      frames: [{ key: "jump_b", frame: 0 }],
+      key: "jumpBackFacing",
+      frames: [{ key: "jumpBackFacing", frame: 0 }],
       repeat: -1,
       frameRate: 20
     });
@@ -77,7 +77,7 @@ export default class Player {
     if (this.character.body.onFloor() && this.cursors.up.isDown) {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
-        : this.character.anims.play("jump_b", true);
+        : this.character.anims.play("jumpBackFacing", true);
       this.character.setVelocityY(-235);
     }
 
@@ -99,7 +99,7 @@ export default class Player {
       this.character.body.onFloor() &&
       this.cursors.up.isDown
     ) {
-      this.character.anims.play("jump_b", true);
+      this.character.anims.play("jumpBackFacing", true);
       this.character.setVelocityY(-235);
       this.character.setVelocityX(-200);
       this.characterFacingRight = false;
@@ -114,7 +114,7 @@ export default class Player {
 
     // Controlling left in mid-air
     else if (this.cursors.left.isDown && !this.character.body.onFloor()) {
-      this.character.anims.play("jump_b", true);
+      this.character.anims.play("jumpBackFacing", true);
       this.character.setVelocityX(-200);
       this.characterFacingRight = false;
     }
@@ -137,7 +137,7 @@ export default class Player {
       this.character.setVelocityX(0);
       this.characterFacingRight
         ? this.character.anims.play("idle", true)
-        : this.character.anims.play("idle_b", true);
+        : this.character.anims.play("idleBackFacing", true);
     }
 
     //Update score based on heighest point reached, increasing every 500

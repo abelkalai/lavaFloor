@@ -76,8 +76,8 @@ export default class Preload extends Phaser.Scene {
 
     // Invincibility Potion
     this.load.spritesheet(
-      "iPotion",
-      "sprites/invincibilityPotion.png",
+      "invinciblePotion",
+      "sprites/invinciblePotion.png",
       {
         frameWidth: 125,
         frameHeight: 120
@@ -86,7 +86,7 @@ export default class Preload extends Phaser.Scene {
 
     // Score Multiplier Potion
     this.load.spritesheet(
-      "mPotion",
+      "multiplierPotion",
       "sprites/multiplierPotion.png",
       {
         frameWidth: 125,
@@ -100,7 +100,7 @@ export default class Preload extends Phaser.Scene {
       frameHeight: 92
     });
 
-    this.load.spritesheet("character_b", "sprites/standBackFacing.png", {
+    this.load.spritesheet("characterBackFacing", "sprites/standBackFacing.png", {
       frameWidth: 67,
       frameHeight: 92
     });
@@ -108,7 +108,7 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 92
     });
-    this.load.spritesheet("walk_b", "sprites/walkBackFacing.png", {
+    this.load.spritesheet("walkBackFacing", "sprites/walkBackFacing.png", {
       frameWidth: 80,
       frameHeight: 92
     });
@@ -116,7 +116,7 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 96
     });
-    this.load.spritesheet("jump_b", "sprites/jumpBackFacing.png", {
+    this.load.spritesheet("jumpBackFacing", "sprites/jumpBackFacing.png", {
       frameWidth: 80,
       frameHeight: 96
     });

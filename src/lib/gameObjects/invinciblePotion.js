@@ -4,7 +4,7 @@ export default class invinciblePotion extends Pickup {
   constructor(props) {
     super({
       scene: props.scene,
-      type: "iPotion",
+      type: "invinciblePotion",
       scale: 0.4,
       group: props.group,
       xPos: props.xPos,
@@ -24,10 +24,10 @@ export default class invinciblePotion extends Pickup {
       this
     );
 
-    function getPotion(character, iPotion) {
+    function getPotion(character, invinciblePotion) {
       if (this.scene.player.enemyCollide) {
         this.scene.player.enemyCollide = false;
-        iPotion.disableBody(true, true);
+        invinciblePotion.disableBody(true, true);
 
         let isInvincible = setInterval(() => {
           character.tint = Math.random() * 0xffffff;

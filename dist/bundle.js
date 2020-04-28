@@ -339,7 +339,7 @@ class invinciblePotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"
   constructor(props) {
     super({
       scene: props.scene,
-      type: "iPotion",
+      type: "invinciblePotion",
       scale: 0.4,
       group: props.group,
       xPos: props.xPos,
@@ -359,10 +359,10 @@ class invinciblePotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"
       this
     );
 
-    function getPotion(character, iPotion) {
+    function getPotion(character, invinciblePotion) {
       if (this.scene.player.enemyCollide) {
         this.scene.player.enemyCollide = false;
-        iPotion.disableBody(true, true);
+        invinciblePotion.disableBody(true, true);
 
         let isInvincible = setInterval(() => {
           character.tint = Math.random() * 0xffffff;
@@ -450,7 +450,7 @@ class multiplierPotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"
   constructor(props) {
     super({
       scene: props.scene,
-      type: "mPotion",
+      type: "multiplierPotion",
       scale: 0.4,
       group: props.group,
       xPos: props.xPos, 
@@ -471,9 +471,9 @@ class multiplierPotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"
       this
     );
     // Get Multiplier function
-    function getMultiplier(character, mPotion) {
+    function getMultiplier(character, multiplierPotion) {
       this.multiplierSound.play();
-      mPotion.disableBody(true, true);
+      multiplierPotion.disableBody(true, true);
 
       this.scene.hud.scoreMultiplier = true;
       setTimeout(() => {
@@ -602,7 +602,7 @@ class Player {
 
     this.scene.anims.create({
       key: "left",
-      frames: this.scene.anims.generateFrameNumbers("walk_b", {
+      frames: this.scene.anims.generateFrameNumbers("walkBackFacing", {
         start: 0,
         end: 1
       }),
@@ -616,8 +616,8 @@ class Player {
     });
 
     this.scene.anims.create({
-      key: "idle_b",
-      frames: [{ key: "character_b", frame: 0 }]
+      key: "idleBackFacing",
+      frames: [{ key: "characterBackFacing", frame: 0 }]
     });
 
     this.scene.anims.create({
@@ -628,8 +628,8 @@ class Player {
     });
 
     this.scene.anims.create({
-      key: "jump_b",
-      frames: [{ key: "jump_b", frame: 0 }],
+      key: "jumpBackFacing",
+      frames: [{ key: "jumpBackFacing", frame: 0 }],
       repeat: -1,
       frameRate: 20
     });
@@ -643,7 +643,7 @@ class Player {
     if (this.character.body.onFloor() && this.cursors.up.isDown) {
       this.characterFacingRight
         ? this.character.anims.play("jump", true)
-        : this.character.anims.play("jump_b", true);
+        : this.character.anims.play("jumpBackFacing", true);
       this.character.setVelocityY(-235);
     }
 
@@ -665,7 +665,7 @@ class Player {
       this.character.body.onFloor() &&
       this.cursors.up.isDown
     ) {
-      this.character.anims.play("jump_b", true);
+      this.character.anims.play("jumpBackFacing", true);
       this.character.setVelocityY(-235);
       this.character.setVelocityX(-200);
       this.characterFacingRight = false;
@@ -680,7 +680,7 @@ class Player {
 
     // Controlling left in mid-air
     else if (this.cursors.left.isDown && !this.character.body.onFloor()) {
-      this.character.anims.play("jump_b", true);
+      this.character.anims.play("jumpBackFacing", true);
       this.character.setVelocityX(-200);
       this.characterFacingRight = false;
     }
@@ -703,7 +703,7 @@ class Player {
       this.character.setVelocityX(0);
       this.characterFacingRight
         ? this.character.anims.play("idle", true)
-        : this.character.anims.play("idle_b", true);
+        : this.character.anims.play("idleBackFacing", true);
     }
 
     //Update score based on heighest point reached, increasing every 500
@@ -1359,8 +1359,8 @@ class Preload extends Phaser.Scene {
 
     // Invincibility Potion
     this.load.spritesheet(
-      "iPotion",
-      "sprites/invincibilityPotion.png",
+      "invinciblePotion",
+      "sprites/invinciblePotion.png",
       {
         frameWidth: 125,
         frameHeight: 120
@@ -1369,7 +1369,7 @@ class Preload extends Phaser.Scene {
 
     // Score Multiplier Potion
     this.load.spritesheet(
-      "mPotion",
+      "multiplierPotion",
       "sprites/multiplierPotion.png",
       {
         frameWidth: 125,
@@ -1383,7 +1383,7 @@ class Preload extends Phaser.Scene {
       frameHeight: 92
     });
 
-    this.load.spritesheet("character_b", "sprites/standBackFacing.png", {
+    this.load.spritesheet("characterBackFacing", "sprites/standBackFacing.png", {
       frameWidth: 67,
       frameHeight: 92
     });
@@ -1391,7 +1391,7 @@ class Preload extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 92
     });
-    this.load.spritesheet("walk_b", "sprites/walkBackFacing.png", {
+    this.load.spritesheet("walkBackFacing", "sprites/walkBackFacing.png", {
       frameWidth: 80,
       frameHeight: 92
     });
@@ -1399,7 +1399,7 @@ class Preload extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 96
     });
-    this.load.spritesheet("jump_b", "sprites/jumpBackFacing.png", {
+    this.load.spritesheet("jumpBackFacing", "sprites/jumpBackFacing.png", {
       frameWidth: 80,
       frameHeight: 96
     });

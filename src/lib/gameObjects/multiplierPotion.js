@@ -4,7 +4,7 @@ export default class multiplierPotion extends Pickup {
   constructor(props) {
     super({
       scene: props.scene,
-      type: "mPotion",
+      type: "multiplierPotion",
       scale: 0.4,
       group: props.group,
       xPos: props.xPos, 
@@ -25,9 +25,9 @@ export default class multiplierPotion extends Pickup {
       this
     );
     // Get Multiplier function
-    function getMultiplier(character, mPotion) {
+    function getMultiplier(character, multiplierPotion) {
       this.multiplierSound.play();
-      mPotion.disableBody(true, true);
+      multiplierPotion.disableBody(true, true);
 
       this.scene.hud.scoreMultiplier = true;
       setTimeout(() => {

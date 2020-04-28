@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: './src/lib/game.js',
   resolve: {
     alias: {

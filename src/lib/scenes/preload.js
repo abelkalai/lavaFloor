@@ -4,9 +4,9 @@ export default class Preload extends Phaser.Scene {
   }
 
   preload() {
-    let pBox = this.add.graphics();
-    pBox.fillStyle(0x222222, 0.8);
-    pBox.fillRect(240, 270, 335, 35);
+    let progressBox = this.add.graphics();
+    progressBox.fillStyle(0x222222, 0.8);
+    progressBox.fillRect(240, 270, 335, 35);
     let loadText = this.make.text({
       x: 350,
       y: 240,
@@ -16,16 +16,16 @@ export default class Preload extends Phaser.Scene {
       }
     });
 
-    let pBar = this.add.graphics();
+    let progressBar = this.add.graphics();
 
     this.load.on("progress", function(val) {
-      pBar.fillStyle(0xffffff, 1);
-      pBar.fillRect(245, 275, 325 * val, 25);
+      progressBar.fillStyle(0xffffff, 1);
+      progressBar.fillRect(245, 275, 325 * val, 25);
     });
 
     this.load.on("complete", () => {
-      pBox.destroy();
-      pBar.destroy();
+      progressBox.destroy();
+      progressBar.destroy();
       loadText.destroy();
     });
     

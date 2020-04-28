@@ -198,7 +198,7 @@ class Coin extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Enemy; });
-/* harmony import */ var _utilities_hurtPlayer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/hurtPlayer.js */ "./src/lib/utilities/hurtPlayer.js");
+/* harmony import */ var Utilities_hurtPlayer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/hurtPlayer.js */ "./src/lib/utilities/hurtPlayer.js");
 
 class Enemy {
   constructor(props) {
@@ -251,7 +251,7 @@ class Enemy {
     this.scene.physics.add.overlap(
       this.scene.player.character,
       this.sprite,
-      _utilities_hurtPlayer_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+      Utilities_hurtPlayer_js__WEBPACK_IMPORTED_MODULE_0__["default"],
       null,
       { this: this, enemy: this, scene: this.scene }
     );
@@ -394,7 +394,7 @@ class invinciblePotion extends _pickUp_js__WEBPACK_IMPORTED_MODULE_0__["default"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Lava; });
-/* harmony import */ var _utilities_hurtPlayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/hurtPlayer */ "./src/lib/utilities/hurtPlayer.js");
+/* harmony import */ var Utilities_hurtPlayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/hurtPlayer */ "./src/lib/utilities/hurtPlayer.js");
 
 class Lava {
   constructor(scene) {
@@ -417,7 +417,7 @@ class Lava {
     this.scene.physics.add.overlap(
       this.scene.player.character,
       this.lavaObj,
-      _utilities_hurtPlayer__WEBPACK_IMPORTED_MODULE_0__["default"],
+      Utilities_hurtPlayer__WEBPACK_IMPORTED_MODULE_0__["default"],
       null,
       { this: this, enemy: this, scene: this.scene }
     );
@@ -804,16 +804,16 @@ class Hud extends Phaser.Scene {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Main; });
 /* harmony import */ var _hud_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hud.js */ "./src/lib/scenes/hud.js");
-/* harmony import */ var _gameObjects_platform_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gameObjects/platform.js */ "./src/lib/gameObjects/platform.js");
-/* harmony import */ var _gameObjects_lava_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../gameObjects/lava.js */ "./src/lib/gameObjects/lava.js");
-/* harmony import */ var _gameObjects_player_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gameObjects/player.js */ "./src/lib/gameObjects/player.js");
-/* harmony import */ var _gameObjects_multiplierPotion_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../gameObjects/multiplierPotion.js */ "./src/lib/gameObjects/multiplierPotion.js");
-/* harmony import */ var _gameObjects_invinciblePotion_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../gameObjects/invinciblePotion.js */ "./src/lib/gameObjects/invinciblePotion.js");
-/* harmony import */ var _gameObjects_heart_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../gameObjects/heart.js */ "./src/lib/gameObjects/heart.js");
-/* harmony import */ var _gameObjects_coin_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../gameObjects/coin.js */ "./src/lib/gameObjects/coin.js");
-/* harmony import */ var _gameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../gameObjects/enemy.js */ "./src/lib/gameObjects/enemy.js");
-/* harmony import */ var _utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utilities/pauseUtil.js */ "./src/lib/utilities/pauseUtil.js");
-/* harmony import */ var _utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../utilities/outOfBounds.js */ "./src/lib/utilities/outOfBounds.js");
+/* harmony import */ var GameObjects_platform_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! GameObjects/platform.js */ "./src/lib/gameObjects/platform.js");
+/* harmony import */ var GameObjects_lava_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! GameObjects/lava.js */ "./src/lib/gameObjects/lava.js");
+/* harmony import */ var GameObjects_player_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! GameObjects/player.js */ "./src/lib/gameObjects/player.js");
+/* harmony import */ var GameObjects_multiplierPotion_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! GameObjects/multiplierPotion.js */ "./src/lib/gameObjects/multiplierPotion.js");
+/* harmony import */ var GameObjects_invinciblePotion_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! GameObjects/invinciblePotion.js */ "./src/lib/gameObjects/invinciblePotion.js");
+/* harmony import */ var GameObjects_heart_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! GameObjects/heart.js */ "./src/lib/gameObjects/heart.js");
+/* harmony import */ var GameObjects_coin_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! GameObjects/coin.js */ "./src/lib/gameObjects/coin.js");
+/* harmony import */ var GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! GameObjects/enemy.js */ "./src/lib/gameObjects/enemy.js");
+/* harmony import */ var Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! Utilities/pauseUtil.js */ "./src/lib/utilities/pauseUtil.js");
+/* harmony import */ var Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! Utilities/outOfBounds.js */ "./src/lib/utilities/outOfBounds.js");
 
 
 
@@ -862,10 +862,10 @@ class Main extends Phaser.Scene {
     this.renderBoundary();
 
     // Player
-    this.player = new _gameObjects_player_js__WEBPACK_IMPORTED_MODULE_3__["default"](this);
+    this.player = new GameObjects_player_js__WEBPACK_IMPORTED_MODULE_3__["default"](this);
 
     // Lava
-    this.lava = new _gameObjects_lava_js__WEBPACK_IMPORTED_MODULE_2__["default"](this);
+    this.lava = new GameObjects_lava_js__WEBPACK_IMPORTED_MODULE_2__["default"](this);
     this.lava.lavaSound.play();
 
     //Enemies
@@ -926,7 +926,7 @@ class Main extends Phaser.Scene {
     for (let i = 0; i < this.boundaryList.get(set).length; i++) {
       let xPos = this.boundaryList.get(set)[i][0];
       let yPos = this.boundaryList.get(set)[i][1] + yAdjust;
-      new _gameObjects_platform_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
+      new GameObjects_platform_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
         platforms: this.platforms,
         walls: this.walls,
         x: xPos,
@@ -968,7 +968,7 @@ class Main extends Phaser.Scene {
     }
   }
   renderEnemyOne(xPos, yPos) {
-    new _gameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    new GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
       scene: this,
       speed: -40,
       type: "enemyOne",
@@ -982,7 +982,7 @@ class Main extends Phaser.Scene {
   }
 
   renderEnemyTwo(xPos, yPos) {
-    new _gameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    new GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
       scene: this,
       speed: 80,
       type: "enemyTwo",
@@ -996,7 +996,7 @@ class Main extends Phaser.Scene {
   }
 
   renderEnemyThree(xPos, yPos) {
-    new _gameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    new GameObjects_enemy_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
       scene: this,
       speed: -50,
       type: "enemyThree",
@@ -1030,28 +1030,28 @@ class Main extends Phaser.Scene {
     }
     let randInt = Phaser.Math.Between(1, 4);
     if (randInt === 1) {
-      new _gameObjects_multiplierPotion_js__WEBPACK_IMPORTED_MODULE_4__["default"]({
+      new GameObjects_multiplierPotion_js__WEBPACK_IMPORTED_MODULE_4__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 38
       });
     } else if (randInt === 2) {
-      new _gameObjects_invinciblePotion_js__WEBPACK_IMPORTED_MODULE_5__["default"]({
+      new GameObjects_invinciblePotion_js__WEBPACK_IMPORTED_MODULE_5__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 38
       });
     } else if (randInt === 3) {
-      new _gameObjects_coin_js__WEBPACK_IMPORTED_MODULE_7__["default"]({
+      new GameObjects_coin_js__WEBPACK_IMPORTED_MODULE_7__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
         yPos: yPos - 35
       });
     } else if (randInt === 4) {
-      new _gameObjects_heart_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
+      new GameObjects_heart_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
@@ -1064,12 +1064,12 @@ class Main extends Phaser.Scene {
     this.player.update();
     this.lava.update();
 
-    Object(_utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.enemies);
-    Object(_utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.pickups);
-    Object(_utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.platforms);
-    Object(_utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.backSprites);
+    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.enemies);
+    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.pickups);
+    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.platforms);
+    Object(Utilities_outOfBounds_js__WEBPACK_IMPORTED_MODULE_10__["default"])(this, this.backSprites);
 
-    Object(_utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_9__["default"])(this, "main");
+    Object(Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_9__["default"])(this, "main");
 
     this.physics.world.bounds.setTo(
       0,
@@ -1249,7 +1249,7 @@ class Over extends Phaser.Scene {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pause; });
-/* harmony import */ var _utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/pauseUtil.js */ "./src/lib/utilities/pauseUtil.js");
+/* harmony import */ var Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Utilities/pauseUtil.js */ "./src/lib/utilities/pauseUtil.js");
 
 
 class Pause extends Phaser.Scene {
@@ -1264,7 +1264,7 @@ class Pause extends Phaser.Scene {
   }
 
   update() {
-    Object(_utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "pause");
+    Object(Utilities_pauseUtil_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "pause");
   }
 }
 
@@ -1287,9 +1287,9 @@ class Preload extends Phaser.Scene {
   }
 
   preload() {
-    let pBox = this.add.graphics();
-    pBox.fillStyle(0x222222, 0.8);
-    pBox.fillRect(240, 270, 335, 35);
+    let progressBox = this.add.graphics();
+    progressBox.fillStyle(0x222222, 0.8);
+    progressBox.fillRect(240, 270, 335, 35);
     let loadText = this.make.text({
       x: 350,
       y: 240,
@@ -1299,16 +1299,16 @@ class Preload extends Phaser.Scene {
       }
     });
 
-    let pBar = this.add.graphics();
+    let progressBar = this.add.graphics();
 
     this.load.on("progress", function(val) {
-      pBar.fillStyle(0xffffff, 1);
-      pBar.fillRect(245, 275, 325 * val, 25);
+      progressBar.fillStyle(0xffffff, 1);
+      progressBar.fillRect(245, 275, 325 * val, 25);
     });
 
     this.load.on("complete", () => {
-      pBox.destroy();
-      pBar.destroy();
+      progressBox.destroy();
+      progressBar.destroy();
       loadText.destroy();
     });
     

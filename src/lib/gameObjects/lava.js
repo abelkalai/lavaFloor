@@ -1,4 +1,4 @@
-import hurtPlayer from "../utilities/hurtPlayer";
+import hurtPlayer from "Utilities/hurtPlayer";
 export default class Lava {
   constructor(scene) {
     this.scene = scene;

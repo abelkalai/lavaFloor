@@ -38,7 +38,7 @@ and don't climb too slowly or the lava will catch up to you.
 
 ### Classes
 
-Similarly functioning objects were grouped into classes to DRY up code. For example, all enemies have similar properties and methods such as (`xPos`, `speed`, `animate`). The `Enemy` class was used as a template to reduce the amount of repetitive code.
+Similarly functioning objects were grouped into classes to DRY up code. For example, all enemies have similar properties and methods such as (`xPos`, `speed`, `animate`). The `Enemy` class was used as a template for enemies to reduce the amount of repetitive code.
 
 ```javascript
 class Enemy {
@@ -64,7 +64,9 @@ class Enemy {
     });
   }
 }
+```
 
+```javascript
 renderEnemyOne(xPos, yPos) {
   new Enemy({
     scene: this,
@@ -100,7 +102,9 @@ The game objects the player interacts with are not all loaded at once. They're d
       ...
     }
  }
+```
 
+```javascript
 function outOfBounds(scene, group) {
   if (group.getChildren().length > 0) {
       if (group.getChildren()[0].y > scene.lava.lavaObj.y) {
@@ -131,7 +135,9 @@ spawnPlatform() {
     this.walls.setVisible(false);
   }
 }
+```
 
+```javascript
 update() {
   ...
   //Wall Collision

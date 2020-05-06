@@ -116,7 +116,7 @@ function outOfBounds(scene, group) {
 
 ### Phaser Scenes
 
-Phaser JS provides many useful classes out of the box such as scenes. Scenes can represent diffrent states of the game such as menu, pause and game over. Another use of scenes is to layer. For example the HUD sits on top of the main game scene. It's independent from the main game scene so it doesn't need to know anything about the camera position or game objects.
+Phaser JS provides many useful classes out of the box such as scenes. Scenes can represent diffrent states of the game such as menu, pause and game over. Another use of scenes is overlaying. For example the HUD sits on top of the main game scene. It's independent from the main game scene so it doesn't need to know anything about the camera position or game objects.
 
 ```javascript
 class Hud extends Phaser.Scene {

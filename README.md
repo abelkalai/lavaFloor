@@ -82,7 +82,8 @@ The game objects the player interacts with are not all loaded at once. They're d
 
 ```javascript
  update() {
- this.physics.world.bounds.setTo(
+   ...
+  this.physics.world.bounds.setTo(
       0,
       -this.player.yMax,
       this.game.scale.width,
@@ -101,13 +102,13 @@ The game objects the player interacts with are not all loaded at once. They're d
  }
 
 function outOfBounds(scene, group) {
-if (group.getChildren().length > 0) {
-    if (
-      group.getChildren()[0].y > scene.lava.lavaObj.y ||
-      group.getChildren()[0].x < -100 ||
-      group.getChildren()[0].x > 900
-    ) {
-      group.getChildren()[0].destroy();
+  if (group.getChildren().length > 0) {
+      if (
+        group.getChildren()[0].y > scene.lava.lavaObj.y ||
+        group.getChildren()[0].x < -100 ||
+        group.getChildren()[0].x > 900
+      ) {
+        group.getChildren()[0].destroy();
     }
   }
 }
@@ -118,7 +119,7 @@ if (group.getChildren().length > 0) {
 Phaser JS provides many useful classes out of the box such as scenes. Scenes can represent diffrent states of the game such as menu, pause and game over. Another use of scenes is to layer. For example the HUD sits on top of the main game scene. It's independent from the main game scene so it doesn't need to know anything about the camera position or game objects.
 
 ```javascript
- class Hud extends Phaser.Scene {
+class Hud extends Phaser.Scene {
   constructor() {
     super("hud");
     this.score = 0;
@@ -127,23 +128,24 @@ Phaser JS provides many useful classes out of the box such as scenes. Scenes can
     this.scoreMultiplier = false;
   }
 
-    create() {
-        // Score
+  create() {
+    // Score
     this.scoreText = this.add.text(20, 20, `Score:${this.score}`, {
       fontSize: "32px",
       fill: "#ee3231"
     });
     ...
     }
-      update() {
+
+  update() {
     // Player can turn sound off with "o" key
     this.oKey.onDown = () => {
       this.soundContent = this.soundContent === "ON" ? "OFF" : "ON";
       this.sound.mute = this.soundContent === "OFF" ? true : false;
       this.soundText.setText(`Sound:${this.soundContent}`);
     };
-      }
- }
+  }
+}
 
 ```
 

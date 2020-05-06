@@ -1,20 +1,6 @@
 @font-face {
   font-family: inGame;
   src: url("./gameFont.otf");
-  font-weight: normal;
-}
-
-canvas {
-  margin: auto;
-  display: block;
-  width: 800px;
-  height: 600px;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  padding: 0px;
 }
 
 body {
@@ -22,16 +8,28 @@ body {
   font-family: inGame;
 }
 
+canvas {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: block;
+  margin: auto;
+  width: 800px;
+  height: 600px;
+  padding: 0px;
+}
+
 .logo-container {
   float: right;
-  margin-right: 5px;
-  margin-top: 5px;
+  margin: 5px 5px 0 0;
 }
 
 .logo {
   float: left;
-  padding: 0;
   margin-right: 2.5px;
   width: 50px;
   height: 50px;
+  padding: 0;
 }

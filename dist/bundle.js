@@ -829,7 +829,7 @@ class Main extends Phaser.Scene {
   constructor(game) {
     super("main");
     this.game = game;
-    this.nextSet = 2;
+    this.boundarySetSet = 2;
     this.heighestBoundary = 500; //Heighest point player reached. For scoring purposes.
     this.heightIncrease = -400; //Next height to increase for platforms
     this.latestEnvHeight = 0;
@@ -897,19 +897,19 @@ class Main extends Phaser.Scene {
       [650, 450],
       [175, 375],
       [0, 285],
-      [-100, 200]
+      [-100, 200],
     ]);
 
     this.boundaryList.set(2, [
       [350, 160],
       [700, 100],
-      [925, 15]
+      [925, 15],
     ]);
 
     this.boundaryList.set(3, [
       [360, -40],
       [10, -110],
-      [-125, -195]
+      [-125, -195],
     ]);
 
     // Background sprites group
@@ -932,7 +932,7 @@ class Main extends Phaser.Scene {
         x: xPos,
         y: yPos,
         width: width,
-        type: type
+        type: type,
       });
       let randInt = Phaser.Math.Between(1, 5);
       if (randInt === 1 && xPos >= 10 && xPos < 900) {
@@ -962,7 +962,7 @@ class Main extends Phaser.Scene {
         let backgroundObj = this.backSprites.create(xStart, yPos, "star");
         backgroundObj.setScale(0.25);
         backgroundObj.setDepth(1);
-        
+
         this.latestEnvHeight = yPos;
       }
     }
@@ -977,7 +977,7 @@ class Main extends Phaser.Scene {
       xPos: xPos,
       yPos: yPos,
       allowGravity: true,
-      frameRate: 5
+      frameRate: 5,
     });
   }
 
@@ -991,7 +991,7 @@ class Main extends Phaser.Scene {
       xPos: xPos,
       yPos: yPos,
       allowGravity: true,
-      frameRate: 5
+      frameRate: 5,
     });
   }
 
@@ -1005,7 +1005,7 @@ class Main extends Phaser.Scene {
       xPos: xPos,
       yPos: yPos,
       allowGravity: false,
-      frameRate: 5
+      frameRate: 5,
     });
   }
 
@@ -1034,28 +1034,28 @@ class Main extends Phaser.Scene {
         scene: this,
         group: this.pickups,
         xPos: xPos,
-        yPos: yPos - 38
+        yPos: yPos - 38,
       });
     } else if (randInt === 2) {
       new GameObjects_invinciblePotion__WEBPACK_IMPORTED_MODULE_5__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
-        yPos: yPos - 38
+        yPos: yPos - 38,
       });
     } else if (randInt === 3) {
       new GameObjects_coin__WEBPACK_IMPORTED_MODULE_7__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
-        yPos: yPos - 35
+        yPos: yPos - 35,
       });
     } else if (randInt === 4) {
       new GameObjects_heart__WEBPACK_IMPORTED_MODULE_6__["default"]({
         scene: this,
         group: this.pickups,
         xPos: xPos,
-        yPos: yPos - 30
+        yPos: yPos - 30,
       });
     }
   }
@@ -1079,9 +1079,14 @@ class Main extends Phaser.Scene {
     );
 
     if (this.heighestBoundary + 500 > this.player.character.y) {
-      this.createBoundary(this.nextSet, this.heightIncrease, 346, "platform");
-      this.nextSet = this.nextSet === 2 ? 3 : 2;
-      this.heightIncrease -= this.nextSet === 2 ? 400 : 0;
+      this.createBoundary(
+        this.boundarySetSet,
+        this.heightIncrease,
+        346,
+        "platform"
+      );
+      this.boundarySetSet = this.boundarySetSet === 2 ? 3 : 2;
+      this.heightIncrease -= this.boundarySetSet === 2 ? 400 : 0;
       this.heighestBoundary = this.platforms.getChildren()[
         this.platforms.getChildren().length - 1
       ].y;
@@ -1497,7 +1502,7 @@ function hurtPlayer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return outOfBounds; });
-// Method checks if the first and lowest group child is below the lava. If it is, remove it.
+// Method checks if the first and lowest object is below the lava. If it is, remove it.
 function outOfBounds(scene, group) {
   if (group.getChildren().length > 0) {
     if (

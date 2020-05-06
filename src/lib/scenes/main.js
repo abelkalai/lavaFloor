@@ -325,7 +325,7 @@ export default class Main extends Phaser.Scene {
       setTimeout(() => {
         this.player.deathSound.play();
         this.scene.remove("hud");
-        this.scene.start("over", { score: this.hud.score }), 100;
+        this.scene.start("gameOver", { score: this.hud.score }), 100;
       });
     }
   }

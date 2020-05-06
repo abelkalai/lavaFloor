@@ -9,7 +9,7 @@ export default class invinciblePotion extends Pickup {
       group: props.group,
       xPos: props.xPos,
       yPos: props.yPos,
-      allowGravity: true
+      allowGravity: true,
     });
     this.collide();
   }

@@ -2,7 +2,7 @@ import Preload from "./scenes/preload";
 import Menu from "./scenes/menu";
 import Main from "./scenes/main";
 import Pause from "./scenes/pause";
-import Over from "./scenes/over";
+import GameOver from "./scenes/gameOver";
 
 const game = new Phaser.Game({
   type: Phaser.AUTO,
@@ -21,6 +21,6 @@ game.scene.add("preload", new Preload());
 game.scene.add("main", new Main(game));
 game.scene.add("menu", new Menu());
 game.scene.add("pause", new Pause());
-game.scene.add("over", new Over());
+game.scene.add("gameOver", new GameOver());
 
 game.scene.start("preload", new Preload());

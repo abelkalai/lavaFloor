@@ -1,7 +1,7 @@
 import Main from "./main"
-export default class Over extends Phaser.Scene {
+export default class GameOver extends Phaser.Scene {
   constructor() {
-    super("over");
+    super("gameOver");
   }
 
   init(data) {
@@ -13,12 +13,12 @@ export default class Over extends Phaser.Scene {
     this.scene.add("main", new Main(this.scene.game));
     this.enterKey = this.input.keyboard.addKey("ENTER");
     this.add.image(400, 300, "lava");
-    this.add.text(275, 50, "Game Over", {
+    this.add.text(285, 50, "Game Over", {
       fontFamily: "inGame",
       fontSize: "60px",
       color: "#ffffff"
     });
-    this.add.text(230, 200, `Final Score: ${this.finalScore}`, {
+    this.add.text(250, 200, `Final Score: ${this.finalScore}`, {
       fontFamily: "inGame",
       fontSize: "60px",
       color: "#ffffff"

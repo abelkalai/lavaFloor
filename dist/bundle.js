@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scenes_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scenes/menu */ "./src/lib/scenes/menu.js");
 /* harmony import */ var _scenes_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scenes/main */ "./src/lib/scenes/main.js");
 /* harmony import */ var _scenes_pause__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scenes/pause */ "./src/lib/scenes/pause.js");
-/* harmony import */ var _scenes_over__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scenes/over */ "./src/lib/scenes/over.js");
+/* harmony import */ var _scenes_gameOver__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scenes/gameOver */ "./src/lib/scenes/gameOver.js");
 
 
 
@@ -123,7 +123,7 @@ game.scene.add("preload", new _scenes_preload__WEBPACK_IMPORTED_MODULE_0__["defa
 game.scene.add("main", new _scenes_main__WEBPACK_IMPORTED_MODULE_2__["default"](game));
 game.scene.add("menu", new _scenes_menu__WEBPACK_IMPORTED_MODULE_1__["default"]());
 game.scene.add("pause", new _scenes_pause__WEBPACK_IMPORTED_MODULE_3__["default"]());
-game.scene.add("over", new _scenes_over__WEBPACK_IMPORTED_MODULE_4__["default"]());
+game.scene.add("gameOver", new _scenes_gameOver__WEBPACK_IMPORTED_MODULE_4__["default"]());
 
 game.scene.start("preload", new _scenes_preload__WEBPACK_IMPORTED_MODULE_0__["default"]());
 
@@ -344,7 +344,7 @@ class invinciblePotion extends _pickUp__WEBPACK_IMPORTED_MODULE_0__["default"] {
       group: props.group,
       xPos: props.xPos,
       yPos: props.yPos,
-      allowGravity: true
+      allowGravity: true,
     });
     this.collide();
   }
@@ -531,26 +531,34 @@ class Pickup {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Platform; });
-class Platform{
-    constructor(props) {
-        this.platforms = props.platforms
-        this.walls = props.walls
-        this.x = props.x
-        this.y = props.y
-        this.width = props.width/2
-        this.type = props.type
-        this.spawnBoundary()
-    }
+class Platform {
+  constructor(props) {
+    this.platforms = props.platforms;
+    this.walls = props.walls;
+    this.x = props.x;
+    this.y = props.y;
+    this.width = props.width / 2;
+    this.type = props.type;
+    this.spawnBoundary();
+  }
 
-    spawnBoundary() {
-        let plat=this.platforms.create(this.x, this.y, this.type);
-        plat.setDepth(100)
-        this.walls.create(this.x-this.width <= 0 ? 2 : this.x-this.width, this.y - 65, "wall");
-        this.walls.create(this.x+this.width >= 800 ? 797 : this.x+this.width, this.y - 65, "wall");
-        this.walls.setVisible(false)
-      }
-
+  spawnBoundary() {
+    const platform = this.platforms.create(this.x, this.y, this.type);
+    platform.setDepth(100);
+    this.walls.create(
+      this.x - this.width <= 0 ? 2 : this.x - this.width,
+      this.y - 65,
+      "wall"
+    );
+    this.walls.create(
+      this.x + this.width >= 800 ? 797 : this.x + this.width,
+      this.y - 65,
+      "wall"
+    );
+    this.walls.setVisible(false);
+  }
 }
+
 
 /***/ }),
 
@@ -713,6 +721,59 @@ class Player {
       this.scene.hud.scoreText.setText(`Score:${this.scene.hud.score}`);
       this.getPoints.play();
     }
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/lib/scenes/gameOver.js":
+/*!************************************!*\
+  !*** ./src/lib/scenes/gameOver.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GameOver; });
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main */ "./src/lib/scenes/main.js");
+
+class GameOver extends Phaser.Scene {
+  constructor() {
+    super("gameOver");
+  }
+
+  init(data) {
+    this.finalScore = data.score;
+  }
+
+  create() {
+    this.scene.remove("main");
+    this.scene.add("main", new _main__WEBPACK_IMPORTED_MODULE_0__["default"](this.scene.game));
+    this.enterKey = this.input.keyboard.addKey("ENTER");
+    this.add.image(400, 300, "lava");
+    this.add.text(285, 50, "Game Over", {
+      fontFamily: "inGame",
+      fontSize: "60px",
+      color: "#ffffff"
+    });
+    this.add.text(250, 200, `Final Score: ${this.finalScore}`, {
+      fontFamily: "inGame",
+      fontSize: "60px",
+      color: "#ffffff"
+    });
+    this.add.text(140, 400, "Press ENTER to Try Again", {
+      fontFamily: "inGame",
+      fontSize: "60px",
+      color: "#ffffff"
+    });
+  }
+
+  update() {
+    this.enterKey.onDown = () => {
+      this.scene.start("main");
+    };
   }
 }
 
@@ -1141,7 +1202,7 @@ class Main extends Phaser.Scene {
       setTimeout(() => {
         this.player.deathSound.play();
         this.scene.remove("hud");
-        this.scene.start("over", { score: this.hud.score }), 100;
+        this.scene.start("gameOver", { score: this.hud.score }), 100;
       });
     }
   }
@@ -1179,59 +1240,6 @@ class Menu extends Phaser.Scene {
       color: "#000000"
     });
     this.enterKey = this.input.keyboard.addKey("ENTER");
-  }
-
-  update() {
-    this.enterKey.onDown = () => {
-      this.scene.start("main");
-    };
-  }
-}
-
-
-/***/ }),
-
-/***/ "./src/lib/scenes/over.js":
-/*!********************************!*\
-  !*** ./src/lib/scenes/over.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Over; });
-/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main */ "./src/lib/scenes/main.js");
-
-class Over extends Phaser.Scene {
-  constructor() {
-    super("over");
-  }
-
-  init(data) {
-    this.finalScore = data.score;
-  }
-
-  create() {
-    this.scene.remove("main");
-    this.scene.add("main", new _main__WEBPACK_IMPORTED_MODULE_0__["default"](this.scene.game));
-    this.enterKey = this.input.keyboard.addKey("ENTER");
-    this.add.image(400, 300, "lava");
-    this.add.text(275, 50, "Game Over", {
-      fontFamily: "inGame",
-      fontSize: "60px",
-      color: "#ffffff"
-    });
-    this.add.text(230, 200, `Final Score: ${this.finalScore}`, {
-      fontFamily: "inGame",
-      fontSize: "60px",
-      color: "#ffffff"
-    });
-    this.add.text(140, 400, "Press ENTER to Try Again", {
-      fontFamily: "inGame",
-      fontSize: "60px",
-      color: "#ffffff"
-    });
   }
 
   update() {
@@ -1467,7 +1475,6 @@ __webpack_require__.r(__webpack_exports__);
 //Function used by Phaser physics add collider method, this is passed through as a parameter within the callback function
 function hurtPlayer() {
   if (this.scene.player.enemyCollide && this.scene.hud.health !== 0) {
-
     this.scene.hud.health -= 1;
     this.scene.player.enemyCollide = false;
     this.enemy.collide.play();
@@ -1482,6 +1489,7 @@ function hurtPlayer() {
     setTimeout(() => {
       clearInterval(hurt);
     }, 500);
+    
     setTimeout(() => {
       this.scene.player.enemyCollide = true;
       this.scene.player.character.clearTint();
@@ -1525,7 +1533,7 @@ function outOfBounds(scene, group) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pauseFunction; });
 function pauseFunction(currentScene, sceneKey) {
-  let pKey = currentScene.input.keyboard.addKey("P");
+  const pKey = currentScene.input.keyboard.addKey("P");
 
   pKey.onDown = () => {
     if (sceneKey === "main") {

@@ -1,5 +1,5 @@
 export default function pauseFunction(currentScene, sceneKey) {
-  let pKey = currentScene.input.keyboard.addKey("P");
+  const pKey = currentScene.input.keyboard.addKey("P");
 
   pKey.onDown = () => {
     if (sceneKey === "main") {

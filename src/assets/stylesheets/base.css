@@ -3,22 +3,26 @@
   src: url("./gameFont.otf");
 }
 
-body {
+html {
   background-color: #abd3e2;
   font-family: inGame;
 }
 
-canvas {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-  margin: auto;
-  padding: 0;
+body {
+  width: 800px;
+  height: 600px;
 }
 
-.font-placeholder{
- visibility: hidden;
+canvas {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.font-placeholder {
+  position: absolute;
+  visibility: hidden;
 }

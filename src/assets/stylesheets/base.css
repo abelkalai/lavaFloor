@@ -3,9 +3,14 @@
   src: url("./gameFont.otf");
 }
 
+* {
+  margin: 0;
+}
+
 html {
   background-color: #abd3e2;
   font-family: inGame;
+  overflow: hidden;
 }
 
 body {
@@ -14,12 +19,12 @@ body {
 }
 
 canvas {
-  position: absolute;
-  margin: auto;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  position: absolute;
+  margin: auto;
 }
 
 .font-placeholder {

@@ -63,16 +63,16 @@ class Enemy {
         repeat: -1
     });
   }
+}
 
-  renderEnemyOne(xPos, yPos) {
-    new Enemy({
-      scene: this,
-      speed: -40,
-      type: "enemyOne",
-      scale: 0.085,
-      ...
-    });
-  }
+renderEnemyOne(xPos, yPos) {
+  new Enemy({
+    scene: this,
+    speed: -40,
+    type: "enemyOne",
+    scale: 0.085,
+    ...
+  });
 }
 ```
 
@@ -108,6 +108,34 @@ function outOfBounds(scene, group) {
     }
   }
 }
+```
+
+### Invisible Walls
+
+The enemies in the game scroll back and forth across the platform. This is thanks to invisible walls that lie on the edges of platforms. Whenever the enemy collides with the invisible wall they reverse direction and their image is flipped horizontally.
+
+```javascript
+spawnBoundary() {
+  let plat=this.platforms.create(this.x, this.y, this.type);
+  plat.setDepth(100)
+  this.walls.create(this.x-this.width <= 0 ? 2 : this.x-this.width, this.y - 65, "wall");
+  this.walls.create(this.x+this.width >= 800 ? 797 : this.x+this.width, this.y - 65, "wall");
+  this.walls.setVisible(false)
+}
+  
+update() {
+  ...
+  //Wall Collision
+  this.scene.physics.add.overlap(
+    this.sprite,
+    this.scene.walls,
+    () => {
+      this.sprite.setVelocityX(-this.sprite.body.velocity.x);
+      this.sprite.toggleFlipX();
+    }
+  );
+}
+
 ```
 
 ### Phaser Scenes

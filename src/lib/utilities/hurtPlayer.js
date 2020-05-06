@@ -1,7 +1,6 @@
 //Function used by Phaser physics add collider method, this is passed through as a parameter within the callback function
 export default function hurtPlayer() {
   if (this.scene.player.enemyCollide && this.scene.hud.health !== 0) {
-
     this.scene.hud.health -= 1;
     this.scene.player.enemyCollide = false;
     this.enemy.collide.play();
@@ -16,6 +15,7 @@ export default function hurtPlayer() {
     setTimeout(() => {
       clearInterval(hurt);
     }, 500);
+    
     setTimeout(() => {
       this.scene.player.enemyCollide = true;
       this.scene.player.character.clearTint();

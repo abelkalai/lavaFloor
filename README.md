@@ -115,7 +115,7 @@ function outOfBounds(scene, group) {
 The enemies in the game scroll back and forth across the platform. This is thanks to invisible walls that lie on the edges of platforms. Whenever the enemy collides with the invisible wall they reverse direction and their image is flipped horizontally.
 
 ```javascript
-spawnBoundary() {
+spawnPlatform() {
    const platform = this.platforms.create(this.x, this.y, this.type);
     platform.setDepth(100);
     this.walls.create(

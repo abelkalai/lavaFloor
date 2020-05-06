@@ -539,10 +539,10 @@ class Platform {
     this.y = props.y;
     this.width = props.width / 2;
     this.type = props.type;
-    this.spawnBoundary();
+    this.spawnPlatform();
   }
 
-  spawnBoundary() {
+  spawnPlatform() {
     const platform = this.platforms.create(this.x, this.y, this.type);
     platform.setDepth(100);
     this.walls.create(

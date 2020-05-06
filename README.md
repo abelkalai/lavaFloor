@@ -17,7 +17,7 @@ and don't climb too slowly or the lava will catch up to you.
 - Use the 'P' key to pause and resume the game
 - Gain points as you collect coins and climb
 
-- Be Aware of enemies and try not to touch them:
+- Beware of enemies and try not to touch them:
 
   - Spiky Monster: Slowly crawls along
   - Blue Monster: Runs at a quick pace
@@ -78,7 +78,7 @@ class Enemy {
 
 ### Spawning and Despawning (Platforms, Pickups & Enemies)
 
-The game objects the player interacts with are not all loaded at once. They're dynamically created and removed based on the player's height. The world bounds are updated based on the player's current height and highest height achieved. Every 500 pixels in height the player gains causes platforms, pickups and enemies to spawn. Likewise, if an item falls below the lava it is de-spawned.
+The game objects the player interacts with are not all loaded at once. They're dynamically created and removed based on the player's height. The world bounds are updated based on the player's current height and highest height achieved. Every 500 pixels in height the player gains causes platforms, pickups and enemies to spawn. Likewise, if an item falls below the lava it is de-spawned (In Phaser an object going up will have more negative values).
 
 ```javascript
  update() {
@@ -103,11 +103,7 @@ The game objects the player interacts with are not all loaded at once. They're d
 
 function outOfBounds(scene, group) {
   if (group.getChildren().length > 0) {
-      if (
-        group.getChildren()[0].y > scene.lava.lavaObj.y ||
-        group.getChildren()[0].x < -100 ||
-        group.getChildren()[0].x > 900
-      ) {
+      if (group.getChildren()[0].y > scene.lava.lavaObj.y) {
         group.getChildren()[0].destroy();
     }
   }

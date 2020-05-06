@@ -108,6 +108,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const game = new Phaser.Game({
   type: Phaser.AUTO,
+  width: 800,
+  height: 600,
   physics: {
     default: "arcade",
     arcade: {

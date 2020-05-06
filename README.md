@@ -131,7 +131,7 @@ class Hud extends Phaser.Scene {
       fill: "#ee3231"
     });
     ...
-    }
+  }
 
   update() {
     // Player can turn sound off with "o" key

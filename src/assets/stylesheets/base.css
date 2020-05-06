@@ -5,12 +5,12 @@
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 html {
   background-color: #abd3e2;
   font-family: inGame;
-  overflow: hidden;
 }
 
 body {

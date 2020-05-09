@@ -18,7 +18,6 @@ and don't climb too slowly or the lava will catch up to you.
 - Gain points as you collect coins and climb
 
 - Beware of enemies and try not to touch them:
-
   - Spiky Monster: Slowly crawls along
   - Blue Monster: Runs at a quick pace
   - Bee: Flies in the air at a medium speed
@@ -29,10 +28,10 @@ and don't climb too slowly or the lava will catch up to you.
   - Blue Potion: Gain a temporary score multiplier
   - Purple Potion: Gain temporary invincibility to enemies and lava
 
-## Techologies
+## Technologies
 
-- Phaser.js framework was used for the game logic along with classes, scoring, enemies and items
-- Express server for the web server
+- Phaser for the game logic along with classes, scoring, enemies and items
+- Express for the web server
 
 ## Features
 

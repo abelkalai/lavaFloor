@@ -1,6 +1,6 @@
 # The Floor is Lava
 
-[Play Now!](https://immense-citadel-20809.herokuapp.com/)
+[Play Now!](https://lavafloor-abelkalai.herokuapp.com/)
 
 ![demo](/src/assets/gifs/demo.gif)
 

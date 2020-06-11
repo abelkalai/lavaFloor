@@ -1236,7 +1236,7 @@ class Menu extends Phaser.Scene {
       fontSize: "26px",
       color: "#000000",
     });
-    this.add.text(7.5, 30, "linkedin.com/in/abelkalai/", {
+    this.add.text(7.5, 30, "linkedin.com/in/abelkalai", {
       fontFamily: "inGame",
       fontSize: "26px",
       color: "#000000",

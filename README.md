@@ -30,14 +30,14 @@ and don't climb too slowly or the lava will catch up to you.
 
 ## Technologies
 
-- Phaser for the game logic along with classes, scoring, enemies and items
-- Express for the web server
+- [Phaser.js](https://phaser.io) was leveraged for the game logic along with classes, scoring, enemies and items
+- [Express.js](https://expressjs.com/) leveraged for the web server 
 
 ## Features
 
 ### Classes
 
-Similarly functioning objects were grouped into classes to DRY up code. For example, all enemies have similar properties and methods such as (`xPos`, `speed`, `animate`). The `Enemy` class was used as a template for enemies to reduce the amount of repetitive code.
+Similarly functioning objects were grouped into classes to ``DRY`` up code. For example, all enemies have similar properties and methods such as (`xPos`, `speed`, `animate`). The `Enemy` class was used as a template for enemies to reduce the amount of repetitive code.
 
 ```javascript
 class Enemy {
@@ -79,7 +79,7 @@ renderEnemyOne(xPos, yPos) {
 
 ### Spawning and Despawning (Platforms, Pickups & Enemies)
 
-The game objects the player interacts with are not all loaded at once. They're dynamically created and removed based on the player's height. The world bounds are updated based on the player's current height and highest height achieved. Every 500 pixels in height the player gains causes platforms, pickups and enemies to spawn. Likewise, if an item falls below the lava it is de-spawned (In Phaser an object going up will have more negative values).
+The game objects the player interacts with are not all loaded at once. They're dynamically created and removed based on the player's height. The world bounds are updated based on the player's current height and highest height achieved. Every 500 pixels in height the player gains causes platforms, pickups and enemies to spawn. Likewise, if an item falls below the lava it is de-spawned (In [Phaser.js](https://phaser.io) an object going up will have more negative values).
 
 ```javascript
  update() {
@@ -154,7 +154,7 @@ update() {
 
 ### Phaser Scenes
 
-Phaser JS provides many useful classes out of the box such as scenes. Scenes can represent diffrent states of the game such as menu, pause and game over. Another use of scenes is overlaying. For example the HUD sits on top of the main game scene. It's independent from the main game scene so it doesn't need to know anything about the camera position or game objects.
+[Phaser.js](https://phaser.io) provides many useful classes out of the box such as ``scenes``. ``Scenes`` can represent diffrent states of the game such as menu, pause and game over. Another use of ``scenes`` is overlaying. For example the HUD sits on top of the main game ``scene``. It's independent from the main game ``scene`` so it doesn't need to know anything about the camera position or game objects.
 
 ```javascript
 class Hud extends Phaser.Scene {

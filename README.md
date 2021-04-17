@@ -79,7 +79,7 @@ renderEnemyOne(xPos, yPos) {
 
 ### Spawning and Despawning (Platforms, Pickups & Enemies)
 
-The game objects the player interacts with are not all loaded at once. They're dynamically created and removed based on the player's height. The world bounds are updated based on the player's current height and highest height achieved. Every 500 pixels in height the player gains causes platforms, pickups and enemies to spawn. Likewise, if an item falls below the lava it is de-spawned (In [Phaser.js](https://phaser.io) an object going up will have more negative values).
+The game objects the player interacts with are not all loaded at once. They're systematically created and removed based on the player's height. The world bounds are updated based on the player's current height and highest height achieved. Every 500 pixels in height the player gains causes platforms, pickups and enemies to spawn. Likewise, if an item falls below the lava it is de-spawned (In [Phaser.js](https://phaser.io) an object going up will have more negative values).
 
 ```javascript
  update() {
